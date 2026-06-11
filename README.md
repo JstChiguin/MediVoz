@@ -1,46 +1,67 @@
 # 🩺 MediVoz
 
-MediVoz es una aplicación web creada para facilitar el registro de información clínica mediante reconocimiento de voz.
+MediVoz es una aplicación web de transcripción médica por voz desarrollada para facilitar el registro de información clínica de manera rápida y sencilla.
 
-La idea surgió al observar que gran parte del tiempo de los profesionales de la salud se destina a escribir o transcribir información después de una consulta. MediVoz busca simplificar ese proceso permitiendo dictar observaciones médicas y almacenarlas de forma rápida y ordenada.
+El proyecto nació a partir de una necesidad real observada en el entorno hospitalario: reducir el tiempo destinado a escribir o transcribir información después de una atención médica, permitiendo que el profesional pueda concentrarse más en el paciente y menos en el teclado.
 
 ## Funcionalidades
 
-* Dictado por voz utilizando el micrófono del dispositivo.
-* Transcripción en tiempo real.
-* Registro de médico y paciente.
-* Edición manual de transcripciones.
-* Historial local de registros guardados.
-* Copiar transcripciones al portapapeles.
-* Exportación individual a Word (.docx).
-* Impresión individual de registros.
-* Impresión completa del historial.
-* Eliminación individual o masiva de registros.
-* Diseño adaptable para computadores y dispositivos móviles.
+* 🎤 Reconocimiento de voz en tiempo real.
+* 📝 Transcripción automática de texto.
+* 👨‍⚕️ Selección de médico tratante.
+* 👤 Registro de paciente asociado a la transcripción.
+* ✏️ Edición manual de registros.
+* 💾 Almacenamiento local de historial.
+* 📋 Copiado rápido al portapapeles.
+* 📄 Exportación individual a Word (.docx).
+* 📚 Exportación completa del historial a Word (.docx).
+* 🖨️ Impresión individual de registros.
+* 🖨️ Impresión completa del historial.
+* 🗑️ Eliminación individual de registros.
+* 🗑️ Eliminación completa del historial.
+* 📱 Compatibilidad con computadores, tablets y dispositivos móviles.
 
 ## Tecnologías utilizadas
 
-* HTML
-* CSS
+* HTML5
+* CSS3
 * JavaScript
 * Web Speech API
 * LocalStorage
 * Docx.js
+* GitHub Pages
+
+## Beneficios
+
+* Reduce el tiempo dedicado a la documentación clínica.
+* Permite registrar información mediante dictado por voz.
+* Facilita la organización de registros médicos.
+* Genera documentos listos para compartir, imprimir o archivar.
+* Funciona directamente desde el navegador sin necesidad de instalación.
 
 ## Estado del proyecto
 
-Proyecto en desarrollo y mejora continua.
+🟢 Versión funcional en desarrollo activo.
 
-Actualmente se encuentra operativo para pruebas y uso básico de transcripción médica desde navegador web.
+Actualmente MediVoz permite realizar transcripciones médicas por voz, gestionar un historial local de registros y exportar información a documentos Word para facilitar el trabajo administrativo y clínico.
 
 ## Próximas mejoras
 
-* Exportación completa del historial a Word.
-* Mejoras en la estabilidad del reconocimiento de voz móvil.
-* Búsqueda y filtrado de registros.
-* Integración con servicios de inteligencia artificial para apoyo en documentación clínica.
-* Respaldo de información en la nube.
+* 🔍 Búsqueda de registros por paciente.
+* 📅 Filtros por fecha y profesional.
+* ☁️ Respaldo y sincronización en la nube.
+* 🤖 Integración con inteligencia artificial para asistencia en documentación clínica.
+* 📊 Estadísticas y métricas de uso.
+* 🎨 Personalización de plantillas de exportación.
+
+## Acceso
+
+🌐 Sitio web:
+
+https://jstchiguin.github.io/MediVoz/
 
 ## Autor
 
-Desarrollado por Chiguin Chiang como proyecto personal orientado a la optimización de tareas administrativas y clínicas mediante herramientas web.
+**Chiguin Chiang**
+
+Proyecto desarrollado como iniciativa personal para apoyar y optimizar procesos de documentación clínica mediante herramientas web y reconocimiento de voz.
