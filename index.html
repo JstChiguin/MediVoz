@@ -266,7 +266,15 @@
     r.onresult = (e) => {
       let interim = '';
       for (let i = e.resultIndex; i < e.results.length; i++) {
-        if (e.results[i].isFinal) finalText += e.results[i][0].transcript + ' ';
+        if (e.results[i].isFinal) {
+
+          const frase = e.results[i][0].transcript.trim();
+
+          if (!finalText.endsWith(frase + ' ')) {
+            finalText += frase + ' ';
+          }
+
+        }
         else interim += e.results[i][0].transcript;
       }
       lastTextTime = Date.now();
@@ -285,19 +293,13 @@
           mensaje = 'Se perdió la conexión con el servicio de voz. Reintentando...';
           showError(mensaje);
 
-          setTimeout(() => {
-            if (recording) {
-              try {
-                recognition = setupRecognition();
-                recognition.start();
-              } catch(err) {
-                console.error(err);
-                showError('No se pudo reconectar automáticamente. Intenta detener y volver a iniciar la grabación.');
-              }
-            }           
-          }, 2000);
+          try {
+            r.stop();
+          } catch(err) {
+            console.error(err);
+          }
 
-      return;
+          return;
 
         case 'audio-capture':
           mensaje = 'No se detectó ningún micrófono disponible.';
@@ -353,6 +355,7 @@
   }
 
   function startRecording() {
+    if (recording) return;
     if (!SpeechRecognition) { showError('Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.'); return; }
     hideError();
     recording = true;
