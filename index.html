@@ -264,7 +264,7 @@
     const r = new SpeechRecognition();
     r.lang = 'es-CL';
     r.continuous = true;
-    r.interimResults = true;
+    r.interimResults = false;
     r.onresult = (e) => {
       let interim = '';
 
