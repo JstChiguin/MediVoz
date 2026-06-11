@@ -1,30 +1,27 @@
 # 🩺 MediVoz
 
-**MediVoz** es una aplicación web de transcripción médica por voz diseñada para ayudar a profesionales de la salud a registrar información clínica de forma rápida, sencilla y eficiente.
+MediVoz es una aplicación web creada para facilitar el registro de información clínica mediante reconocimiento de voz.
 
-## Características
+La idea surgió al observar que gran parte del tiempo de los profesionales de la salud se destina a escribir o transcribir información después de una consulta. MediVoz busca simplificar ese proceso permitiendo dictar observaciones médicas y almacenarlas de forma rápida y ordenada.
 
-* 🎤 Dictado por voz en tiempo real.
-* 📝 Edición manual de transcripciones.
-* 👨‍⚕️ Asociación de registros a médicos.
-* 👤 Registro de nombre de paciente.
-* 💾 Almacenamiento local de historial.
-* 📋 Copiar transcripciones al portapapeles.
-* 🖨️ Impresión individual o masiva.
-* 📄 Exportación a documentos Word.
-* 📱 Compatible con computadores y dispositivos móviles.
+## Funcionalidades
 
-## Beneficios
-
-* Reduce el tiempo dedicado a la documentación clínica.
-* Permite mantener mayor atención en el paciente.
-* Facilita la generación de registros médicos.
-* Mejora la organización de las transcripciones.
+* Dictado por voz utilizando el micrófono del dispositivo.
+* Transcripción en tiempo real.
+* Registro de médico y paciente.
+* Edición manual de transcripciones.
+* Historial local de registros guardados.
+* Copiar transcripciones al portapapeles.
+* Exportación individual a Word (.docx).
+* Impresión individual de registros.
+* Impresión completa del historial.
+* Eliminación individual o masiva de registros.
+* Diseño adaptable para computadores y dispositivos móviles.
 
 ## Tecnologías utilizadas
 
-* HTML5
-* CSS3
+* HTML
+* CSS
 * JavaScript
 * Web Speech API
 * LocalStorage
@@ -32,17 +29,18 @@
 
 ## Estado del proyecto
 
-🚧 Proyecto en desarrollo.
+Proyecto en desarrollo y mejora continua.
 
-Próximas mejoras:
+Actualmente se encuentra operativo para pruebas y uso básico de transcripción médica desde navegador web.
 
-* Exportación completa de historial a Word.
-* Optimización de reconocimiento de voz móvil.
-* Integración con inteligencia artificial.
-* Generación automática de informes clínicos.
-* Sincronización en la nube.
+## Próximas mejoras
 
----
+* Exportación completa del historial a Word.
+* Mejoras en la estabilidad del reconocimiento de voz móvil.
+* Búsqueda y filtrado de registros.
+* Integración con servicios de inteligencia artificial para apoyo en documentación clínica.
+* Respaldo de información en la nube.
 
-Desarrollado por **Chiguin Chiang**
+## Autor
 
+Desarrollado por Chiguin Chiang como proyecto personal orientado a la optimización de tareas administrativas y clínicas mediante herramientas web.
