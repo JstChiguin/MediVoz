@@ -249,6 +249,8 @@
   let recognition = null;
   let recording = false;
   let finalText = '';
+  let lastFinalPhrase = '';
+  let lastFinalTime = 0;
   let timerInterval = null;
   let secondsRecording = 0;
   let lastTextTime = Date.now();
@@ -265,18 +267,26 @@
     r.interimResults = true;
     r.onresult = (e) => {
       let interim = '';
+
       for (let i = e.resultIndex; i < e.results.length; i++) {
+        const frase = e.results[i][0].transcript.trim();
+
         if (e.results[i].isFinal) {
+          const ahora = Date.now();
 
-          const frase = e.results[i][0].transcript.trim();
+          const fraseRepetida = frase === lastFinalPhrase && (ahora - lastFinalTime) < 8000;
+          const yaEstaAlFinal = finalText.trim().endsWith(frase);
 
-          if (!finalText.endsWith(frase + ' ')) {
+          if (!fraseRepetida && !yaEstaAlFinal) {
             finalText += frase + ' ';
+        lastFinalPhrase = frase;
+        lastFinalTime = ahora;
           }
-
+        } else {
+          interim += frase + ' ';
         }
-        else interim += e.results[i][0].transcript;
       }
+
       lastTextTime = Date.now();
 
       transcriptBox.innerHTML =
@@ -359,6 +369,8 @@
     if (!SpeechRecognition) { showError('Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.'); return; }
     hideError();
     recording = true;
+    lastFinalPhrase = '';
+    lastFinalTime = 0;
     secondsRecording = 0;
     document.getElementById('recordTimer').textContent = '⏱ 00:00';
 
