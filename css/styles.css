@@ -115,6 +115,7 @@ header { width:100%; max-width:780px; padding:36px 0 28px;
 .error-banner { display:none; background:#fff0f1; border:1px solid #f8c4c7;
   border-radius:10px; padding:10px 16px; font-size:13px; color:var(--danger); margin:0 28px 16px; }
 .error-banner.show { display:block; }
+.contenido-desplazable { display:contents; }
 footer { margin-top:28px; font-size:11px; color:#2a4a60; text-align:center; letter-spacing:0.5px; }
 
 firma-medivoz {
@@ -175,7 +176,17 @@ firma-medivoz .firma-medivoz__version {
   text-transform:none !important;
 }
 
+@media(max-width:1100px){
+  :root { --reserva-firma:64px; }
+  html { height:100%; }
+  body { display:block; height:100vh; height:100dvh; min-height:0; padding:0; overflow:hidden; }
+  .contenido-desplazable { display:flex; flex-direction:column; align-items:center;
+    height:calc(100vh - var(--reserva-firma)); height:calc(100dvh - var(--reserva-firma));
+    overflow-y:auto; overscroll-behavior:contain; padding:0 16px 24px; }
+}
+
 @media(max-width:520px){
+  :root { --reserva-firma:54px; }
   .doctor-bar{padding:12px 16px}
   .mic-section{padding:24px 16px 20px}
   .transcript-section,.history-section{padding:0 16px 20px}

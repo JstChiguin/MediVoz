@@ -8,20 +8,21 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 
 ## Funcionalidades
 
-* 🎤 Reconocimiento de voz en tiempo real.
-* 📝 Transcripción automática de texto.
-* 👨‍⚕️ Selección de médico tratante.
-* 👤 Registro de paciente asociado a la transcripción.
-* ✏️ Edición manual de registros.
-* 💾 Almacenamiento local de historial.
-* 📋 Copiado rápido al portapapeles.
-* 📄 Exportación individual a Word (.docx).
-* 📚 Exportación completa del historial a Word (.docx).
-* 🖨️ Impresión individual de registros.
-* 🖨️ Impresión completa del historial.
-* 🗑️ Eliminación individual de registros.
-* 🗑️ Eliminación completa del historial.
-* 📱 Compatibilidad con computadores, tablets y dispositivos móviles.
+* 🎤 Reconocimiento de voz en español de Chile (Web Speech API), con inicio y detención del micrófono.
+* ⏱️ Temporizador de grabación y reinicio automático del reconocimiento cuando el servicio de voz se corta.
+* 📝 Transcripción automática y edición manual del texto antes de guardar.
+* 👨‍⚕️ Selección del médico tratante desde una lista.
+* 👤 Campo de paciente asociado a la transcripción.
+* 📋 Copiado de la transcripción al portapapeles.
+* 💾 Guardado de transcripciones en un historial local del navegador (se conservan las 20 más recientes).
+* ✏️ Edición de un registro guardado: se carga en el formulario y se vuelve a guardar.
+* 📋 Copiado de un registro individual.
+* 📄 Exportación individual de un registro a Word (.docx).
+* 🖨️ Impresión individual de un registro.
+* 🖨️ Impresión de todo el historial.
+* 🗑️ Eliminación individual de registros y eliminación de todo el historial.
+* ⚠️ Mensajes de error y notificaciones.
+* 📱 Diseño adaptable a computadores, tablets y móviles.
 
 ## Tecnologías utilizadas
 
@@ -61,7 +62,7 @@ MediVoz no requiere instalación ni dependencias.
 
 ## Versión y firma
 
-La versión se define una sola vez en `js/config.js`. La firma flotante `by Chiguin` con la versión debajo se muestra en la esquina inferior derecha mediante el elemento `<firma-medivoz>`, que lee sus datos de esa configuración. Para publicar una nueva versión basta con cambiar `version` en `js/config.js` y actualizar la versión esperada en `tests/firma.test.js`.
+La versión se define una sola vez en `js/config.js`. La firma flotante `by Chiguin` con la versión debajo se muestra en la esquina inferior derecha mediante el elemento `<firma-medivoz>`, que lee sus datos de esa configuración. En pantallas de hasta 1100 px de ancho el contenido se desplaza dentro de un área que termina sobre una franja inferior reservada, de modo que la firma nunca se superpone a botones ni controles. Para publicar una nueva versión basta con cambiar `version` en `js/config.js` y actualizar la versión esperada en `tests/firma.test.js`.
 
 ## Pruebas
 
@@ -71,7 +72,7 @@ Requieren Node.js 22 o superior y Chrome o Edge instalado (se puede indicar otro
 npm test
 ```
 
-* `tests/firma.test.js`: protege la firma. Falla si cambia el texto `by Chiguin` (cualquier carácter, espacio o mayúscula), si se oculta, si deja de ser fija, si sale de la esquina inferior derecha, si la versión no es `2.0.0` o si se duplica. Se ejecuta en escritorio y móvil.
+* `tests/firma.test.js`: protege la firma. Falla si cambia el texto `by Chiguin` (cualquier carácter, espacio o mayúscula), si se oculta, si deja de ser fija, si sale de la esquina inferior derecha, si la versión no es `2.0.0` o si se duplica. Se ejecuta en escritorio y móvil, y recorre todo el scroll en 12 resoluciones (de 320x568 a 1366x768) comprobando que la firma no se superponga a botones, campos ni contenido.
 * `tests/funcionalidad.test.js`: verifica el reconocimiento de voz simulado, el temporizador, la recuperación de grabación, el guardado, el historial local, la edición, la eliminación, la exportación a Word y la impresión.
 
 Las pruebas usan exclusivamente datos ficticios. Las pruebas también se ejecutan en GitHub Actions en cada push a `develop` o a ramas `feature/**` y en cada pull request.
@@ -88,16 +89,7 @@ Las pruebas usan exclusivamente datos ficticios. Las pruebas también se ejecuta
 
 🟢 Versión 2.0.0 funcional en desarrollo activo.
 
-Actualmente MediVoz permite realizar transcripciones médicas por voz, gestionar un historial local de registros y exportar información a documentos Word para facilitar el trabajo administrativo y clínico.
-
-## Próximas mejoras
-
-* 🔍 Búsqueda de registros por paciente.
-* 📅 Filtros por fecha y profesional.
-* ☁️ Respaldo y sincronización en la nube.
-* 🤖 Integración con inteligencia artificial para asistencia en documentación clínica.
-* 📊 Estadísticas y métricas de uso.
-* 🎨 Personalización de plantillas de exportación.
+Actualmente MediVoz permite realizar transcripciones médicas por voz, gestionar un historial local de registros y exportar registros individuales a documentos Word para facilitar el trabajo administrativo y clínico.
 
 ## Acceso
 

@@ -54,6 +54,80 @@ function medirFirma() {
   };
 }
 
+function desplazarA(fraccion) {
+  const contenedor = document.querySelector('.contenido-desplazable');
+  const elemento = getComputedStyle(contenedor).display === 'flex' ? contenedor : document.scrollingElement;
+  elemento.scrollTop = fraccion * (elemento.scrollHeight - elemento.clientHeight);
+}
+
+function medirSolapes() {
+  const firma = document.querySelector('firma-medivoz').getBoundingClientRect();
+  const contenedor = document.querySelector('.contenido-desplazable');
+  const conContenedor = getComputedStyle(contenedor).display === 'flex';
+  const recorte = conContenedor
+    ? contenedor.getBoundingClientRect()
+    : { left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight };
+  const cruza = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+  const visible = (r) => ({
+    left: Math.max(r.left, recorte.left),
+    right: Math.min(r.right, recorte.right),
+    top: Math.max(r.top, recorte.top),
+    bottom: Math.min(r.bottom, recorte.bottom)
+  });
+  const controles = [...document.querySelectorAll('button, input, select, [contenteditable="true"]')]
+    .filter((el) => {
+      const r = visible(el.getBoundingClientRect());
+      return r.right > r.left && r.bottom > r.top && cruza(r, firma);
+    })
+    .map((el) => el.id || el.title || el.className || el.tagName);
+  const tarjeta = visible(document.querySelector('.card').getBoundingClientRect());
+  return {
+    controles,
+    tarjeta: tarjeta.right > tarjeta.left && tarjeta.bottom > tarjeta.top && cruza(tarjeta, firma),
+    contenedor: conContenedor && cruza(contenedor.getBoundingClientRect(), firma),
+    ventana: { ancho: window.innerWidth, alto: window.innerHeight },
+    firma: { derecha: firma.right, abajo: firma.bottom, izquierda: firma.left }
+  };
+}
+
+const resoluciones = [
+  [320, 568], [360, 640], [375, 667], [390, 844], [412, 915], [540, 720],
+  [768, 1024], [844, 390], [1024, 768], [1100, 700], [1101, 700], [1366, 768]
+];
+
+for (const [ancho, alto] of resoluciones) {
+  describe(`Firma sin superposición a ${ancho}x${alto}`, () => {
+    it('queda fija en la esquina y nunca cubre controles ni contenido durante todo el scroll', async () => {
+      await navegador.configurarVista({ ancho, alto, movil: ancho <= 520 });
+      await navegador.ir(servidor.url);
+      await navegador.evaluar(() => {
+        const registros = Array.from({ length: 6 }, (_, i) => ({
+          id: 1000 + i,
+          doctor: 'Médico Ficticio',
+          patient: 'Paciente Ficticio ' + i,
+          text: 'Texto ficticio de prueba ' + i,
+          time: '01-01-26 10:0' + i
+        }));
+        localStorage.setItem('mediVozHistory', JSON.stringify(registros));
+      });
+      await navegador.ir(servidor.url);
+      await navegador.esperarCondicion(() => document.querySelectorAll('.history-item').length === 6, 'historial cargado');
+      for (let paso = 0; paso <= 20; paso++) {
+        await navegador.evaluar(desplazarA, paso / 20);
+        const s = await navegador.evaluar(medirSolapes);
+        const etiqueta = `scroll ${paso / 20}`;
+        assert.deepEqual(s.controles, [], etiqueta + ': firma sobre controles');
+        assert.equal(s.tarjeta, false, etiqueta + ': firma sobre el contenido');
+        assert.equal(s.contenedor, false, etiqueta + ': firma dentro del área desplazable');
+        assert.ok(s.ventana.ancho - s.firma.derecha <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina derecha');
+        assert.ok(s.ventana.alto - s.firma.abajo <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina inferior');
+        assert.ok(s.firma.izquierda > s.ventana.ancho / 2, etiqueta + ': firma centrada');
+      }
+      await navegador.evaluar(() => localStorage.clear());
+    });
+  });
+}
+
 for (const vista of vistas) {
   describe(`Firma flotante en ${vista.nombre}`, () => {
     beforeEach(async () => {
@@ -92,16 +166,12 @@ for (const vista of vistas) {
     });
 
     it('permanece en la esquina inferior derecha, sin centrarse, incluso al desplazarse', async () => {
-      const posiciones = ['arriba', 'medio', 'final'];
-      for (const posicion of posiciones) {
-        await navegador.evaluar((pos) => {
-          const maximo = document.documentElement.scrollHeight - window.innerHeight;
-          window.scrollTo(0, pos === 'arriba' ? 0 : pos === 'medio' ? maximo / 2 : maximo);
-        }, posicion);
+      for (const fraccion of [0, 0.5, 1]) {
+        await navegador.evaluar(desplazarA, fraccion);
         const m = await navegador.evaluar(medirFirma);
-        assert.ok(m.ventana.ancho - m.firma.derecha <= MARGEN_ESQUINA, `${posicion}: lejos del borde derecho`);
-        assert.ok(m.ventana.alto - m.firma.abajo <= MARGEN_ESQUINA, `${posicion}: lejos del borde inferior`);
-        assert.ok(m.firma.izquierda > m.ventana.ancho / 2, `${posicion}: la firma cruza el centro horizontal`);
+        assert.ok(m.ventana.ancho - m.firma.derecha <= MARGEN_ESQUINA, `${fraccion}: lejos del borde derecho`);
+        assert.ok(m.ventana.alto - m.firma.abajo <= MARGEN_ESQUINA, `${fraccion}: lejos del borde inferior`);
+        assert.ok(m.firma.izquierda > m.ventana.ancho / 2, `${fraccion}: la firma cruza el centro horizontal`);
       }
     });
 
@@ -125,21 +195,6 @@ for (const vista of vistas) {
       assert.equal(conteo.textosVisibles, 1);
       assert.equal(conteo.textosTotales, 1);
       assert.equal(conteo.versionesVisibles, 1);
-    });
-
-    it('no tapa botones, campos ni controles al llegar al final de la página', async () => {
-      await navegador.evaluar(() => window.scrollTo(0, document.documentElement.scrollHeight));
-      const solapados = await navegador.evaluar(() => {
-        const f = document.querySelector('firma-medivoz').getBoundingClientRect();
-        return [...document.querySelectorAll('button, input, select, [contenteditable="true"]')]
-          .filter((el) => {
-            const r = el.getBoundingClientRect();
-            return r.width > 0 && r.height > 0 &&
-              r.left < f.right && r.right > f.left && r.top < f.bottom && r.bottom > f.top;
-          })
-          .map((el) => el.id || el.className || el.tagName);
-      });
-      assert.deepEqual(solapados, []);
     });
 
     it('no intercepta clics ni toques', async () => {
