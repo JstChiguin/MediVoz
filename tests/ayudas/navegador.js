@@ -56,6 +56,10 @@ class ClienteCdp {
     });
   }
 
+  escuchar(metodo, escucha) {
+    this.escuchas.set(metodo, [...(this.escuchas.get(metodo) || []), escucha]);
+  }
+
   cuando(metodo) {
     return new Promise((resolver) => {
       const escucha = (parametros) => {
@@ -118,6 +122,24 @@ class Navegador {
     });
   }
 
+  registrarRed() {
+    this.solicitudes = [];
+    const porId = new Map();
+    this.cliente.escuchar('Network.requestWillBeSent', (p) => {
+      const registro = { url: p.request.url, metodo: p.request.method, cuerpo: p.request.postData || '', bloqueada: false };
+      porId.set(p.requestId, registro);
+      this.solicitudes.push(registro);
+    });
+    this.cliente.escuchar('Network.loadingFailed', (p) => {
+      const registro = porId.get(p.requestId);
+      if (registro && p.blockedReason) registro.bloqueada = true;
+    });
+    this.cliente.escuchar('Network.webSocketCreated', (p) => {
+      this.solicitudes.push({ url: p.url, metodo: 'WEBSOCKET', cuerpo: '' });
+    });
+    return this.solicitudes;
+  }
+
   async bloquearUrls(patrones) {
     await this.cliente.enviar('Network.setBlockedURLs', { urls: patrones });
   }
@@ -151,6 +173,17 @@ class Navegador {
     if (resultado.exceptionDetails) {
       throw new Error(resultado.exceptionDetails.exception?.description || resultado.exceptionDetails.text);
     }
+    return resultado.result.value;
+  }
+
+  async evaluarRespetandoCsp(expresion) {
+    const resultado = await this.cliente.enviar('Runtime.evaluate', {
+      expression: expresion,
+      awaitPromise: true,
+      returnByValue: true,
+      allowUnsafeEvalBlockedByCSP: false
+    });
+    if (resultado.exceptionDetails) throw new Error(resultado.exceptionDetails.text);
     return resultado.result.value;
   }
 

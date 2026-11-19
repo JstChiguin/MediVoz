@@ -36,7 +36,6 @@
 })();
 
 const TEXTO_VACIO = 'El texto dictado aparecerá aquí…';
-const HTML_VACIO = '<span class="marcador-vacio">' + TEXTO_VACIO + '</span>';
 
 const micBtn = document.getElementById('micBtn');
 const micRing = document.getElementById('micRing');
@@ -58,7 +57,7 @@ let timerInterval = null;
 let secondsRecording = 0;
 let lastTextTime = Date.now();
 let stuckChecker = null;
-let history = JSON.parse(localStorage.getItem('mediVozHistory') || '[]');
+let history = AlmacenSeguro.iniciar();
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -92,9 +91,7 @@ function setupRecognition() {
 
     lastTextTime = Date.now();
 
-    transcriptBox.innerHTML =
-      (finalText ? '<span>' + escHTML(finalText) + '</span>' : '') +
-      (interim ? '<span class="interim">' + escHTML(interim) + '</span>' : '');
+    mostrarTexto(finalText, interim);
   };
   r.onerror = (e) => {
     let mensaje = '';
@@ -162,8 +159,46 @@ function setupRecognition() {
 }
 
 function escHTML(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
+
+function crearNodo(etiqueta, clase, texto) {
+  const nodo = document.createElement(etiqueta);
+  if (clase) nodo.className = clase;
+  if (texto !== undefined) nodo.textContent = texto;
+  return nodo;
+}
+
+function mostrarTexto(confirmado, provisional) {
+  const nodos = [];
+  if (confirmado) nodos.push(crearNodo('span', '', confirmado));
+  if (provisional) nodos.push(crearNodo('span', 'interim', provisional));
+  transcriptBox.replaceChildren(...nodos);
+}
+
+function mostrarMarcadorVacio() {
+  transcriptBox.replaceChildren(crearNodo('span', 'marcador-vacio', TEXTO_VACIO));
+}
+
+transcriptBox.addEventListener('paste', (evento) => {
+  evento.preventDefault();
+  const texto = (evento.clipboardData || window.clipboardData).getData('text/plain');
+  const seleccion = window.getSelection();
+  if (!seleccion.rangeCount) return;
+  const rango = seleccion.getRangeAt(0);
+  rango.deleteContents();
+  const nodo = document.createTextNode(texto);
+  rango.insertNode(nodo);
+  rango.setStartAfter(nodo);
+  rango.collapse(true);
+  seleccion.removeAllRanges();
+  seleccion.addRange(rango);
+});
 
 function startRecording() {
   if (recording) return;
@@ -185,7 +220,7 @@ function startRecording() {
   }, 1000);
   const current = transcriptBox.innerText.trim();
   finalText = (current === TEXTO_VACIO ? '' : current + ' ');
-  transcriptBox.innerHTML = finalText ? '<span>' + escHTML(finalText) + '</span>' : '';
+  mostrarTexto(finalText, '');
   recognition = setupRecognition();
   recognition.start();
   lastTextTime = Date.now();
@@ -229,7 +264,7 @@ function stopRecording() {
   micStatus.textContent = 'Presiona el micrófono para dictar';
   micStatus.classList.remove('active');
   const text = transcriptBox.innerText.trim();
-  if (text && text !== TEXTO_VACIO) transcriptBox.innerHTML = escHTML(text);
+  if (text && text !== TEXTO_VACIO) transcriptBox.textContent = text;
 }
 
 micBtn.addEventListener('click', () => { recording ? stopRecording() : startRecording(); });
@@ -243,74 +278,124 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 document.getElementById('clearBtn').addEventListener('click', () => {
   if (recording) stopRecording();
   finalText = '';
-  transcriptBox.innerHTML = HTML_VACIO;
+  mostrarMarcadorVacio();
   hideError();
 });
+
+function persistirHistorial() {
+  return AlmacenSeguro.guardarHistorial(history).catch(() => {
+    showError('No se pudo guardar el historial en este navegador.');
+  });
+}
+
+function historialBloqueado() {
+  return AlmacenSeguro.estado().bloqueado;
+}
 
 document.getElementById('saveBtn').addEventListener('click', () => {
   const text = transcriptBox.innerText.trim();
   if (!text || text === TEXTO_VACIO) { showToast('Dicta o escribe algo primero.'); return; }
+  if (historialBloqueado()) { showToast('🔒 Desbloquea el historial para guardar.'); PanelSeguridad.abrir(); return; }
   const doctor = doctorSelect.value || 'Médico sin especificar';
   const patient = patientInput.value.trim() || 'Paciente sin nombre';
   const entry = { id: Date.now(), doctor, patient, text,
     time: new Date().toLocaleString('es-CL', { dateStyle: 'short', timeStyle: 'short' }) };
   history.unshift(entry);
   if (history.length > 20) history = history.slice(0, 20);
-  localStorage.setItem('mediVozHistory', JSON.stringify(history));
+  persistirHistorial();
 
   renderHistory();
-  showToast('✓ Transcripción guardada');
+  showToast(AlmacenSeguro.estado().guardarEnDispositivo ? '✓ Transcripción guardada' : '✓ Guardada solo en esta sesión');
   finalText = '';
-  transcriptBox.innerHTML = HTML_VACIO;
+  mostrarMarcadorVacio();
   patientInput.value = '';
 });
 
-function renderHistory() {
-  if (!history.length) { historyList.innerHTML = '<p class="no-history">Aún no hay transcripciones guardadas.</p>'; return; }
-  historyList.innerHTML = history.map(e => `
-    <div class="history-item">
-      <div class="history-meta">
-        <div class="hi-doctor">${escHTML(e.doctor)}</div>
-        <div class="hi-patient">👤 ${escHTML(e.patient)}</div>
-        <div class="hi-text">${escHTML(e.text)}</div>
-        <div class="hi-time">🕐 ${e.time}</div>
-      </div>
-      <div class="hi-acciones">
-        <button class="hi-copy" title="Copiar" onclick="copyEntry(${e.id})">📋</button>
-        <button class="hi-copy" title="Imprimir" onclick="printEntry(${e.id})">🖨️</button>
-        <button class="hi-copy" title="Exportar Word" onclick="exportEntryWord(${e.id})">📝</button>
-        <button class="hi-copy" title="Editar" onclick="editEntry(${e.id})">✏️</button>
-        <button class="hi-copy" title="Borrar" onclick="deleteEntry(${e.id})">🗑️</button>
-      </div>
-    </div>`).join('');
+const ACCIONES_HISTORIAL = [
+  { accion: 'copiar', titulo: 'Copiar', icono: '📋' },
+  { accion: 'imprimir', titulo: 'Imprimir', icono: '🖨️' },
+  { accion: 'word', titulo: 'Exportar Word', icono: '📝' },
+  { accion: 'editar', titulo: 'Editar', icono: '✏️' },
+  { accion: 'borrar', titulo: 'Borrar', icono: '🗑️' }
+];
+
+function crearRegistroHistorial(e) {
+  const meta = crearNodo('div', 'history-meta');
+  meta.append(
+    crearNodo('div', 'hi-doctor', e.doctor),
+    crearNodo('div', 'hi-patient', '👤 ' + e.patient),
+    crearNodo('div', 'hi-text', e.text),
+    crearNodo('div', 'hi-time', '🕐 ' + e.time)
+  );
+  const acciones = crearNodo('div', 'hi-acciones');
+  ACCIONES_HISTORIAL.forEach(({ accion, titulo, icono }) => {
+    const boton = crearNodo('button', 'hi-copy', icono);
+    boton.type = 'button';
+    boton.title = titulo;
+    boton.dataset.accion = accion;
+    boton.dataset.id = String(e.id);
+    acciones.appendChild(boton);
+  });
+  const registro = crearNodo('div', 'history-item');
+  registro.append(meta, acciones);
+  return registro;
 }
 
-window.editEntry = function (id) {
+function renderHistory() {
+  if (historialBloqueado()) {
+    const bloqueo = crearNodo('div', 'historial-bloqueado');
+    const abrir = crearNodo('button', 'btn-sm primary', '🔓 Desbloquear');
+    abrir.type = 'button';
+    abrir.addEventListener('click', () => PanelSeguridad.abrir());
+    bloqueo.append(crearNodo('p', 'no-history', '🔒 El historial está cifrado y bloqueado.'), abrir);
+    historyList.replaceChildren(bloqueo);
+    return;
+  }
+  if (!history.length) {
+    historyList.replaceChildren(crearNodo('p', 'no-history', 'Aún no hay transcripciones guardadas.'));
+    return;
+  }
+  historyList.replaceChildren(...history.map(crearRegistroHistorial));
+}
+
+historyList.addEventListener('click', (evento) => {
+  const boton = evento.target.closest('button[data-accion]');
+  if (!boton) return;
+  const id = Number(boton.dataset.id);
+  const accion = boton.dataset.accion;
+  if (accion === 'copiar') copyEntry(id);
+  else if (accion === 'imprimir') printEntry(id);
+  else if (accion === 'word') exportEntryWord(id);
+  else if (accion === 'editar') editEntry(id);
+  else if (accion === 'borrar') deleteEntry(id);
+});
+
+function editEntry(id) {
   const entry = history.find(e => e.id === id);
   if (!entry) return;
 
   AdministradorMedicos.seleccionar(entry.doctor);
   patientInput.value = entry.patient;
-  transcriptBox.innerHTML = escHTML(entry.text);
+  transcriptBox.textContent = entry.text;
 
   history = history.filter(e => e.id !== id);
-  localStorage.setItem('mediVozHistory', JSON.stringify(history));
+  persistirHistorial();
   renderHistory();
 
   showToast('✏️ Transcripción cargada para editar');
-};
+}
 
-window.deleteEntry = function (id) {
+function deleteEntry(id) {
   if (!confirm('¿Borrar esta transcripción?')) return;
 
   history = history.filter(e => e.id !== id);
-  localStorage.setItem('mediVozHistory', JSON.stringify(history));
+  persistirHistorial();
   renderHistory();
 
   showToast('🗑️ Transcripción eliminada');
-};
+}
 
-window.exportEntryWord = async function (id) {
+async function exportEntryWord(id) {
   const entry = history.find(e => e.id === id);
   if (!entry) return;
 
@@ -356,93 +441,88 @@ window.exportEntryWord = async function (id) {
   });
 
   const blob = await Packer.toBlob(doc);
-
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "Transcripcion_MediVoz.docx";
-  a.click();
+  descargarBlob(blob, 'Transcripcion_MediVoz.docx');
 
   showToast("📝 Word descargado");
-};
+}
 
-window.printEntry = function (id) {
+function descargarBlob(blob, nombre) {
+  const a = document.createElement("a");
+  const direccion = URL.createObjectURL(blob);
+  a.href = direccion;
+  a.download = nombre;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(direccion), 10000);
+}
+
+function abrirVentanaImpresion(titulo, cuerpo) {
+  const ventana = window.open('', '_blank');
+  if (!ventana) { showToast('El navegador bloqueó la ventana de impresión.'); return; }
+  const hoja = new URL('css/impresion.css', window.location.href).href;
+  ventana.document.write(
+    '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">' +
+    '<title>' + escHTML(titulo) + '</title>' +
+    '<link rel="stylesheet" href="' + escHTML(hoja) + '"></head><body>' + cuerpo + '</body></html>'
+  );
+  ventana.onload = () => ventana.print();
+  ventana.document.close();
+}
+
+function printEntry(id) {
   const entry = history.find(e => e.id === id);
-
   if (!entry) return;
 
-  const ventana = window.open('', '_blank');
+  abrirVentanaImpresion('Transcripción Médica',
+    '<h2>' + escHTML(entry.doctor) + '</h2>' +
+    '<p><strong>Paciente:</strong> ' + escHTML(entry.patient) + '</p>' +
+    '<p><strong>Fecha:</strong> ' + escHTML(entry.time) + '</p>' +
+    '<hr>' +
+    '<p class="texto-transcripcion">' + escHTML(entry.text) + '</p>');
+}
 
-  ventana.document.write(`
-    <html>
-      <head>
-        <title>Transcripción Médica</title>
-      </head>
-      <body style="font-family:Arial;padding:20px;">
-
-        <h2>${entry.doctor}</h2>
-
-        <p><strong>Paciente:</strong> ${entry.patient}</p>
-
-        <p><strong>Fecha:</strong> ${entry.time}</p>
-
-        <hr>
-
-        <p style="white-space:pre-wrap;">
-          ${entry.text}
-        </p>
-
-      </body>
-    </html>
-  `);
-
-  ventana.document.close();
-  ventana.print();
-};
-
-window.copyEntry = function (id) {
+function copyEntry(id) {
   const entry = history.find(e => e.id === id);
   if (!entry) return;
   const full = `Doctor: ${entry.doctor}\nPaciente: ${entry.patient}\nFecha: ${entry.time}\n\n${entry.text}`;
   navigator.clipboard.writeText(full).then(() => showToast('✓ Copiado'));
-};
+}
 
 document.getElementById('clearHistoryBtn').addEventListener('click', () => {
-  if (confirm('¿Borrar todas las transcripciones guardadas?')) {
+  const bloqueado = historialBloqueado();
+  const mensaje = bloqueado
+    ? 'El historial está cifrado y bloqueado. Si continúa se borrará por completo y el cifrado quedará desactivado. ¿Continuar?'
+    : '¿Borrar todas las transcripciones guardadas?';
+  if (confirm(mensaje)) {
     history = [];
-    localStorage.removeItem('mediVozHistory');
+    AlmacenSeguro.eliminarTodo();
     renderHistory();
+    PanelSeguridad.actualizar();
     showToast('✓ Historial eliminado');
   }
 });
 
 document.getElementById('printHistoryBtn').addEventListener('click', () => {
+  if (historialBloqueado()) { showToast('🔒 Desbloquea el historial para imprimir.'); PanelSeguridad.abrir(); return; }
   let contenido = '<h1>Historial MediVoz</h1><hr>';
 
   history.forEach(e => {
-    contenido += `
-      <h3>${e.doctor}</h3>
-      <p><strong>Paciente:</strong> ${e.patient}</p>
-      <p><strong>Fecha:</strong> ${e.time}</p>
-      <p>${e.text}</p>
-      <hr>
-    `;
+    contenido +=
+      '<h3>' + escHTML(e.doctor) + '</h3>' +
+      '<p><strong>Paciente:</strong> ' + escHTML(e.patient) + '</p>' +
+      '<p><strong>Fecha:</strong> ' + escHTML(e.time) + '</p>' +
+      '<p class="texto-transcripcion">' + escHTML(e.text) + '</p>' +
+      '<hr>';
   });
 
-  const ventana = window.open('', '_blank');
+  abrirVentanaImpresion('Historial MediVoz', contenido);
+});
 
-  ventana.document.write(`
-    <html>
-      <head>
-        <title>Historial MediVoz</title>
-      </head>
-      <body>
-        ${contenido}
-      </body>
-    </html>
-  `);
-
-  ventana.document.close();
-  ventana.print();
+PanelSeguridad.iniciar({
+  obtenerHistorial: () => history,
+  reemplazarHistorial: (lista) => { history = lista; renderHistory(); },
+  estaGrabando: () => recording,
+  descargar: descargarBlob,
+  avisar: (mensaje) => showToast(mensaje)
 });
 
 AdministradorMedicos.iniciar({ avisar: showToast });

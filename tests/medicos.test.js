@@ -257,7 +257,7 @@ for (const { ancho, alto } of [{ ancho: 320, alto: 568 }, { ancho: 390, alto: 84
         const formulario = document.getElementById('formularioMedico').getBoundingClientRect();
         lista.scrollTop = lista.scrollHeight;
         const ultimo = [...lista.querySelectorAll('.medicos-item')].pop().getBoundingClientRect();
-        const botones = [...document.querySelectorAll('.medicos-panel button, .medicos-panel input')].map((el) => el.getBoundingClientRect());
+        const botones = [...document.querySelectorAll('#panelMedicos .medicos-panel button, #panelMedicos .medicos-panel input')].map((el) => el.getBoundingClientRect());
         return {
           dentroDePantalla: panel.left >= 0 && panel.right <= window.innerWidth && panel.top >= 0 && panel.bottom <= window.innerHeight,
           sobreLaFranja: panel.bottom <= window.innerHeight - reserva + 1,

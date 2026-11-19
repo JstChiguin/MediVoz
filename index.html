@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MediVoz — Transcriptor Médico</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; media-src 'none'; worker-src 'none'; manifest-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"/>
+  <meta name="referrer" content="no-referrer"/>
+  <link rel="stylesheet" href="css/fuentes.css"/>
   <link rel="stylesheet" href="css/styles.css"/>
-  <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+  <script src="js/vendor/docx-8.5.0.umd.js"></script>
 </head>
 <body>
 <header>
@@ -48,6 +50,7 @@
       <span></span><span></span><span></span>
     </div>
     <p class="mic-status" id="micStatus">Presiona el micrófono para dictar</p>
+    <p class="aviso-privacidad">El dictado usa el reconocimiento de voz de tu navegador, que puede enviar el audio a servicios externos (por ejemplo, los de Google en Chrome).</p>
     <p class="mic-status" id="recordTimer">⏱ 00:00</p>
   </div>
 
@@ -72,6 +75,7 @@
       <span>Transcripciones guardadas</span>
       <div class="acciones-historial">
         <button class="btn-sm" id="printHistoryBtn">🖨️ Imprimir Todo</button>
+        <button class="btn-sm" id="abrirSeguridadBtn">🔒 Seguridad</button>
         <button class="btn-sm danger" id="clearHistoryBtn">🗑 Borrar historial</button>
       </div>
     </div>
@@ -99,10 +103,52 @@
   </div>
 </div>
 
+<div class="medicos-fondo" id="panelSeguridad" hidden>
+  <div class="medicos-panel" role="dialog" aria-modal="true" aria-labelledby="tituloSeguridad">
+    <div class="medicos-cabecera">
+      <h2 id="tituloSeguridad">Seguridad y privacidad</h2>
+      <button type="button" class="hi-copy" id="cerrarSeguridadBtn" aria-label="Cerrar" title="Cerrar">✕</button>
+    </div>
+    <div class="seguridad-cuerpo">
+      <p class="seguridad-estado" id="estadoSeguridad"></p>
+      <p class="medicos-error" id="mensajeSeguridad" role="alert"></p>
+
+      <form class="seguridad-formulario" id="formularioCifrado">
+        <p class="seguridad-texto">Cifra el historial con AES-GCM. La contraseña no se guarda en ninguna parte: si se pierde, el historial no se puede recuperar.</p>
+        <input type="password" id="contrasenaNueva" placeholder="Contraseña (mínimo 8 caracteres)" autocomplete="new-password" maxlength="200"/>
+        <input type="password" id="contrasenaRepetida" placeholder="Repite la contraseña" autocomplete="new-password" maxlength="200"/>
+        <button type="submit" class="btn-sm primary" id="activarCifradoBtn">🔐 Activar cifrado</button>
+      </form>
+
+      <form class="seguridad-formulario" id="formularioDesbloqueo" hidden>
+        <input type="password" id="contrasenaDesbloqueo" placeholder="Contraseña del historial" autocomplete="current-password" maxlength="200"/>
+        <button type="submit" class="btn-sm primary" id="desbloquearBtn">🔓 Desbloquear</button>
+      </form>
+
+      <div class="seguridad-formulario" id="seccionDesbloqueado" hidden>
+        <button type="button" class="btn-sm primary" id="bloquearBtn">🔒 Bloquear ahora</button>
+        <form class="seguridad-subformulario" id="formularioDesactivar">
+          <input type="password" id="contrasenaDesactivar" placeholder="Contraseña para quitar el cifrado" autocomplete="current-password" maxlength="200"/>
+          <button type="submit" class="btn-sm danger" id="desactivarCifradoBtn">Quitar cifrado</button>
+        </form>
+      </div>
+
+      <label class="seguridad-opcion">
+        <input type="checkbox" id="guardarEnDispositivo"/>
+        <span>Guardar el historial en este dispositivo</span>
+      </label>
+      <button type="button" class="btn-sm" id="exportarHistorialBtn">⬇️ Exportar copia (JSON)</button>
+      <p class="seguridad-texto">Todo se guarda solo en este navegador. MediVoz no envía transcripciones a ningún servidor propio ni de terceros.</p>
+    </div>
+  </div>
+</div>
+
 <firma-medivoz></firma-medivoz>
 
 <script src="js/config.js"></script>
 <script src="js/medicos.js"></script>
+<script src="js/almacen-seguro.js"></script>
+<script src="js/panel-seguridad.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
