@@ -72,7 +72,7 @@ class ClienteCdp {
 }
 
 class Navegador {
-  static async abrir() {
+  static async abrir(opciones = {}) {
     const ejecutable = RUTAS_NAVEGADOR.find((ruta) => fs.existsSync(ruta));
     if (!ejecutable) throw new Error('No se encontró Chrome ni Edge. Defina CHROME_PATH.');
     const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'medivoz-pruebas-'));
@@ -82,8 +82,9 @@ class Navegador {
       '--user-data-dir=' + perfil,
       '--no-first-run',
       '--no-default-browser-check',
-      '--disable-gpu',
+      ...(opciones.conGpu ? [] : ['--disable-gpu']),
       '--no-sandbox',
+      ...(opciones.argumentos || []),
       'about:blank'
     ], { stdio: 'ignore' });
     const archivoPuerto = path.join(perfil, 'DevToolsActivePort');
@@ -113,6 +114,14 @@ class Navegador {
     this.socket = socket;
   }
 
+  memoriaMb() {
+    const { spawnSync } = require('child_process');
+    const patron = path.basename(this.perfil);
+    const orden = "$t=0; Get-CimInstance Win32_Process -Filter \"Name='chrome.exe'\" | Where-Object { $_.CommandLine -like '*" + patron + "*' } | ForEach-Object { $p=Get-Process -Id $_.ProcessId -ErrorAction SilentlyContinue; if ($p) { $t += $p.WorkingSet64 } }; [math]::Round($t/1MB)";
+    const resultado = spawnSync('powershell', ['-NoProfile', '-Command', orden], { encoding: 'utf8' });
+    return Number(String(resultado.stdout).trim()) || 0;
+  }
+
   async configurarVista({ ancho, alto, movil }) {
     await this.cliente.enviar('Emulation.setDeviceMetricsOverride', {
       width: ancho,
@@ -138,6 +147,25 @@ class Navegador {
       this.solicitudes.push({ url: p.url, metodo: 'WEBSOCKET', cuerpo: '' });
     });
     return this.solicitudes;
+  }
+
+  async interceptarRespuesta(patron, transformar) {
+    await this.cliente.enviar('Fetch.enable', { patterns: [{ urlPattern: patron, requestStage: 'Response' }] });
+    this.cliente.escuchar('Fetch.requestPaused', async (p) => {
+      try {
+        const cuerpo = await this.cliente.enviar('Fetch.getResponseBody', { requestId: p.requestId });
+        const original = cuerpo.base64Encoded ? Buffer.from(cuerpo.body, 'base64').toString('utf8') : cuerpo.body;
+        const modificado = transformar(original);
+        await this.cliente.enviar('Fetch.fulfillRequest', {
+          requestId: p.requestId,
+          responseCode: 200,
+          responseHeaders: [{ name: 'Content-Type', value: 'application/json' }],
+          body: Buffer.from(modificado, 'utf8').toString('base64')
+        });
+      } catch (error) {
+        await this.cliente.enviar('Fetch.continueRequest', { requestId: p.requestId }).catch(() => {});
+      }
+    });
   }
 
   async bloquearUrls(patrones) {

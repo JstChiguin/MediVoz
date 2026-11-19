@@ -8,7 +8,8 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 
 ## Funcionalidades
 
-* 🎤 Reconocimiento de voz en español de Chile (Web Speech API), con inicio y detención del micrófono.
+* 🎤 Reconocimiento de voz en español de Chile con dos motores a elegir: el del navegador (Web Speech API) o una **IA local privada** que procesa el audio solo en el dispositivo.
+* 📖 Diccionario médico con sugerencias de corrección para revisar (nunca cambia nada por sí solo).
 * ⏱️ Temporizador de grabación y reinicio automático del reconocimiento cuando el servicio de voz se corta.
 * 📝 Transcripción automática y edición manual del texto antes de guardar.
 * 👨‍⚕️ Selección del médico tratante desde una lista que el usuario administra: agregar, editar (con orden alfabético) y eliminar con confirmación, sin nombres vacíos ni duplicados.
@@ -30,7 +31,7 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 * HTML5
 * CSS3
 * JavaScript
-* Web Speech API
+* Web Speech API y, opcionalmente, IA local con ONNX Runtime Web 1.22.0 (WebAssembly) y un Web Worker
 * LocalStorage y Web Crypto API (AES-GCM)
 * Docx.js 8.5.0 (incluido en el repositorio, sin CDN)
 * GitHub Pages
@@ -50,8 +51,12 @@ MediVoz/
 │   ├── medicos.js        Administrador de médicos (lista editable)
 │   ├── almacen-seguro.js Almacenamiento del historial y cifrado opcional
 │   ├── panel-seguridad.js Panel de seguridad y privacidad
-│   ├── vendor/           Dependencias con versión fija
+│   ├── panel-diccionario.js Diccionario médico y sugerencias
+│   ├── ia/               IA local: motor, segmentador de voz, captura, diccionario
+│   ├── vendor/           Dependencias con versión fija (docx y ONNX Runtime Web)
 │   └── script.js         Comportamiento de la aplicación y firma flotante
+├── modelos/conformer-es/ Modelo de voz local (CC-BY-4.0) con manifiesto y huellas SHA-256
+├── evaluacion/           Banco de pruebas reproducible de motores y su informe
 ├── tests/                Pruebas automatizadas
 ├── .github/workflows/    Ejecución de pruebas en GitHub Actions
 ├── V1                    Versión histórica
@@ -94,13 +99,33 @@ Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se sim
 ## Seguridad y privacidad
 
 * **Contenido no confiable:** lo dictado, escrito, pegado o leído del almacenamiento se trata siempre como texto. No se usa `innerHTML`, `eval`, `new Function` ni controladores en línea; la ventana de impresión escapa cada campo. Al pegar en la transcripción solo se inserta texto plano.
-* **Política de seguridad de contenido (CSP):** declarada en `index.html` con `default-src 'none'`, scripts y estilos solo del propio origen y `connect-src 'none'`. Al estar en una etiqueta `<meta>` (GitHub Pages no permite cabeceras propias) no puede incluir `frame-ancestors`, por lo que la protección contra incrustación en otros sitios no está cubierta.
+* **Política de seguridad de contenido (CSP):** declarada en `index.html` con `default-src 'none'`, scripts, estilos, conexiones y workers solo del propio origen y `wasm-unsafe-eval` únicamente para ejecutar WebAssembly (no habilita `eval`). Al estar en una etiqueta `<meta>` (GitHub Pages no permite cabeceras propias) no puede incluir `frame-ancestors`, por lo que la protección contra incrustación en otros sitios no está cubierta.
 * **Sin recursos externos:** las tipografías y `docx` se sirven desde el repositorio; `docx` está fijado por hash SHA-384 en las pruebas. MediVoz no tiene servicios de analítica ni de seguimiento y no envía datos a servidores propios o de terceros.
-* **Reconocimiento de voz:** usa la Web Speech API del navegador. En Chrome el audio puede enviarse a los servicios de Google; la aplicación lo indica en pantalla. Eso queda fuera del control de MediVoz.
-* **Sin IA generativa:** MediVoz no incluye ningún modelo, agente ni herramienta ejecutable conectada a lo dictado. Una frase dictada nunca se interpreta como instrucción: la protección frente a la inyección de prompts es estructural (no hay intérprete) y no depende de detectar palabras sospechosas.
+* **Reconocimiento de voz:** el motor del navegador usa la Web Speech API; en Chrome el audio puede enviarse a los servicios de Google y la aplicación lo indica en pantalla. Eso queda fuera del control de MediVoz. El motor **IA local** no envía audio ni texto a ningún servidor (ver más abajo). MediVoz nunca cambia de motor por sí solo.
+* **Sin IA generativa:** la IA local es un modelo de transcripción (audio a texto), no un modelo de lenguaje: no recibe instrucciones, no tiene herramientas ni agentes y no ejecuta nada. MediVoz no incluye ningún agente ni herramienta ejecutable conectada a lo dictado. Una frase dictada nunca se interpreta como instrucción: la protección frente a la inyección de prompts es estructural (no hay intérprete) y no depende de detectar palabras sospechosas.
 * **Historial cifrado (opcional):** el botón 🔒 Seguridad permite cifrarlo con AES-GCM de 256 bits; la clave se deriva de una contraseña con PBKDF2-SHA-256 (600 000 iteraciones, sal aleatoria por activación y vector nuevo en cada escritura). La contraseña no se guarda ni existe clave fija en el código; la clave derivada vive solo en memoria, no es exportable y se descarta al bloquear. Si se pierde la contraseña, los datos no se pueden recuperar y solo se pueden borrar. El historial se bloquea tras 10 minutos sin actividad (no mientras se graba). La activación migra el historial existente y borra la copia sin cifrar solo después de verificar que se descifra idéntico. También es posible dejar de guardar el historial en el dispositivo, exportar una copia JSON (sin cifrar, solo a petición) y quitar el cifrado.
 * **Datos que quedan en el dispositivo:** historial (cifrado o no), lista de médicos y ajustes, en `localStorage` del navegador. La lista de médicos y los ajustes no se cifran. No se guardan grabaciones.
 * **Origen compartido en GitHub Pages:** todas las páginas de proyecto bajo `jstchiguin.github.io` comparten el mismo origen y por tanto el mismo `localStorage`. Otra aplicación del mismo usuario podría leer el historial sin cifrar; el cifrado con contraseña mitiga esto. El aislamiento completo requiere un origen propio (por ejemplo un dominio personalizado, que puede tener costo).
+
+## IA local de transcripción (opcional)
+
+El selector **Motor de voz** junto al micrófono permite elegir entre el motor del navegador (predeterminado) y la **IA local privada**. Elegir la IA local no descarga nada hasta que se pulsa el micrófono por primera vez.
+
+* **Modelo:** NVIDIA NeMo FastConformer Hybrid en español, rama transductora cuantizada a 8 bits (licencia CC-BY-4.0, atribución en `modelos/conformer-es/ATRIBUCION.md`). Se ejecuta con ONNX Runtime Web (WebAssembly, un hilo) dentro de un Web Worker, por lo que la interfaz no se congela.
+* **Privacidad:** el audio se captura con un `AudioWorklet`, se segmenta por pausas en el propio dispositivo y se transcribe localmente. Las pruebas automatizadas registran toda la red durante un dictado completo: solo hay solicitudes `GET` al propio sitio (el modelo y el código), ninguna con datos de audio o texto. No se guardan grabaciones.
+* **Descarga y caché:** unos 135 MB la primera vez, alojados en este mismo sitio (no hay servidores de terceros). Se descargan por partes, se verifica su huella SHA-256 contra `modelos/conformer-es/manifiesto.json` y se guardan en la caché del navegador (Cache Storage) para no repetir la descarga. Un archivo corrupto se descarta con un aviso.
+* **Memoria y liberación:** el modelo en uso ocupa cerca de 0,8 GB de memoria. Se descarga de la memoria tras 10 minutos sin dictar. No se carga al iniciar la aplicación.
+* **Sin conexión:** una vez descargado el modelo, la IA local no necesita red. La página en sí sí se carga desde GitHub Pages (no hay service worker), así que para abrir MediVoz sin conexión la página debe seguir abierta o estar en la caché normal del navegador.
+* **Recuperación:** si la descarga o la carga fallan, el micrófono queda libre y se muestra un aviso; el motor del navegador sigue disponible.
+* **Limitaciones conocidas:** los nombres de fármacos son el punto débil del modelo (por ejemplo, "enalapril" puede salir como "en el april"). Las cifras y las unidades se reconocen mucho mejor. Toda transcripción debe revisarse antes de usarse con fines clínicos.
+
+### Diccionario médico
+
+El botón **📖 Diccionario** abre un editor de términos propios que se suman a un vocabulario clínico base. Tras cada dictado, o con **🔎 Revisar**, MediVoz muestra posibles errores como *sugerencias* que se aceptan o se ignoran una a una. Nunca cambia nada por sí solo y por diseño solo considera palabras de al menos ocho letras: las cifras, las dosis, las unidades y las negaciones no se tocan (hay pruebas que lo verifican).
+
+### Comparativa de motores
+
+`evaluacion/INFORME.md` contiene la comparación completa (precisión, velocidad, memoria y licencias) de Whisper tiny, base y small, Moonshine, Canary, Parakeet, Vosk y los modelos Conformer, medidos con 40 audios ficticios y reproducibles con los scripts de `evaluacion/`. Whisper, que suele darse por defecto, resultó el menos preciso para dictado médico en español con los modelos que caben en un navegador.
 
 ## Pruebas de seguridad
 
@@ -108,6 +133,8 @@ Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se sim
 * `tests/cifrado.test.js`: cifrado, descifrado, bloqueo, contraseña incorrecta, datos alterados, migración sin pérdida, fallo durante la migración, inactividad, guardado desactivado y exportación.
 * `tests/inyeccion.test.js`: 14 cargas hostiles ficticias (instrucciones en español, suplantación de mensajes del sistema, HTML y scripts mezclados con términos médicos) por dictado, almacenamiento alterado y pegado, y verificación de que la CSP bloquea scripts en línea, `eval` y solicitudes de red inyectadas.
 * `tests/privacidad.test.js`: registra todas las solicitudes de red en un flujo completo (dictar, guardar, copiar, imprimir, Word, cifrar, bloquear) y comprueba que ninguna sale del origen ni contiene datos clínicos, además del funcionamiento sin conexión una vez cargada la página.
+* `tests/ia-local.test.js`: con un micrófono simulado de Chrome que reproduce audio ficticio, verifica que la IA local transcribe, ordena las frases, no se carga al iniciar, se recupera de un modelo corrupto, descarta lo pendiente al borrar, no hace solicitudes externas y no ejecuta una frase dictada que pide borrar datos o desactivar el cifrado.
+* `tests/ia-unitarias.test.js`, `tests/diccionario.test.js`, `tests/diccionario-interfaz.test.js`, `tests/metricas.test.js`: segmentador de voz, características de audio, diccionario (incluidas las reglas que impiden tocar cifras y negaciones) y métricas de evaluación.
 * `tests/movil-seguridad.test.js`: diseño del panel y de la firma en 320, 390 y 412 px, y tiempos con CPU limitada 4 veces. Es una emulación en un Chrome de escritorio: no sustituye una prueba en un teléfono Android real.
 
 ## Beneficios

@@ -237,3 +237,19 @@ firma-medivoz .firma-medivoz__version {
 .seguridad-cuerpo input[type="password"]:focus { outline:none; border-color:var(--teal); }
 .seguridad-opcion { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--navy); }
 .seguridad-cuerpo .medicos-error { padding:0; min-height:18px; }
+
+.selector-motor { display:flex; align-items:center; gap:8px; margin-top:4px; font-size:12px; color:var(--slate); }
+.selector-motor select { padding:6px 10px; border:1.5px solid #c8d8de; border-radius:8px; font-size:12px;
+  font-family:'Inter',sans-serif; color:var(--navy); background:var(--white); max-width:220px; }
+.selector-motor select:focus { outline:none; border-color:var(--teal); }
+.mic-btn:disabled { opacity:0.6; cursor:progress; }
+
+.sugerencias { margin-top:10px; padding:10px 12px; background:#fff8e6; border:1px solid #f0d58a; border-radius:10px;
+  display:flex; flex-direction:column; gap:8px; }
+.sugerencias[hidden] { display:none; }
+.sugerencias-titulo { font-size:12px; color:#7a5c00; }
+.sugerencia-fila { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:14px; color:var(--navy); }
+.sugerencia-texto { flex:1; min-width:160px; overflow-wrap:anywhere; }
+.sugerencia-original { text-decoration:line-through; color:var(--danger); }
+.diccionario-ayuda { padding:12px 20px 0; }
+.cuenta-diccionario { padding:0 20px; }
