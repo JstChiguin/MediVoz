@@ -1,5 +1,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
+  --reserva-firma:0px;
   --navy:#0f2340; --navy-mid:#1a3558; --teal:#2a9d8f; --teal-lt:#3dbfb0;
   --ice:#e8f4f3; --white:#ffffff; --slate:#5a7080; --mist:#f0f5f7;
   --danger:#e63946; --gold:#e9c46a;
@@ -16,13 +17,13 @@ header { width:100%; max-width:780px; padding:36px 0 28px;
   color:var(--white); letter-spacing:-0.4px; line-height:1; }
 .brand-text p { font-size:11px; color:var(--teal-lt); font-weight:500;
   letter-spacing:1.6px; text-transform:uppercase; margin-top:3px; }
-.card { width:100%; max-width:780px; background:var(--white); border-radius:20px;
+.card { flex-shrink:0; width:100%; max-width:780px; background:var(--white); border-radius:20px;
   overflow:hidden; box-shadow:0 32px 80px rgba(0,0,0,0.35); }
 .doctor-bar { background:var(--mist); border-bottom:1px solid #dde8ec;
   padding:16px 28px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
 .doctor-bar label { font-size:12px; font-weight:600; color:var(--slate);
   letter-spacing:0.8px; text-transform:uppercase; white-space:nowrap; }
-.doctor-bar select { flex:1; min-width:200px; padding:9px 14px;
+.doctor-bar select { flex:1 1 150px; min-width:150px; padding:9px 14px;
   border:1.5px solid #c8d8de; border-radius:8px; font-size:14px;
   font-family:'Inter',sans-serif; color:var(--navy); background:var(--white);
   cursor:pointer; appearance:none;
@@ -68,10 +69,10 @@ header { width:100%; max-width:780px; padding:36px 0 28px;
 .wave span:nth-child(7){height:14px;animation-delay:0.25s}
 @keyframes wave-bar { 0%,100%{transform:scaleY(0.4)} 50%{transform:scaleY(1)} }
 .transcript-section { padding:0 28px 28px; }
-.transcript-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.transcript-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px; }
 .transcript-header span { font-size:11px; font-weight:600; color:var(--slate);
   letter-spacing:1.2px; text-transform:uppercase; }
-.transcript-actions { display:flex; gap:8px; }
+.transcript-actions { display:flex; flex-wrap:wrap; gap:8px; }
 .btn-sm { padding:6px 14px; border-radius:7px; border:1.5px solid #c8d8de;
   background:var(--white); font-size:12px; font-weight:500; color:var(--navy);
   cursor:pointer; display:flex; align-items:center; gap:6px;
@@ -91,8 +92,8 @@ header { width:100%; max-width:780px; padding:36px 0 28px;
 .history-section { border-top:1px solid #dde8ec; padding:20px 28px 28px; }
 .history-header { font-size:11px; font-weight:600; color:var(--slate);
   letter-spacing:1.2px; text-transform:uppercase; margin-bottom:14px;
-  display:flex; justify-content:space-between; align-items:center; }
-.acciones-historial { display:flex; gap:8px; }
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.acciones-historial { display:flex; flex-wrap:wrap; gap:8px; }
 .history-list { display:flex; flex-direction:column; gap:10px; }
 .history-item { background:var(--mist); border-radius:10px; padding:12px 16px;
   display:flex; align-items:flex-start; gap:12px; }
@@ -110,13 +111,39 @@ header { width:100%; max-width:780px; padding:36px 0 28px;
 .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px);
   background:var(--navy); color:var(--white); padding:12px 24px; border-radius:100px;
   font-size:13px; font-weight:500; opacity:0; transition:opacity 0.3s,transform 0.3s;
-  pointer-events:none; z-index:999; }
+  pointer-events:none; z-index:1100; }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 .error-banner { display:none; background:#fff0f1; border:1px solid #f8c4c7;
   border-radius:10px; padding:10px 16px; font-size:13px; color:var(--danger); margin:0 28px 16px; }
 .error-banner.show { display:block; }
-.contenido-desplazable { display:contents; }
 footer { margin-top:28px; font-size:11px; color:#2a4a60; text-align:center; letter-spacing:0.5px; }
+
+.btn-medicos { width:38px; height:38px; flex:none; border:1.5px solid #c8d8de; border-radius:8px;
+  background:var(--white); font-size:15px; cursor:pointer; opacity:0.75;
+  display:flex; align-items:center; justify-content:center; transition:opacity 0.15s, border-color 0.15s; }
+.btn-medicos:hover, .btn-medicos:focus-visible { opacity:1; border-color:var(--teal); outline:none; }
+.aviso-medicos { flex-basis:100%; font-size:12px; color:var(--slate); }
+.aviso-medicos[hidden] { display:none; }
+.medicos-fondo { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center;
+  padding:16px 16px calc(var(--reserva-firma) + 16px); background:rgba(15,35,64,0.72); }
+.medicos-fondo[hidden] { display:none; }
+.medicos-panel { width:100%; max-width:480px; max-height:100%; display:flex; flex-direction:column;
+  background:var(--white); border-radius:16px; box-shadow:0 24px 60px rgba(0,0,0,0.4); overflow:hidden; }
+.medicos-cabecera { display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px 20px; background:var(--mist); border-bottom:1px solid #dde8ec; }
+.medicos-cabecera h2 { font-family:'DM Serif Display',serif; font-size:20px; font-weight:400; color:var(--navy); }
+.medicos-formulario { display:flex; gap:8px; padding:16px 20px 0; }
+.medicos-formulario input, .medicos-campo-edicion { flex:1; min-width:0; padding:9px 14px;
+  border:1.5px solid #c8d8de; border-radius:8px; font-size:14px; font-family:'Inter',sans-serif; color:var(--navy); }
+.medicos-formulario input:focus, .medicos-campo-edicion:focus { outline:none; border-color:var(--teal); }
+.medicos-error { min-height:20px; padding:6px 20px 0; font-size:12px; color:var(--danger); }
+.medicos-lista { list-style:none; overflow-y:auto; min-height:0; padding:4px 20px 20px;
+  display:flex; flex-direction:column; gap:8px; }
+.medicos-item { display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:var(--mist); border-radius:10px; padding:8px 12px; }
+.medicos-nombre { flex:1; min-width:0; font-size:14px; color:var(--navy); overflow-wrap:anywhere; }
+.medicos-acciones { display:flex; gap:4px; flex:none; }
+.medicos-vacio { font-size:13px; color:#a0b4bc; text-align:center; padding:16px 0; }
 
 firma-medivoz {
   position:fixed !important;
@@ -178,15 +205,18 @@ firma-medivoz .firma-medivoz__version {
 
 @media(max-width:1100px){
   :root { --reserva-firma:64px; }
-  html { height:100%; }
-  body { display:block; height:100vh; height:100dvh; min-height:0; padding:0; overflow:hidden; }
-  .contenido-desplazable { display:flex; flex-direction:column; align-items:center;
-    height:calc(100vh - var(--reserva-firma)); height:calc(100dvh - var(--reserva-firma));
-    overflow-y:auto; overscroll-behavior:contain; padding:0 16px 24px; }
+  html { scroll-padding-bottom:var(--reserva-firma); }
+  body { padding-bottom:calc(var(--reserva-firma) + 24px); }
+  body::after { content:''; position:fixed; left:0; right:0; bottom:0; height:var(--reserva-firma);
+    background:var(--navy); z-index:900; }
+  .toast { bottom:calc(var(--reserva-firma) + 12px); }
 }
 
 @media(max-width:520px){
   :root { --reserva-firma:54px; }
+  .transcript-actions { width:100%; }
+  .transcript-actions .btn-sm, .acciones-historial .btn-sm { flex:1 1 auto; justify-content:center; padding:8px 6px; }
+  .acciones-historial { width:100%; }
   .doctor-bar{padding:12px 16px}
   .mic-section{padding:24px 16px 20px}
   .transcript-section,.history-section{padding:0 16px 20px}

@@ -289,7 +289,7 @@ window.editEntry = function (id) {
   const entry = history.find(e => e.id === id);
   if (!entry) return;
 
-  doctorSelect.value = entry.doctor;
+  AdministradorMedicos.seleccionar(entry.doctor);
   patientInput.value = entry.patient;
   transcriptBox.innerHTML = escHTML(entry.text);
 
@@ -445,6 +445,7 @@ document.getElementById('printHistoryBtn').addEventListener('click', () => {
   ventana.print();
 });
 
+AdministradorMedicos.iniciar({ avisar: showToast });
 renderHistory();
 
 let toastTimer;

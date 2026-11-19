@@ -73,7 +73,10 @@ async function guardarRegistro(paciente, texto) {
 
 beforeEach(async () => {
   await navegador.ir(servidor.url);
-  await navegador.evaluar(() => localStorage.clear());
+  await navegador.evaluar(() => {
+    localStorage.clear();
+    localStorage.setItem('mediVozMedicos', JSON.stringify(['Médico Ficticio Alfa', 'Médico Ficticio Beta']));
+  });
   await navegador.recargar();
 });
 
@@ -264,7 +267,7 @@ describe('Estructura de archivos', () => {
       scriptsEnLinea: [...document.querySelectorAll('script:not([src])')].length
     }));
     assert.deepEqual(rutas.estilos, ['css/styles.css']);
-    assert.deepEqual(rutas.scripts, ['js/config.js', 'js/script.js']);
+    assert.deepEqual(rutas.scripts, ['js/config.js', 'js/medicos.js', 'js/script.js']);
     assert.equal(rutas.estilosEnLinea, 0);
     assert.equal(rutas.scriptsEnLinea, 0);
   });

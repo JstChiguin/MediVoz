@@ -55,18 +55,14 @@ function medirFirma() {
 }
 
 function desplazarA(fraccion) {
-  const contenedor = document.querySelector('.contenido-desplazable');
-  const elemento = getComputedStyle(contenedor).display === 'flex' ? contenedor : document.scrollingElement;
+  const elemento = document.scrollingElement;
   elemento.scrollTop = fraccion * (elemento.scrollHeight - elemento.clientHeight);
 }
 
 function medirSolapes() {
   const firma = document.querySelector('firma-medivoz').getBoundingClientRect();
-  const contenedor = document.querySelector('.contenido-desplazable');
-  const conContenedor = getComputedStyle(contenedor).display === 'flex';
-  const recorte = conContenedor
-    ? contenedor.getBoundingClientRect()
-    : { left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight };
+  const reserva = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--reserva-firma')) || 0;
+  const recorte = { left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight - reserva };
   const cruza = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
   const visible = (r) => ({
     left: Math.max(r.left, recorte.left),
@@ -84,7 +80,8 @@ function medirSolapes() {
   return {
     controles,
     tarjeta: tarjeta.right > tarjeta.left && tarjeta.bottom > tarjeta.top && cruza(tarjeta, firma),
-    contenedor: conContenedor && cruza(contenedor.getBoundingClientRect(), firma),
+    reserva,
+    firmaEnFranja: reserva === 0 || firma.top >= recorte.bottom - 0.5,
     ventana: { ancho: window.innerWidth, alto: window.innerHeight },
     firma: { derecha: firma.right, abajo: firma.bottom, izquierda: firma.left }
   };
@@ -118,7 +115,7 @@ for (const [ancho, alto] of resoluciones) {
         const etiqueta = `scroll ${paso / 20}`;
         assert.deepEqual(s.controles, [], etiqueta + ': firma sobre controles');
         assert.equal(s.tarjeta, false, etiqueta + ': firma sobre el contenido');
-        assert.equal(s.contenedor, false, etiqueta + ': firma dentro del área desplazable');
+        assert.equal(s.firmaEnFranja, true, etiqueta + ': firma fuera de la franja reservada');
         assert.ok(s.ventana.ancho - s.firma.derecha <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina derecha');
         assert.ok(s.ventana.alto - s.firma.abajo <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina inferior');
         assert.ok(s.firma.izquierda > s.ventana.ancho / 2, etiqueta + ': firma centrada');

@@ -9,7 +9,6 @@
   <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
 </head>
 <body>
-<div class="contenido-desplazable">
 <header>
   <div class="brand">
     <div class="brand-icon">🩺</div>
@@ -24,25 +23,10 @@
   <div class="doctor-bar">
     <label>Doctor</label>
     <select id="doctorSelect">
-      <option value="">— Seleccionar médico —</option>
-      <option>Dr. Marcelo Alarcón Bastías</option>
-      <option>Dra. Ximena Barbageliata García</option>
-      <option>Dr. Álvaro Carrizo Arredondo</option>
-      <option>Dr. Osvaldo Segundo Cisternas Vásquez</option>
-      <option>Dra. Paulina Codoceo Collao</option>
-      <option>Dr. Álvaro José Fernández García-Tello</option>
-      <option>Dr. José Ferrada Sánchez</option>
-      <option>Dra. Maríajose García Sánchez</option>
-      <option>Dra. Michelle Ibarra Villagra</option>
-      <option>Dr. Cristian Lovera Riquelme</option>
-      <option>Dra. Bernardita Millán Rojas</option>
-      <option>Dr. Ítalo Muñoz Quintanilla</option>
-      <option>Dr. Jorge Navarro Subiabre</option>
-      <option>Dra. Romina Oyarzún Díaz</option>
-      <option>Dra. Fernanda Salas Pezzani</option>
-      <option>Dr. Luis Troncoso Castro</option>
-      <option>Dra. Teresa Veas Nanjari</option>
+      <option value="">— Sin médicos registrados —</option>
     </select>
+    <button type="button" class="btn-medicos" id="manageDoctorsBtn" title="Administrar médicos" aria-label="Administrar médicos">⚙️</button>
+    <p class="aviso-medicos" id="avisoMedicos">Aún no hay médicos registrados. Agrega el primero con el botón ⚙️.</p>
     <label>Paciente</label>
     <input type="text" id="patientInput" placeholder="Nombre del paciente…"/>
   </div>
@@ -98,12 +82,27 @@
 </div>
 
 <footer>MediVoz · Para uso interno hospitalario</footer>
-</div>
 <div class="toast" id="toast"></div>
+
+<div class="medicos-fondo" id="panelMedicos" hidden>
+  <div class="medicos-panel" role="dialog" aria-modal="true" aria-labelledby="tituloMedicos">
+    <div class="medicos-cabecera">
+      <h2 id="tituloMedicos">Administrar médicos</h2>
+      <button type="button" class="hi-copy" id="cerrarMedicosBtn" aria-label="Cerrar" title="Cerrar">✕</button>
+    </div>
+    <form class="medicos-formulario" id="formularioMedico">
+      <input type="text" id="nombreMedicoInput" placeholder="Nombre del médico…" maxlength="120" autocomplete="off"/>
+      <button type="submit" class="btn-sm primary">➕ Agregar</button>
+    </form>
+    <p class="medicos-error" id="errorMedicos" role="alert"></p>
+    <ul class="medicos-lista" id="listaMedicos"></ul>
+  </div>
+</div>
 
 <firma-medivoz></firma-medivoz>
 
 <script src="js/config.js"></script>
+<script src="js/medicos.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
