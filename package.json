@@ -1,0 +1,8 @@
+{
+  "name": "medivoz",
+  "private": true,
+  "description": "Transcriptor médico por voz",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
