@@ -31,8 +31,8 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 * CSS3
 * JavaScript
 * Web Speech API
-* LocalStorage
-* Docx.js
+* LocalStorage y Web Crypto API (AES-GCM)
+* Docx.js 8.5.0 (incluido en el repositorio, sin CDN)
 * GitHub Pages
 
 ## Estructura del proyecto
@@ -41,10 +41,16 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 MediVoz/
 ├── index.html            Estructura HTML
 ├── css/
-│   └── styles.css        Todos los estilos, incluida la firma flotante
+│   ├── styles.css        Estilos, incluida la firma flotante
+│   ├── fuentes.css       Tipografías locales (sin Google Fonts)
+│   ├── fuentes/          Archivos woff2
+│   └── impresion.css     Estilos de la ventana de impresión
 ├── js/
 │   ├── config.js         Configuración central (versión 2.0.0 y texto de la firma)
 │   ├── medicos.js        Administrador de médicos (lista editable)
+│   ├── almacen-seguro.js Almacenamiento del historial y cifrado opcional
+│   ├── panel-seguridad.js Panel de seguridad y privacidad
+│   ├── vendor/           Dependencias con versión fija
 │   └── script.js         Comportamiento de la aplicación y firma flotante
 ├── tests/                Pruebas automatizadas
 ├── .github/workflows/    Ejecución de pruebas en GitHub Actions
@@ -83,7 +89,26 @@ npm test
 * `tests/medicos.test.js`: verifica que no haya médicos en el código, el aviso de lista vacía, agregar, editar, eliminar con confirmación, validaciones, orden alfabético, persistencia al recargar, la protección de los registros históricos y el panel en móviles.
 * `tests/funcionalidad.test.js`: verifica el reconocimiento de voz simulado, el temporizador, la recuperación de grabación, el guardado, el historial local, la edición, la eliminación, la exportación a Word y la impresión.
 
-Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se simula y el teclado virtual se emula reduciendo la altura de la ventana; no sustituyen una prueba con micrófono ni teclado reales en un teléfono. Las pruebas también se ejecutan en GitHub Actions en cada push a `develop` o a ramas `feature/**` y en cada pull request.
+Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se simula y el teclado virtual se emula reduciendo la altura de la ventana; no sustituyen una prueba con micrófono ni teclado reales en un teléfono. Las pruebas también se ejecutan en GitHub Actions en cada push a `develop`, `feature/**` o `seguridad/**` y en cada pull request.
+
+## Seguridad y privacidad
+
+* **Contenido no confiable:** lo dictado, escrito, pegado o leído del almacenamiento se trata siempre como texto. No se usa `innerHTML`, `eval`, `new Function` ni controladores en línea; la ventana de impresión escapa cada campo. Al pegar en la transcripción solo se inserta texto plano.
+* **Política de seguridad de contenido (CSP):** declarada en `index.html` con `default-src 'none'`, scripts y estilos solo del propio origen y `connect-src 'none'`. Al estar en una etiqueta `<meta>` (GitHub Pages no permite cabeceras propias) no puede incluir `frame-ancestors`, por lo que la protección contra incrustación en otros sitios no está cubierta.
+* **Sin recursos externos:** las tipografías y `docx` se sirven desde el repositorio; `docx` está fijado por hash SHA-384 en las pruebas. MediVoz no tiene servicios de analítica ni de seguimiento y no envía datos a servidores propios o de terceros.
+* **Reconocimiento de voz:** usa la Web Speech API del navegador. En Chrome el audio puede enviarse a los servicios de Google; la aplicación lo indica en pantalla. Eso queda fuera del control de MediVoz.
+* **Sin IA generativa:** MediVoz no incluye ningún modelo, agente ni herramienta ejecutable conectada a lo dictado. Una frase dictada nunca se interpreta como instrucción: la protección frente a la inyección de prompts es estructural (no hay intérprete) y no depende de detectar palabras sospechosas.
+* **Historial cifrado (opcional):** el botón 🔒 Seguridad permite cifrarlo con AES-GCM de 256 bits; la clave se deriva de una contraseña con PBKDF2-SHA-256 (600 000 iteraciones, sal aleatoria por activación y vector nuevo en cada escritura). La contraseña no se guarda ni existe clave fija en el código; la clave derivada vive solo en memoria, no es exportable y se descarta al bloquear. Si se pierde la contraseña, los datos no se pueden recuperar y solo se pueden borrar. El historial se bloquea tras 10 minutos sin actividad (no mientras se graba). La activación migra el historial existente y borra la copia sin cifrar solo después de verificar que se descifra idéntico. También es posible dejar de guardar el historial en el dispositivo, exportar una copia JSON (sin cifrar, solo a petición) y quitar el cifrado.
+* **Datos que quedan en el dispositivo:** historial (cifrado o no), lista de médicos y ajustes, en `localStorage` del navegador. La lista de médicos y los ajustes no se cifran. No se guardan grabaciones.
+* **Origen compartido en GitHub Pages:** todas las páginas de proyecto bajo `jstchiguin.github.io` comparten el mismo origen y por tanto el mismo `localStorage`. Otra aplicación del mismo usuario podría leer el historial sin cifrar; el cifrado con contraseña mitiga esto. El aislamiento completo requiere un origen propio (por ejemplo un dominio personalizado, que puede tener costo).
+
+## Pruebas de seguridad
+
+* `tests/estatico.test.js`: auditoría del código (construcciones prohibidas, ausencia de comentarios, CSP restrictiva, sin recursos externos, hash de `docx`, permisos y acciones fijadas por commit en GitHub Actions, ausencia de credenciales, audio o exportaciones en el repositorio).
+* `tests/cifrado.test.js`: cifrado, descifrado, bloqueo, contraseña incorrecta, datos alterados, migración sin pérdida, fallo durante la migración, inactividad, guardado desactivado y exportación.
+* `tests/inyeccion.test.js`: 14 cargas hostiles ficticias (instrucciones en español, suplantación de mensajes del sistema, HTML y scripts mezclados con términos médicos) por dictado, almacenamiento alterado y pegado, y verificación de que la CSP bloquea scripts en línea, `eval` y solicitudes de red inyectadas.
+* `tests/privacidad.test.js`: registra todas las solicitudes de red en un flujo completo (dictar, guardar, copiar, imprimir, Word, cifrar, bloquear) y comprueba que ninguna sale del origen ni contiene datos clínicos, además del funcionamiento sin conexión una vez cargada la página.
+* `tests/movil-seguridad.test.js`: diseño del panel y de la firma en 320, 390 y 412 px, y tiempos con CPU limitada 4 veces. Es una emulación en un Chrome de escritorio: no sustituye una prueba en un teléfono Android real.
 
 ## Beneficios
 

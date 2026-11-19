@@ -18,7 +18,7 @@ const SIMULACIONES = `
   });
   window.__ventanas = [];
   window.open = () => {
-    const ventana = { html: '', impresa: false, document: { write(h) { ventana.html += h; }, close() {} }, print() { ventana.impresa = true; } };
+    const ventana = { html: '', impresa: false, document: { write(h) { ventana.html += h; }, close() { if (ventana.onload) ventana.onload(); } }, print() { ventana.impresa = true; } };
     window.__ventanas.push(ventana);
     return ventana;
   };
@@ -35,6 +35,9 @@ const SIMULACIONES = `
     window.SpeechRecognition = ReconocimientoFalso;
   }
   window.__descargas = [];
+  window.__blobs = {};
+  const crearUrlOriginal = URL.createObjectURL.bind(URL);
+  URL.createObjectURL = (blob) => { const url = crearUrlOriginal(blob); window.__blobs[url] = blob; return url; };
   HTMLAnchorElement.prototype.click = function () { window.__descargas.push({ nombre: this.download, url: this.href }); };
 `;
 
@@ -223,7 +226,7 @@ describe('Historial local', () => {
     await navegador.esperarCondicion(() => window.__descargas.length === 1, 'descarga generada');
     const descarga = await navegador.evaluar(async () => {
       const { nombre, url } = window.__descargas[0];
-      const bytes = new Uint8Array(await (await fetch(url)).arrayBuffer());
+      const bytes = new Uint8Array(await window.__blobs[url].arrayBuffer());
       return { nombre, firmaZip: String.fromCharCode(bytes[0], bytes[1]), tamano: bytes.length };
     });
     assert.equal(descarga.nombre, 'Transcripcion_MediVoz.docx');
@@ -266,8 +269,8 @@ describe('Estructura de archivos', () => {
       estilosEnLinea: document.querySelectorAll('style').length,
       scriptsEnLinea: [...document.querySelectorAll('script:not([src])')].length
     }));
-    assert.deepEqual(rutas.estilos, ['css/styles.css']);
-    assert.deepEqual(rutas.scripts, ['js/config.js', 'js/medicos.js', 'js/script.js']);
+    assert.deepEqual(rutas.estilos, ['css/fuentes.css', 'css/styles.css']);
+    assert.deepEqual(rutas.scripts, ['js/vendor/docx-8.5.0.umd.js', 'js/config.js', 'js/medicos.js', 'js/almacen-seguro.js', 'js/panel-seguridad.js', 'js/script.js']);
     assert.equal(rutas.estilosEnLinea, 0);
     assert.equal(rutas.scriptsEnLinea, 0);
   });

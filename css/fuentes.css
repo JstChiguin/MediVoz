@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fuentes/DMSerifDisplay-italic-400.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fuentes/DMSerifDisplay-normal-400.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url(fuentes/Inter-variable.woff2) format('woff2');
+}

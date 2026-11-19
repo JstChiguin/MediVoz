@@ -1,2 +1,9 @@
 node_modules/
 test-results/
+.env
+*.pem
+*.wav
+*.mp3
+*.m4a
+*.webm
+MediVoz_historial*.json
