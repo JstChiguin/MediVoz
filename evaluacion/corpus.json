@@ -1,0 +1,599 @@
+[
+ {
+  "id": "corto-01",
+  "categoria": "corto",
+  "texto": "Paciente refiere cefalea de tres días de evolución.",
+  "terminos": [
+   "cefalea",
+   "evolución"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "corto-02",
+  "categoria": "corto",
+  "texto": "Sin antecedentes de alergias medicamentosas.",
+  "terminos": [
+   "alergias",
+   "medicamentosas"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "corto-03",
+  "categoria": "corto",
+  "texto": "Se solicita electrocardiograma de control.",
+  "terminos": [
+   "electrocardiograma"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "corto-04",
+  "categoria": "corto",
+  "texto": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+  "terminos": [
+   "abdomen",
+   "depresible",
+   "peritoneal"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "corto-05",
+  "categoria": "corto",
+  "texto": "Control en siete días con exámenes de laboratorio.",
+  "terminos": [
+   "laboratorio"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "corto-06",
+  "categoria": "corto",
+  "texto": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+  "terminos": [
+   "cardíacos",
+   "rítmicos",
+   "soplos"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "extenso-01",
+  "categoria": "extenso",
+  "texto": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicárdico, con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ciento ambiental. Se auscultan crépitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriurético. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos endovenosos.",
+  "terminos": [
+   "hipertensión",
+   "diabetes",
+   "disnea",
+   "edema",
+   "ortopnea",
+   "taquicárdico",
+   "crépitos",
+   "radiografía",
+   "electrocardiograma",
+   "troponinas",
+   "péptido",
+   "natriurético",
+   "insuficiencia",
+   "cardíaca",
+   "descompensada",
+   "furosemida",
+   "endovenosos"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "extenso-02",
+  "categoria": "extenso",
+  "texto": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa ilíaca derecha de veinticuatro horas de evolución, con náuseas y vómitos. Presenta fiebre de treinta y ocho coma dos grados. Signo de Blumberg positivo. Los exámenes muestran leucocitosis de dieciocho mil células por microlitro y proteína C reactiva elevada. La ecografía abdominal sugiere apendicitis aguda. Se indica ayuno, hidratación parenteral y ceftriaxona un gramo cada veinticuatro horas, y se programa apendicectomía laparoscópica de urgencia.",
+  "terminos": [
+   "abdominal",
+   "ilíaca",
+   "náuseas",
+   "Blumberg",
+   "leucocitosis",
+   "microlitro",
+   "proteína",
+   "ecografía",
+   "apendicitis",
+   "ceftriaxona",
+   "parenteral",
+   "apendicectomía",
+   "laparoscópica"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "extenso-03",
+  "categoria": "extenso",
+  "texto": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias espiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus sincicial respiratorio. Se indica oxigenoterapia, salbutamol inhalado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+  "terminos": [
+   "lactante",
+   "rinorrea",
+   "polipnea",
+   "retracción",
+   "subcostal",
+   "sibilancias",
+   "espiratorias",
+   "bronquiolitis",
+   "sincicial",
+   "oxigenoterapia",
+   "salbutamol",
+   "hospitalizado"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "extenso-04",
+  "categoria": "extenso",
+  "texto": "Hombre de cincuenta y cinco años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito, irradiado al brazo izquierdo, acompañado de sudoración y náuseas. El electrocardiograma muestra supradesnivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilsalicílico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastía coronaria.",
+  "terminos": [
+   "tabáquico",
+   "torácico",
+   "opresivo",
+   "electrocardiograma",
+   "supradesnivel",
+   "infarto",
+   "miocardio",
+   "ácido",
+   "acetilsalicílico",
+   "hemodinamia",
+   "angioplastía",
+   "coronaria"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "terminos-01",
+  "categoria": "terminos",
+  "texto": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+  "terminos": [
+   "fibrilación",
+   "auricular",
+   "ventricular",
+   "cerebrovascular",
+   "isquémico"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "terminos-02",
+  "categoria": "terminos",
+  "texto": "Se realiza colecistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+  "terminos": [
+   "colecistectomía",
+   "laparoscópica",
+   "colelitiasis",
+   "sintomática",
+   "intraoperatorias"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "terminos-03",
+  "categoria": "terminos",
+  "texto": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+  "terminos": [
+   "hemoglobina",
+   "glicosilada",
+   "mellitus",
+   "nefropatía",
+   "diabética",
+   "incipiente"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "terminos-04",
+  "categoria": "terminos",
+  "texto": "Cuadro compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+  "terminos": [
+   "taquicardia",
+   "supraventricular",
+   "paroxística",
+   "vagales"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "terminos-05",
+  "categoria": "terminos",
+  "texto": "Paciente con hipotiroidismo secundario a tiroiditis de Hashimoto, en tratamiento sustitutivo.",
+  "terminos": [
+   "hipotiroidismo",
+   "tiroiditis",
+   "Hashimoto",
+   "sustitutivo"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "terminos-06",
+  "categoria": "terminos",
+  "texto": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+  "terminos": [
+   "tomografía",
+   "axial",
+   "computarizada",
+   "hemorragia",
+   "subaracnoidea"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "medicamentos-01",
+  "categoria": "medicamentos",
+  "texto": "Se indica paracetamol quinientos miligramos cada ocho horas por tres días.",
+  "terminos": [
+   "paracetamol",
+   "miligramos"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "medicamentos-02",
+  "categoria": "medicamentos",
+  "texto": "Iniciar amoxicilina con ácido clavulánico ochocientos setenta y cinco miligramos cada doce horas.",
+  "terminos": [
+   "amoxicilina",
+   "clavulánico"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "medicamentos-03",
+  "categoria": "medicamentos",
+  "texto": "Continuar con metformina mil miligramos al día y atorvastatina veinte miligramos en la noche.",
+  "terminos": [
+   "metformina",
+   "atorvastatina"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "medicamentos-04",
+  "categoria": "medicamentos",
+  "texto": "Se suspende enalapril y se cambia a losartán cincuenta miligramos por tos persistente.",
+  "terminos": [
+   "enalapril",
+   "losartán",
+   "persistente"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "medicamentos-05",
+  "categoria": "medicamentos",
+  "texto": "Omeprazol veinte miligramos en ayunas, ketoprofeno solo si presenta dolor intenso.",
+  "terminos": [
+   "omeprazol",
+   "ketoprofeno"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "medicamentos-06",
+  "categoria": "medicamentos",
+  "texto": "Levotiroxina setenta y cinco microgramos en ayunas, clonazepam medio miligramo antes de dormir.",
+  "terminos": [
+   "levotiroxina",
+   "microgramos",
+   "clonazepam"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "numeros-01",
+  "categoria": "numeros",
+  "texto": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio, frecuencia cardíaca setenta y dos latidos por minuto.",
+  "terminos": [
+   "cardíaca",
+   "latidos"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "numeros-02",
+  "categoria": "numeros",
+  "texto": "Temperatura treinta y siete coma cinco grados, saturación noventa y siete por ciento, frecuencia respiratoria dieciocho por minuto.",
+  "terminos": [
+   "saturación",
+   "respiratoria"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "numeros-03",
+  "categoria": "numeros",
+  "texto": "Glicemia en ayunas ciento cuarenta y dos miligramos por decilitro, creatinina uno coma dos miligramos por decilitro.",
+  "terminos": [
+   "glicemia",
+   "ayunas",
+   "creatinina"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "numeros-04",
+  "categoria": "numeros",
+  "texto": "Peso setenta y ocho kilos, talla uno coma setenta y dos metros, índice de masa corporal veintiséis coma tres.",
+  "terminos": [
+   "índice",
+   "masa",
+   "corporal"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "numeros-05",
+  "categoria": "numeros",
+  "texto": "Administrar insulina glargina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+  "terminos": [
+   "insulina",
+   "glargina",
+   "subcutáneas",
+   "glicemia"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "numeros-06",
+  "categoria": "numeros",
+  "texto": "Hemoglobina once coma ocho gramos por decilitro, plaquetas ciento cincuenta mil por microlitro, leucocitos nueve mil quinientos.",
+  "terminos": [
+   "hemoglobina",
+   "plaquetas",
+   "leucocitos"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "velocidad-lenta",
+  "categoria": "velocidad",
+  "texto": "Se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+  "terminos": [
+   "ibuprofeno"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": -30,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "velocidad-normal",
+  "categoria": "velocidad",
+  "texto": "Se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+  "terminos": [
+   "ibuprofeno"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "velocidad-rapida",
+  "categoria": "velocidad",
+  "texto": "Se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+  "terminos": [
+   "ibuprofeno"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 35,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "pausas-01",
+  "categoria": "pausas",
+  "texto": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en diez días.",
+  "terminos": [
+   "ambulatorio"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": true
+ },
+ {
+  "id": "pausas-02",
+  "categoria": "pausas",
+  "texto": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+  "terminos": [
+   "torácico",
+   "atípico",
+   "electrocardiograma"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": true
+ },
+ {
+  "id": "ruido-20db",
+  "categoria": "ruido",
+  "texto": "Se indica ceftriaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+  "terminos": [
+   "ceftriaxona",
+   "endovenoso"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": 20,
+  "pausas": false
+ },
+ {
+  "id": "ruido-10db",
+  "categoria": "ruido",
+  "texto": "Se indica ceftriaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+  "terminos": [
+   "ceftriaxona",
+   "endovenoso"
+  ],
+  "voz": "es-CL-CatalinaNeural",
+  "velocidad": 0,
+  "ruido": 10,
+  "pausas": false
+ },
+ {
+  "id": "ruido-15db-largo",
+  "categoria": "ruido",
+  "texto": "Mujer de cuarenta años con migraña con aura, se inicia sumatriptán cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+  "terminos": [
+   "migraña",
+   "sumatriptán",
+   "resonancia",
+   "magnética"
+  ],
+  "voz": "es-CL-LorenzoNeural",
+  "velocidad": 0,
+  "ruido": 15,
+  "pausas": false
+ },
+ {
+  "id": "acento-es-ES",
+  "categoria": "acentos",
+  "texto": "Paciente con neumonía adquirida en la comunidad, se indica azitromicina quinientos miligramos al día por tres días.",
+  "terminos": [
+   "neumonía",
+   "adquirida",
+   "comunidad",
+   "azitromicina"
+  ],
+  "voz": "es-ES-AlvaroNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "acento-es-MX",
+  "categoria": "acentos",
+  "texto": "Paciente con neumonía adquirida en la comunidad, se indica azitromicina quinientos miligramos al día por tres días.",
+  "terminos": [
+   "neumonía",
+   "adquirida",
+   "comunidad",
+   "azitromicina"
+  ],
+  "voz": "es-MX-DaliaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "acento-es-AR",
+  "categoria": "acentos",
+  "texto": "Paciente con neumonía adquirida en la comunidad, se indica azitromicina quinientos miligramos al día por tres días.",
+  "terminos": [
+   "neumonía",
+   "adquirida",
+   "comunidad",
+   "azitromicina"
+  ],
+  "voz": "es-AR-ElenaNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ },
+ {
+  "id": "acento-es-CO",
+  "categoria": "acentos",
+  "texto": "Paciente con neumonía adquirida en la comunidad, se indica azitromicina quinientos miligramos al día por tres días.",
+  "terminos": [
+   "neumonía",
+   "adquirida",
+   "comunidad",
+   "azitromicina"
+  ],
+  "voz": "es-CO-SalomeNeural",
+  "velocidad": 0,
+  "ruido": null,
+  "pausas": false
+ }
+]
