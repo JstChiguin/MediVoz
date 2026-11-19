@@ -5,7 +5,7 @@ const path = require('path');
 const { Navegador } = require('./ayudas/navegador');
 const { iniciarServidor } = require('./servidor-estatico');
 
-const VERSION_ESPERADA = '2.0.0';
+const VERSION_ESPERADA = '2.1.0';
 const TEXTO_FIRMA = 'by Chiguin';
 const MARGEN_ESQUINA = 48;
 
@@ -140,7 +140,7 @@ for (const vista of vistas) {
       assert.equal(crudo, TEXTO_FIRMA);
     });
 
-    it('muestra la versión 2.0.0 tomada de config.js', async () => {
+    it('muestra la versión 2.1.0 tomada de config.js', async () => {
       const medida = await navegador.evaluar(medirFirma);
       const configuracion = await navegador.evaluar(() => window.MEDIVOZ_CONFIG.version);
       assert.equal(configuracion, VERSION_ESPERADA);
@@ -186,7 +186,7 @@ for (const vista of vistas) {
         elementos: document.querySelectorAll('firma-medivoz').length,
         textosVisibles: document.body.innerText.split('by Chiguin').length - 1,
         textosTotales: document.body.textContent.split('by Chiguin').length - 1,
-        versionesVisibles: document.body.innerText.split('v2.0.0').length - 1
+        versionesVisibles: document.body.innerText.split('v2.1.0').length - 1
       }));
       assert.equal(conteo.elementos, 1);
       assert.equal(conteo.textosVisibles, 1);
@@ -228,13 +228,13 @@ describe('Versión centralizada', () => {
   const raiz = path.resolve(__dirname, '..');
   const leer = (archivo) => fs.readFileSync(path.join(raiz, archivo), 'utf8');
 
-  it('config.js declara la versión 2.0.0', () => {
-    assert.match(leer('js/config.js'), /version:\s*'2\.0\.0'/);
+  it('config.js declara la versión 2.1.0', () => {
+    assert.match(leer('js/config.js'), /version:\s*'2\.1\.0'/);
   });
 
   it('la versión no está escrita en index.html, script.js ni styles.css', () => {
     for (const archivo of ['index.html', 'js/script.js', 'css/styles.css']) {
-      assert.ok(!leer(archivo).includes('2.0.0'), `${archivo} contiene la versión escrita`);
+      assert.ok(!leer(archivo).includes('2.1.0'), `${archivo} contiene la versión escrita`);
     }
   });
 
