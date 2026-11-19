@@ -1,6 +1,6 @@
 # 🩺 MediVoz
 
-**Versión 2.0.0**
+**Versión 2.1.0**
 
 MediVoz es una aplicación web de transcripción médica por voz desarrollada para facilitar el registro de información clínica de manera rápida y sencilla.
 
@@ -46,7 +46,7 @@ MediVoz/
 │   ├── fuentes/          Archivos woff2
 │   └── impresion.css     Estilos de la ventana de impresión
 ├── js/
-│   ├── config.js         Configuración central (versión 2.0.0 y texto de la firma)
+│   ├── config.js         Configuración central (versión 2.1.0 y texto de la firma)
 │   ├── medicos.js        Administrador de médicos (lista editable)
 │   ├── almacen-seguro.js Almacenamiento del historial y cifrado opcional
 │   ├── panel-seguridad.js Panel de seguridad y privacidad
@@ -84,7 +84,7 @@ Requieren Node.js 22 o superior y Chrome o Edge instalado (se puede indicar otro
 npm test
 ```
 
-* `tests/firma.test.js`: protege la firma. Falla si cambia el texto `by Chiguin` (cualquier carácter, espacio o mayúscula), si se oculta, si deja de ser fija, si sale de la esquina inferior derecha, si la versión no es `2.0.0` o si se duplica. Se ejecuta en escritorio y móvil, y recorre todo el scroll en 12 resoluciones (de 320x568 a 1366x768) comprobando que la firma no se superponga a botones, campos ni contenido.
+* `tests/firma.test.js`: protege la firma. Falla si cambia el texto `by Chiguin` (cualquier carácter, espacio o mayúscula), si se oculta, si deja de ser fija, si sale de la esquina inferior derecha, si la versión no es `2.1.0` o si se duplica. Se ejecuta en escritorio y móvil, y recorre todo el scroll en 12 resoluciones (de 320x568 a 1366x768) comprobando que la firma no se superponga a botones, campos ni contenido.
 * `tests/movil.test.js`: en Chrome con emulación móvil (320 a 412 px de ancho) verifica el desplazamiento vertical de toda la página, que la tarjeta no recorte contenido, que transcripciones extensas se puedan leer completas, que los botones se adapten sin desplazamiento horizontal, el acceso al historial, el dictado simulado y una altura reducida que simula el teclado virtual.
 * `tests/medicos.test.js`: verifica que no haya médicos en el código, el aviso de lista vacía, agregar, editar, eliminar con confirmación, validaciones, orden alfabético, persistencia al recargar, la protección de los registros históricos y el panel en móviles.
 * `tests/funcionalidad.test.js`: verifica el reconocimiento de voz simulado, el temporizador, la recuperación de grabación, el guardado, el historial local, la edición, la eliminación, la exportación a Word y la impresión.
@@ -120,7 +120,7 @@ Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se sim
 
 ## Estado del proyecto
 
-🟢 Versión 2.0.0 funcional en desarrollo activo.
+🟢 Versión 2.1.0 funcional en desarrollo activo.
 
 Actualmente MediVoz permite realizar transcripciones médicas por voz, gestionar un historial local de registros y exportar registros individuales a documentos Word para facilitar el trabajo administrativo y clínico.
 
