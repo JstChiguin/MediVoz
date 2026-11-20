@@ -53,14 +53,17 @@
     <div class="selector-motor">
       <label for="motorVoz">Motor de voz</label>
       <select id="motorVoz">
-        <option value="local">IA local privada (predeterminada)</option>
-        <option value="navegador">Navegador (puede enviar el audio a terceros)</option>
+        <option value="local">IA local — Privada</option>
+        <option value="navegador">Chrome — Rápido</option>
       </select>
     </div>
-    <p class="aviso-privacidad" id="avisoMotor"></p>
+    <div class="aviso-privacidad" id="avisoMotor" aria-live="polite">
+      <strong id="tituloAvisoMotor"></strong>
+      <span id="textoAvisoMotor"></span>
+    </div>
     <div class="consentimiento-motor" id="consentimientoNavegador" role="group" aria-labelledby="tituloConsentimiento" hidden>
       <strong id="tituloConsentimiento">Antes de usar el motor del navegador</strong>
-      <p>Este motor (Web Speech API) puede enviar tu voz a servicios externos, como los de Google en Chrome. MediVoz no controla ese envío ni puede borrarlo. No lo uses con datos de pacientes salvo que tu institución lo permita.</p>
+      <p>Este motor (Web Speech API) puede enviar tu voz a servicios externos, como los de Google en Chrome. MediVoz no controla ese envío ni puede borrarlo. No lo uses con datos reales de pacientes salvo que tu institución lo permita. Esta aceptación vale solo para esta sesión del navegador.</p>
       <div class="consentimiento-botones">
         <button type="button" class="btn-sm primary" id="volverIaLocal">Usar la IA local</button>
         <button type="button" class="btn-sm" id="aceptarMotorNavegador">Entiendo y acepto</button>
@@ -96,6 +99,11 @@
         <button class="btn-sm" id="abrirSeguridadBtn">🔒 Seguridad</button>
         <button class="btn-sm danger" id="clearHistoryBtn">🗑 Borrar historial</button>
       </div>
+    </div>
+    <div class="aviso-cifrado" id="avisoCifrado" role="note">
+      <strong id="tituloAvisoCifrado">Protege tu historial</strong>
+      <span id="textoAvisoCifrado">Para cifrar las transcripciones guardadas, presiona el botón 🔒 Seguridad y activa el cifrado con una contraseña. Si no lo activas, el historial se guardará sin cifrar en este navegador.</span>
+      <em id="precaucionAvisoCifrado">Guarda tu contraseña en un lugar seguro. Si la pierdes, no podrás recuperar las transcripciones cifradas.</em>
     </div>
     <div class="history-list" id="historyList">
       <p class="no-history">Aún no hay transcripciones guardadas.</p>

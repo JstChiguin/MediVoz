@@ -147,7 +147,7 @@ describe('Requisitos de despliegue en Cloudflare Pages (plan gratuito)', () => {
   it('_headers está en la raíz publicada y el índice y la firma "by Chiguin" siguen intactos', () => {
     assert.ok(fs.existsSync(path.join(raiz, '_headers')));
     assert.match(leer('js/config.js'), /firma: 'by Chiguin'/);
-    assert.match(leer('js/config.js'), /version: '2\.2\.0'/);
+    assert.match(leer('js/config.js'), /version: '2\.2\.1'/);
     assert.equal(JSON.parse(leer('package.json')).version, undefined);
   });
 });

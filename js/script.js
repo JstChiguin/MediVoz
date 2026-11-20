@@ -201,61 +201,79 @@ transcriptBox.addEventListener('paste', (evento) => {
 });
 
 const motorVoz = document.getElementById('motorVoz');
-const avisoMotor = document.getElementById('avisoMotor');
-const CLAVE_MOTOR = 'mediVozMotor';
-const AVISO_NAVEGADOR = 'Motor del navegador: puede enviar el audio a servicios externos (por ejemplo, los de Google en Chrome).';
-const AVISO_LOCAL = 'IA local: el audio se procesa solo en este dispositivo y no se envía a ningún servidor. La primera vez descarga unos 135 MB y usa cerca de 1 GB de memoria mientras se usa.';
+const tituloAvisoMotor = document.getElementById('tituloAvisoMotor');
+const textoAvisoMotor = document.getElementById('textoAvisoMotor');
+const consentimientoNavegador = document.getElementById('consentimientoNavegador');
+const CLAVE_CONSENTIMIENTO_NAVEGADOR = 'mediVozMotorNavegador';
+const CLAVE_MOTOR_ANTIGUA = 'mediVozMotor';
+const DESCRIPCIONES_MOTOR = {
+  local: {
+    titulo: 'IA local — Mayor privacidad',
+    texto: 'El audio se procesa directamente en este dispositivo y no se envía a servidores externos de transcripción. Puede ser más lenta y consumir más memoria. La primera vez necesita descargar el modelo de IA.'
+  },
+  navegador: {
+    titulo: 'Chrome — Mayor rapidez',
+    texto: 'Puede ofrecer una transcripción más rápida y precisa, dependiendo del dispositivo y del tipo de dictado. El audio podría enviarse a servidores externos para su procesamiento, por lo que ofrece menor privacidad.'
+  }
+};
 let reconocedorLocal = null;
 let usandoLocal = false;
 let esperandoTranscripcionLocal = false;
 let descartandoLocal = false;
-
-const MOTOR_NAVEGADOR_CONSENTIDO = 'navegador-consentido';
-const consentimientoNavegador = document.getElementById('consentimientoNavegador');
 let navegadorConsentido = false;
 
-function leerMotorGuardado() {
+function leerConsentimientoNavegador() {
   try {
-    return localStorage.getItem(CLAVE_MOTOR) === MOTOR_NAVEGADOR_CONSENTIDO ? 'navegador' : 'local';
+    return sessionStorage.getItem(CLAVE_CONSENTIMIENTO_NAVEGADOR) === 'aceptado';
   } catch (error) {
-    return 'local';
+    return false;
   }
 }
 
-function guardarMotor(valor) {
+function guardarConsentimientoNavegador(aceptado) {
+  navegadorConsentido = aceptado;
   try {
-    localStorage.setItem(CLAVE_MOTOR, valor);
+    if (aceptado) sessionStorage.setItem(CLAVE_CONSENTIMIENTO_NAVEGADOR, 'aceptado');
+    else sessionStorage.removeItem(CLAVE_CONSENTIMIENTO_NAVEGADOR);
   } catch (error) {
-    showError('No se pudo recordar la elección del motor de voz.');
+    return;
+  }
+}
+
+function olvidarMotorGuardadoAntiguo() {
+  try {
+    localStorage.removeItem(CLAVE_MOTOR_ANTIGUA);
+  } catch (error) {
+    return;
   }
 }
 
 function actualizarAvisoMotor() {
-  avisoMotor.textContent = motorVoz.value === 'local' ? AVISO_LOCAL : AVISO_NAVEGADOR;
+  const descripcion = DESCRIPCIONES_MOTOR[motorVoz.value];
+  tituloAvisoMotor.textContent = descripcion.titulo;
+  textoAvisoMotor.textContent = descripcion.texto;
   consentimientoNavegador.hidden = motorVoz.value !== 'navegador' || navegadorConsentido;
 }
 
-motorVoz.value = leerMotorGuardado();
-navegadorConsentido = motorVoz.value === 'navegador';
+olvidarMotorGuardadoAntiguo();
+navegadorConsentido = leerConsentimientoNavegador();
+motorVoz.value = navegadorConsentido ? 'navegador' : 'local';
 actualizarAvisoMotor();
 motorVoz.addEventListener('change', () => {
   if (recording) stopRecording();
-  navegadorConsentido = false;
-  guardarMotor('local');
+  guardarConsentimientoNavegador(false);
   actualizarAvisoMotor();
   if (motorVoz.value === 'local' && navigator.deviceMemory && navigator.deviceMemory < 4) {
     showToast('Este dispositivo tiene poca memoria: la IA local podría ir lenta o cerrarse. Puedes cambiar manualmente al motor del navegador.');
   }
 });
 document.getElementById('aceptarMotorNavegador').addEventListener('click', () => {
-  navegadorConsentido = true;
-  guardarMotor(MOTOR_NAVEGADOR_CONSENTIDO);
+  guardarConsentimientoNavegador(true);
   actualizarAvisoMotor();
 });
 document.getElementById('volverIaLocal').addEventListener('click', () => {
   motorVoz.value = 'local';
-  navegadorConsentido = false;
-  guardarMotor('local');
+  guardarConsentimientoNavegador(false);
   actualizarAvisoMotor();
 });
 

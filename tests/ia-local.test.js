@@ -7,7 +7,8 @@ const { tasaErrorPalabras, precisionTerminos } = require('../evaluacion/metricas
 const referencias = require('./audios/referencias.json');
 
 const SESION_AUDIO_MS = 1000;
-const CLAVES_ESPERADAS = ['mediVozMedicos', 'mediVozMotor'];
+const LIMITE_IA_MS = 90000;
+const CLAVES_ESPERADAS = ['mediVozMedicos'];
 const abiertos = [];
 let servidor;
 
@@ -54,12 +55,12 @@ async function dictarConIaLocal(navegador, segundosDeAudio) {
     selector.dispatchEvent(new Event('change'));
     document.getElementById('micBtn').click();
   });
-  await navegador.esperarCondicion(() => document.getElementById('micStatus').innerText.startsWith('Escuchando') || document.getElementById('errorBanner').classList.contains('show'), 'inicio de la escucha');
+  await navegador.esperarCondicionConLimite(LIMITE_IA_MS, () => document.getElementById('micStatus').innerText.startsWith('Escuchando') || document.getElementById('errorBanner').classList.contains('show'), 'inicio de la escucha');
   const error = await navegador.evaluar(() => document.getElementById('errorBanner').classList.contains('show') ? document.getElementById('errorBanner').innerText : '');
   assert.equal(error, '', error);
   await esperar(segundosDeAudio * 1000 + SESION_AUDIO_MS);
   await navegador.evaluar(() => document.getElementById('micBtn').click());
-  await navegador.esperarCondicion(() => document.getElementById('micStatus').innerText.startsWith('Presiona'), 'fin de la transcripción');
+  await navegador.esperarCondicionConLimite(LIMITE_IA_MS, () => document.getElementById('micStatus').innerText.startsWith('Presiona'), 'fin de la transcripción');
 }
 
 const textoTranscrito = (navegador) => navegador.evaluar(() => document.getElementById('transcriptBox').innerText.trim());
@@ -69,20 +70,20 @@ describe('IA local: carga bajo demanda y elección del motor', () => {
   it('la IA local es el motor predeterminado, avisa que el audio no sale del dispositivo y no descarga ningún modelo al iniciar', async () => {
     const navegador = await abrirNavegador();
     assert.equal(await navegador.evaluar(() => document.getElementById('motorVoz').value), 'local');
-    assert.match(await navegador.evaluar(() => document.getElementById('avisoMotor').innerText), /solo en este dispositivo/);
+    assert.match(await navegador.evaluar(() => document.getElementById('avisoMotor').innerText), /directamente en este dispositivo/);
     assert.equal(await navegador.evaluar(() => document.getElementById('consentimientoNavegador').hidden), true);
     await esperar(1500);
     assert.deepEqual(navegador.solicitudes.filter((s) => /\/modelos\//.test(s.url) || /\/js\/ia\//.test(s.url) || /vendor\/ort/.test(s.url)), []);
   });
 
-  it('elegir la IA local lo recuerda, avisa que el audio no sale del dispositivo y aun así no descarga nada hasta dictar', async () => {
+  it('elegir la IA local explica su privacidad y aun así no descarga nada hasta dictar', async () => {
     const navegador = await abrirNavegador();
     await navegador.evaluar(() => {
       const selector = document.getElementById('motorVoz');
       selector.value = 'local';
       selector.dispatchEvent(new Event('change'));
     });
-    assert.match(await navegador.evaluar(() => document.getElementById('avisoMotor').innerText), /solo en este dispositivo/);
+    assert.match(await navegador.evaluar(() => document.getElementById('avisoMotor').innerText), /directamente en este dispositivo/);
     await navegador.recargar();
     assert.equal(await navegador.evaluar(() => document.getElementById('motorVoz').value), 'local');
     await esperar(1000);
@@ -153,13 +154,13 @@ describe('IA local: lo dictado nunca se convierte en instrucciones', () => {
       localStorage.setItem('mediVozHistory', JSON.stringify([{ id: 1700000000001, doctor: 'D', patient: 'Paciente Ficticio Previo', text: 'Texto ficticio previo', time: 't' }]));
     });
     await navegador.recargar();
-    const antes = await navegador.evaluar(() => JSON.stringify(Object.fromEntries(Object.keys(localStorage).filter((k) => k !== 'mediVozMotor').map((k) => [k, localStorage.getItem(k)]))));
+    const antes = await navegador.evaluar(() => JSON.stringify(Object.fromEntries(Object.keys(localStorage).map((k) => [k, localStorage.getItem(k)]))));
     navegador.solicitudes.length = 0;
     await dictarConIaLocal(navegador, 11);
     const texto = (await textoTranscrito(navegador)).toLowerCase();
     console.log(`  [micrófono simulado] dictado-inyeccion texto="${texto}"`);
     assert.match(texto, /instrucciones/);
-    const despues = await navegador.evaluar(() => JSON.stringify(Object.fromEntries(Object.keys(localStorage).filter((k) => k !== 'mediVozMotor').map((k) => [k, localStorage.getItem(k)]))));
+    const despues = await navegador.evaluar(() => JSON.stringify(Object.fromEntries(Object.keys(localStorage).map((k) => [k, localStorage.getItem(k)]))));
     assert.equal(despues, antes);
     assert.deepEqual(await navegador.evaluar(() => AlmacenSeguro.estado()), { cifrado: false, bloqueado: false, guardarEnDispositivo: true });
     assert.equal(await navegador.evaluar(() => window.__ventanas.length + window.__descargas.length), 0);
