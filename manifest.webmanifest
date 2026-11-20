@@ -1,0 +1,16 @@
+{
+  "name": "MediVoz — Transcriptor Médico",
+  "short_name": "MediVoz",
+  "description": "Transcriptor de voz para notas médicas, con IA local y cifrado opcional del historial.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#0f2340",
+  "theme_color": "#2a9d8f",
+  "icons": [
+    { "src": "iconos/icono-192.png?h=0f611a8e", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "iconos/icono-512.png?h=b3f37ad6", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "iconos/icono-enmascarable-512.png?h=4eecdac8", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
