@@ -9,7 +9,9 @@ const raiz = path.resolve(__dirname, '..');
 const HASH_DOCX_SHA384 = 'e316888acb8b132da5a361e40760b8ac47fbbfc8db4dbda4ba8817e9392e12df5f79358a0521523b3b2a34d6d5fac2a1';
 
 const leer = (ruta) => fs.readFileSync(path.join(raiz, ruta), 'utf8');
-const archivosJs = fs.readdirSync(path.join(raiz, 'js')).filter((n) => n.endsWith('.js')).map((n) => 'js/' + n);
+const listarJs = (carpeta) => fs.readdirSync(path.join(raiz, carpeta)).filter((n) => n.endsWith('.js')).map((n) => carpeta + '/' + n);
+const archivosJs = [...listarJs('js'), ...listarJs('js/ia')];
+const ARCHIVOS_CON_FETCH = ['js/ia/gestor-modelo.js'];
 const archivosRastreados = () => execFileSync('git', ['ls-files'], { cwd: raiz, encoding: 'utf8' }).split('\n').filter(Boolean);
 
 describe('Auditoría estática del código propio', () => {
@@ -20,7 +22,7 @@ describe('Auditoría estática del código propio', () => {
     ['innerHTML', /\.innerHTML\b/],
     ['outerHTML', /\.outerHTML\b/],
     ['insertAdjacentHTML', /insertAdjacentHTML/],
-    ['fetch', /\bfetch\s*\(/],
+    ['fetch', /\bfetch\s*\(/, true],
     ['XMLHttpRequest', /XMLHttpRequest/],
     ['sendBeacon', /sendBeacon/],
     ['WebSocket', /WebSocket/],
@@ -33,7 +35,9 @@ describe('Auditoría estática del código propio', () => {
   for (const archivo of archivosJs) {
     it(`${archivo} no usa construcciones peligrosas`, () => {
       const codigo = leer(archivo);
-      const hallazgos = patronesProhibidos.filter(([, patron]) => patron.test(codigo)).map(([nombre]) => nombre);
+      const hallazgos = patronesProhibidos
+        .filter(([, patron, permitidoEnModelo]) => !(permitidoEnModelo && ARCHIVOS_CON_FETCH.includes(archivo)) && patron.test(codigo))
+        .map(([nombre]) => nombre);
       assert.deepEqual(hallazgos, []);
     });
 
@@ -76,16 +80,18 @@ describe('Política de seguridad de contenido en index.html', () => {
 
   it('declara una política restrictiva', () => {
     assert.deepEqual(directivas['default-src'], ["'none'"]);
-    assert.deepEqual(directivas['script-src'], ["'self'"]);
+    assert.deepEqual(directivas['script-src'], ["'self'", "'wasm-unsafe-eval'"]);
     assert.deepEqual(directivas['style-src'], ["'self'"]);
-    assert.deepEqual(directivas['connect-src'], ["'none'"]);
+    assert.deepEqual(directivas['connect-src'], ["'self'"]);
+    assert.deepEqual(directivas['worker-src'], ["'self'"]);
     assert.deepEqual(directivas['object-src'], ["'none'"]);
     assert.deepEqual(directivas['base-uri'], ["'none'"]);
     assert.deepEqual(directivas['form-action'], ["'none'"]);
   });
 
   it('no relaja la política con unsafe-inline, unsafe-eval ni comodines', () => {
-    assert.doesNotMatch(csp, /unsafe-|\*|https?:/);
+    assert.doesNotMatch(csp, /'unsafe-(inline|eval)'|\*|https?:|blob:/);
+    assert.deepEqual(directivas['img-src'], ["'self'", 'data:']);
   });
 
   it('la política es la primera etiqueta de la cabecera después del juego de caracteres', () => {
@@ -134,13 +140,56 @@ describe('Dependencias y cadena de suministro', () => {
   });
 });
 
+describe('Modelo de IA local incluido en el sitio', () => {
+  const carpetaModelo = path.join(raiz, 'modelos', 'conformer-es');
+  const manifiesto = JSON.parse(fs.readFileSync(path.join(carpetaModelo, 'manifiesto.json'), 'utf8'));
+
+  it('cada archivo del modelo coincide con el tamaño y la huella SHA-256 del manifiesto', () => {
+    for (const archivo of manifiesto.archivos) {
+      const contenido = Buffer.concat(archivo.partes.map((parte) => fs.readFileSync(path.join(carpetaModelo, parte))));
+      assert.equal(contenido.length, archivo.tamano, archivo.nombre);
+      assert.equal(crypto.createHash('sha256').update(contenido).digest('hex'), archivo.sha256, archivo.nombre);
+    }
+  });
+
+  it('ninguna parte supera el límite de GitHub y el manifiesto declara una licencia que permite el uso', () => {
+    for (const parte of manifiesto.archivos.flatMap((a) => a.partes)) {
+      assert.ok(fs.statSync(path.join(carpetaModelo, parte)).size < 50 * 1024 * 1024, parte);
+    }
+    assert.equal(manifiesto.licencia, 'CC-BY-4.0');
+    assert.match(fs.readFileSync(path.join(carpetaModelo, 'ATRIBUCION.md'), 'utf8'), /CC-BY-4\.0/);
+  });
+
+  it('el runtime de ONNX está incluido localmente con versión fija', () => {
+    const ort = fs.readFileSync(path.join(raiz, 'js/vendor/ort/ort.wasm.min.mjs'), 'utf8');
+    assert.match(ort, /1\.22\.0/);
+    const wasm = fs.readFileSync(path.join(raiz, 'js/vendor/ort/ort-wasm-simd-threaded.wasm'));
+    assert.equal(wasm.length, 11210254);
+  });
+
+  it('el código de la IA no contiene direcciones externas', () => {
+    for (const archivo of archivosJs.filter((a) => a.startsWith('js/ia/'))) {
+      assert.doesNotMatch(leer(archivo), /https?:\/\//, archivo);
+    }
+  });
+});
+
 describe('Higiene del repositorio', () => {
   const archivos = archivosRastreados();
   const textuales = archivos.filter((a) => !/\.(woff2|png|jpg|ico)$/.test(a) && !a.startsWith('js/vendor/'));
 
   it('no hay archivos de credenciales, audio ni exportaciones clínicas', () => {
-    const sospechosos = archivos.filter((a) => /(^|\/)\.env|\.pem$|\.key$|id_rsa|credentials|\.(wav|mp3|m4a|ogg|webm|flac)$|historial.*\.json$|MediVoz_historial/i.test(a));
+    const sospechosos = archivos
+      .filter((a) => !a.startsWith('tests/audios/'))
+      .filter((a) => /(^|\/)\.env|\.pem$|\.key$|id_rsa|credentials|\.(wav|mp3|m4a|ogg|webm|flac)$|historial.*\.json$|MediVoz_historial/i.test(a));
     assert.deepEqual(sospechosos, []);
+  });
+
+  it('los únicos audios versionados son los clips sintéticos de prueba', () => {
+    const audios = archivos.filter((a) => /\.(wav|mp3|m4a|ogg|webm|flac)$/i.test(a));
+    assert.ok(audios.every((a) => /^tests\/audios\/dictado-[a-z]+\.wav$/.test(a)), audios.join());
+    const referencias = JSON.parse(fs.readFileSync(path.join(raiz, 'tests/audios/referencias.json'), 'utf8'));
+    assert.ok(referencias.every((r) => /Ficticio|paciente|Paciente|Sistema|Ignora|Se /.test(r.referencia)));
   });
 
   it('ningún archivo rastreado contiene credenciales o claves privadas', () => {

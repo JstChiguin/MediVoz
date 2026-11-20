@@ -1,0 +1,210 @@
+{
+ "motor": "conformer-transductor-es",
+ "entorno": "nativo (Python, CPU, 1 hilo)",
+ "carga_s": 0.77,
+ "memoria_base_mb": 30,
+ "memoria_tras_carga_mb": 222,
+ "memoria_pico_mb": 622,
+ "resultados": {
+  "corto-01": {
+   "texto": "Paciente refiere sefalea de tres días de evolución.",
+   "tiempo_s": 0.169,
+   "duracion_s": 5.02
+  },
+  "corto-02": {
+   "texto": "Sin antecedentes de alergias medicamentosas.",
+   "tiempo_s": 0.138,
+   "duracion_s": 4.51
+  },
+  "corto-03": {
+   "texto": "Se solicita electrocardiograma de control.",
+   "tiempo_s": 0.134,
+   "duracion_s": 4.42
+  },
+  "corto-04": {
+   "texto": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+   "tiempo_s": 0.185,
+   "duracion_s": 5.93
+  },
+  "corto-05": {
+   "texto": "Controlen siete días con exámenes de laboratorio.",
+   "tiempo_s": 0.151,
+   "duracion_s": 4.82
+  },
+  "corto-06": {
+   "texto": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+   "tiempo_s": 0.147,
+   "duracion_s": 5.02
+  },
+  "extenso-01": {
+   "texto": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicardico con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ciento ambiental se auscultan crépitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natrioético. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos endovenosos.",
+   "tiempo_s": 1.603,
+   "duracion_s": 42.22
+  },
+  "extenso-02": {
+   "texto": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa iliaca derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho grados, signo de blumber positivo. Los exámenes muestran leucocitosis de diez y ocho mil células por microlitro y proteína se reactiva. Elevada. La ecografía abdominal sugiere apendicitis aguda se indica ayuno, hidratación parentera y se triaxona un gramo cada veinticuatro horas y se programa apendicectomía laparoscópica de urgencia.",
+   "tiempo_s": 1.139,
+   "duracion_s": 32.86
+  },
+  "extenso-03": {
+   "texto": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias respiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxígenoterapia, salvutamolinado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+   "tiempo_s": 1.215,
+   "duracion_s": 34.94
+  },
+  "extenso-04": {
+   "texto": "Hombre de cincuenta y cinco años tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de su doración y náuseas. El electrocardiograma muestra supradesnivel del segmento. St en derivaciones inferiores se activa protocolo de infarto agudo al miocardio, se administra ácido acetisalicídico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+   "tiempo_s": 0.847,
+   "duracion_s": 27.0
+  },
+  "terminos-01": {
+   "texto": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular y químico.",
+   "tiempo_s": 0.249,
+   "duracion_s": 8.83
+  },
+  "terminos-02": {
+   "texto": "Se realiza con estectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+   "tiempo_s": 0.226,
+   "duracion_s": 7.92
+  },
+  "terminos-03": {
+   "texto": "Hemoglobina glicoxilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+   "tiempo_s": 0.247,
+   "duracion_s": 8.54
+  },
+  "terminos-04": {
+   "texto": "Cuadro compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+   "tiempo_s": 0.206,
+   "duracion_s": 7.18
+  },
+  "terminos-05": {
+   "texto": "Paciente con hipotiroidismo secundario a tiroiditis de acimoto, en tratamiento sustitutivo.",
+   "tiempo_s": 0.202,
+   "duracion_s": 7.27
+  },
+  "terminos-06": {
+   "texto": "Tomografía axial computarizada de cerebros sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+   "tiempo_s": 0.225,
+   "duracion_s": 7.34
+  },
+  "medicamentos-01": {
+   "texto": "Se indica para setamol quinientos miligramos cada ocho horas por tres días.",
+   "tiempo_s": 0.182,
+   "duracion_s": 6.46
+  },
+  "medicamentos-02": {
+   "texto": "Iniciara moxilina con ácido clavulánico ochocientos setenta y cinco miligramos cada doce horas.",
+   "tiempo_s": 0.204,
+   "duracion_s": 7.22
+  },
+  "medicamentos-03": {
+   "texto": "Continuar con metformina mil miligramos al día y atorvastatina veinte miligramos en la noche.",
+   "tiempo_s": 0.198,
+   "duracion_s": 7.15
+  },
+  "medicamentos-04": {
+   "texto": "Se suspenden al april y se cambia a los hartán cincuenta miligramos por tos persistente.",
+   "tiempo_s": 0.197,
+   "duracion_s": 6.5
+  },
+  "medicamentos-05": {
+   "texto": "Homeprasol veinte miligramos en ayunas, que topófeno sólo si presenta dolor intenso.",
+   "tiempo_s": 0.192,
+   "duracion_s": 6.86
+  },
+  "medicamentos-06": {
+   "texto": "Levotiloxina setenta y cinco microgramos en ayunas, clonacepan medio miligramo antes de dormir.",
+   "tiempo_s": 0.196,
+   "duracion_s": 7.2
+  },
+  "numeros-01": {
+   "texto": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio, frecuencia cardíaca setenta y dos latidos por minuto.",
+   "tiempo_s": 0.247,
+   "duracion_s": 8.69
+  },
+  "numeros-02": {
+   "texto": "Temperatura treinta y siete cinco grados, saturación noventa y siete por ciento frecuencia respiratoria dieciocho por minuto.",
+   "tiempo_s": 0.248,
+   "duracion_s": 8.88
+  },
+  "numeros-03": {
+   "texto": "Glicemia enauna ciento cuarenta y dos miligramos por deshilitro que atimina uno dos miligramos por deshilito.",
+   "tiempo_s": 0.247,
+   "duracion_s": 8.64
+  },
+  "numeros-04": {
+   "texto": "Peso setenta y ocho kilos, talla uno setenta y dos metros, índice de masa corporal veintiséis.",
+   "tiempo_s": 0.232,
+   "duracion_s": 8.11
+  },
+  "numeros-05": {
+   "texto": "Administrar insulina glarina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+   "tiempo_s": 0.262,
+   "duracion_s": 9.36
+  },
+  "numeros-06": {
+   "texto": "Hemoglobina once com ocho gramos por deshilito, plaqueta ciento cincuenta mil por microlitro, leucositos nueve mil quinientos.",
+   "tiempo_s": 0.269,
+   "duracion_s": 9.12
+  },
+  "velocidad-lenta": {
+   "texto": "Se indica hibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+   "tiempo_s": 0.312,
+   "duracion_s": 10.49
+  },
+  "velocidad-normal": {
+   "texto": "Se indica hibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+   "tiempo_s": 0.233,
+   "duracion_s": 7.73
+  },
+  "velocidad-rapida": {
+   "texto": "Se indica el buprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+   "tiempo_s": 0.175,
+   "duracion_s": 6.05
+  },
+  "pausas-01": {
+   "texto": "Paciente estable Presión arterial normal. Se indica altamérica con control ambulatorio en diez días.",
+   "tiempo_s": 0.43,
+   "duracion_s": 14.77
+  },
+  "pausas-02": {
+   "texto": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+   "tiempo_s": 0.407,
+   "duracion_s": 14.1
+  },
+  "ruido-20db": {
+   "texto": "Se indica se triaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+   "tiempo_s": 0.19,
+   "duracion_s": 6.74
+  },
+  "ruido-10db": {
+   "texto": "Se indica se friagna un gramo endovenoso cada veinticuatro horas por siete días.",
+   "tiempo_s": 0.191,
+   "duracion_s": 6.74
+  },
+  "ruido-15db-largo": {
+   "texto": "Mujer de cuarenta años conmigraña con Aura, se inicia su matritán cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+   "tiempo_s": 0.278,
+   "duracion_s": 9.84
+  },
+  "acento-es-ES": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+   "tiempo_s": 0.245,
+   "duracion_s": 8.5
+  },
+  "acento-es-MX": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+   "tiempo_s": 0.255,
+   "duracion_s": 8.45
+  },
+  "acento-es-AR": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+   "tiempo_s": 0.249,
+   "duracion_s": 8.74
+  },
+  "acento-es-CO": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+   "tiempo_s": 0.266,
+   "duracion_s": 9.02
+  }
+ }
+}

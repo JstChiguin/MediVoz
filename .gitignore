@@ -3,7 +3,10 @@ test-results/
 .env
 *.pem
 *.wav
+!tests/audios/*.wav
 *.mp3
 *.m4a
 *.webm
 MediVoz_historial*.json
+evaluacion/audios/
+evaluacion/modelos/

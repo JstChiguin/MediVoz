@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MediVoz — Transcriptor Médico</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; media-src 'none'; worker-src 'none'; manifest-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; media-src 'none'; worker-src 'self'; manifest-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"/>
   <meta name="referrer" content="no-referrer"/>
   <link rel="stylesheet" href="css/fuentes.css"/>
   <link rel="stylesheet" href="css/styles.css"/>
@@ -50,7 +50,14 @@
       <span></span><span></span><span></span>
     </div>
     <p class="mic-status" id="micStatus">Presiona el micrófono para dictar</p>
-    <p class="aviso-privacidad">El dictado usa el reconocimiento de voz de tu navegador, que puede enviar el audio a servicios externos (por ejemplo, los de Google en Chrome).</p>
+    <div class="selector-motor">
+      <label for="motorVoz">Motor de voz</label>
+      <select id="motorVoz">
+        <option value="navegador">Navegador (rápido de iniciar)</option>
+        <option value="local">IA local privada (experimental)</option>
+      </select>
+    </div>
+    <p class="aviso-privacidad" id="avisoMotor"></p>
     <p class="mic-status" id="recordTimer">⏱ 00:00</p>
   </div>
 
@@ -60,6 +67,8 @@
     <div class="transcript-header">
       <span>Transcripción</span>
       <div class="transcript-actions">
+        <button class="btn-sm" id="revisarBtn" title="Buscar posibles errores en términos médicos">🔎 Revisar</button>
+        <button class="btn-sm" id="abrirDiccionarioBtn" title="Diccionario médico propio">📖 Diccionario</button>
         <button class="btn-sm" id="copyBtn">📋 Copiar</button>
         <button class="btn-sm primary" id="saveBtn">💾 Guardar</button>
         <button class="btn-sm danger" id="clearBtn">🗑 Borrar</button>
@@ -68,6 +77,7 @@
     <div id="transcriptBox" contenteditable="true" spellcheck="true">
       <span class="marcador-vacio">El texto dictado aparecerá aquí…</span>
     </div>
+    <div class="sugerencias" id="sugerencias" hidden></div>
   </div>
 
   <div class="history-section">
@@ -143,12 +153,30 @@
   </div>
 </div>
 
+<div class="medicos-fondo" id="panelDiccionario" hidden>
+  <div class="medicos-panel" role="dialog" aria-modal="true" aria-labelledby="tituloDiccionario">
+    <div class="medicos-cabecera">
+      <h2 id="tituloDiccionario">Diccionario médico</h2>
+      <button type="button" class="hi-copy" id="cerrarDiccionarioBtn" aria-label="Cerrar" title="Cerrar">✕</button>
+    </div>
+    <p class="seguridad-texto diccionario-ayuda">MediVoz ya incluye un vocabulario clínico base. Agrega nombres de fármacos o términos de tu especialidad para detectar errores de transcripción. Solo se sugiere, nunca se cambia solo.</p>
+    <form class="medicos-formulario" id="formularioDiccionario">
+      <input type="text" id="terminoDiccionarioInput" placeholder="Término o medicamento…" maxlength="60" autocomplete="off"/>
+      <button type="submit" class="btn-sm primary">➕ Agregar</button>
+    </form>
+    <p class="medicos-error" id="errorDiccionario" role="alert"></p>
+    <p class="seguridad-texto cuenta-diccionario" id="cuentaDiccionario"></p>
+    <ul class="medicos-lista" id="listaDiccionario"></ul>
+  </div>
+</div>
+
 <firma-medivoz></firma-medivoz>
 
 <script src="js/config.js"></script>
 <script src="js/medicos.js"></script>
 <script src="js/almacen-seguro.js"></script>
 <script src="js/panel-seguridad.js"></script>
+<script src="js/panel-diccionario.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>

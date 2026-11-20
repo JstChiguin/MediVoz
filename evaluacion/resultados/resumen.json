@@ -1,0 +1,3957 @@
+[
+ {
+  "motor": "parakeet-v3",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 1.69,
+  "memoria_pico_mb": 1572,
+  "memoria_base_mb": 30,
+  "wer": 0.06545961002785515,
+  "cer": 0.015816326530612244,
+  "terminosPrecision": 0.821656050955414,
+  "numerosErrores": 2,
+  "numerosTotal": 75,
+  "unidadesErrores": 2,
+  "unidadesTotal": 34,
+  "rtf": 0.11845985018369196,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 49.7,
+  "werPorCategoria": {
+   "corto": 0,
+   "extenso": 2.8,
+   "terminos": 2.8,
+   "medicamentos": 22.9,
+   "numeros": 12.9,
+   "velocidad": 0,
+   "pausas": 0,
+   "ruido": 12.5,
+   "acentos": 8.8
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0,
+    "hipotesis": "Control en 7 días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.024390243902439025,
+    "hipotesis": "Paciente de 64 años, con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortópnea. Al examen físico se encuentra taquicárdico, compresión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93% ambiental. Se auscultan crépitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriurético. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida 40 miligramos endovenosos.",
+    "fallidos": []
+   },
+   "extenso-02": {
+    "wer": 0.04411764705882353,
+    "hipotesis": "Mujer de 38 años que ingresa por dolor abdominal en fosa ilíaca derecha de 24 horas de evolución, con náuseas y vómitos. Presenta fiebre de 38,2 grados. Signo de Blumberg positivo. Los exámenes muestran leucocitosis de 18,000 células por microlitro y proteína C reactiva elevada. La ecografía abdominal sugiere apendicitis aguda. Se indica ayuno, hidratación parenteral y Cfriacona 1 gramo cada 24 horas, y se programa apendisectomía laparoscópica de urgencia.",
+    "fallidos": [
+     "microlitro",
+     "ceftriaxona",
+     "apendicectomía"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.041666666666666664,
+    "hipotesis": "Lactante de 8 meses, previamente sano, que presenta cuadro de 3 días de tos, rinorrea y dificultad respiratoria. Al examen se observa polípne, retracción subcostal y civilancias espiratorias difusas. La saturación es de 90%. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salbutamol inhalado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "polipnea",
+     "sibilancias",
+     "sincicial"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0,
+    "hipotesis": "Hombre de 55 años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito, irradiado al brazo izquierdo, acompañado de sudoración y náuseas. El electrocardiograma muestra supradesnivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilsalicílico 300 miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastía coronaria.",
+    "fallidos": []
+   },
+   "terminos-01": {
+    "wer": 0,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+    "fallidos": []
+   },
+   "terminos-02": {
+    "wer": 0.1,
+    "hipotesis": "Se realiza colesistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": []
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de asimoto, en tratamiento sustitutivo.",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para cetamol 500 miligramos cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.3,
+    "hipotesis": "Iniciar a moxicilina con ácido clavulánico 875 mg cada 1 horas.",
+    "fallidos": [
+     "amoxicilina"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Continuar con metformina 1000 mg al día y a torbastatina 20 mg en la noche.",
+    "fallidos": [
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspenden al april y se cambia a los sartan 50 mg por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Omeprasol 20 miligramos en ayunas, quetoprofeno solo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Levotiloxina 75 microgramos en ayunas, clonacepam medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial 120 sobre 80 milímetros de Mercurio, frecuencia cardíaca 72 latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0,
+    "hipotesis": "Temperatura 37,5 grados, saturación 97%, frecuencia respiratoria 18 por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0.875,
+    "hipotesis": "Glicemia en ayuna: 142 mg por decilitro, creatinina 1,2 mg por decilitro.",
+    "fallidos": [
+     "ayunas"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "Peso 78 kg, talla 1,72 metros, índice de masa corporal 26,3.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.05,
+    "hipotesis": "Administrar insulina Gargina 24 unidades subcutáneas cada noche y control de glicemia a las 6 y a las 22 horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0.125,
+    "hipotesis": "Hemoglobina 11,8 gramos por decilitro, plaqueta 150.000 por microlitro, leucocitos 9500.",
+    "fallidos": [
+     "plaquetas"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "velocidad-normal": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se priaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.08333333333333333,
+    "hipotesis": "Mujer de 40 años con migraña con aura, se inicia su matritan 50 miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad. Se indica citromicina, 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica la citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquiri en la comunidad, se indica citromicina 500 mg al día por tres días.",
+    "fallidos": [
+     "adquirida",
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "moonshine-base-es",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.58,
+  "memoria_pico_mb": 969,
+  "memoria_base_mb": 30,
+  "wer": 0.07938718662952646,
+  "cer": 0.0336734693877551,
+  "terminosPrecision": 0.821656050955414,
+  "numerosErrores": 5,
+  "numerosTotal": 75,
+  "unidadesErrores": 2,
+  "unidadesTotal": 34,
+  "rtf": 0.26009828713201955,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 109,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 8.2,
+   "terminos": 1.4,
+   "medicamentos": 18.6,
+   "numeros": 2.9,
+   "velocidad": 9.5,
+   "pausas": 0,
+   "ruido": 14.6,
+   "acentos": 7.4
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen 7 días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.04878048780487805,
+    "hipotesis": "Paciente de 64 años, con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicárdico, con presión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93% ambiental. Se auscultan crepitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriurético. Se plantea insuficiencia cardíaca descompensada y se inicia",
+    "fallidos": [
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.22058823529411764,
+    "hipotesis": "Mujer de 38 años que ingresa por dolor abdominal en fosa ilíaca derecha de 24 horas de evolución, con náuseas y vómitos. Presenta fiebre de 38,2 grados. Signo de Bloomberg positivo. Los exámenes muestran leucocitosis de 18,000 células por microlitro y proteína se reactiva elevada. La ecografía abdominal sugiere apendicitis aguda. Se indica ayuno, hidratación parenteral y se triaxona",
+    "fallidos": [
+     "Blumberg",
+     "microlitro",
+     "ceftriaxona",
+     "apendicectomía",
+     "laparoscópica"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.027777777777777776,
+    "hipotesis": "Lactante de 8 meses, previamente sano, que presenta cuadro de 3 días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias expiratorias difusas. La saturación es de 90%. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salbutamol inhalado cada 4 horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "sincicial"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.03333333333333333,
+    "hipotesis": "Hombre de 55 años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito, irradiado al brazo izquierdo, acompañado de sudoración y náuseas. El electrocardiograma muestra supradesnivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilsalicílico 300 miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplast",
+    "fallidos": [
+     "angioplastía",
+     "coronaria"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+    "fallidos": []
+   },
+   "terminos-02": {
+    "wer": 0.1,
+    "hipotesis": "Se realiza colesistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": []
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de Hashimoto en tratamiento sustitutivo.",
+    "fallidos": []
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para Zetamol 500 miligramos cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0,
+    "hipotesis": "Iniciar amoxicilina con ácido clavulánico 875 miligramos cada 12 horas.",
+    "fallidos": []
+   },
+   "medicamentos-03": {
+    "wer": 0,
+    "hipotesis": "Continuar con Metformina 1000 miligramos al día y Atorvastatina 20 miligramos en la noche.",
+    "fallidos": []
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspende en al april y se cambia a los Artán 50 miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.45454545454545453,
+    "hipotesis": "o me prasol 20 miligramos en ayunas, que toprofeno solo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Levotiloxina 75 microgramos en ayunas, clonazepam medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial 120 sobre 80 milímetros de mercurio, frecuencia cardíaca 72 latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0,
+    "hipotesis": "Temperatura 37,5 grados, saturación 97%, frecuencia respiratoria 18 por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0,
+    "hipotesis": "Glicemia en ayunas 142 miligramos por decilitro, creatinina 1,2 miligramos por decilitro.",
+    "fallidos": []
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.1,
+    "hipotesis": "Administrar insulina Glaargin A24 unidades subcutáneas cada noche y control de glicemia a las 6 y a las 22 horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina 11,8 gramos por decilitro, plaquetas 150.000 por microlitro, leucocitos 9.500.",
+    "fallidos": []
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se preaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se preaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.125,
+    "hipotesis": "Mujer de 40 años con migraña con aura, se inicia su matriz tan 50 miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica a citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "moonshine",
+  "entorno": "Chrome real, WASM 1 hilo, CPU 4x más lenta (emulada)",
+  "carga_s": 2.434,
+  "memoria_pico_mb": 1037,
+  "memoria_base_mb": 513,
+  "wer": 0.07938718662952646,
+  "cer": 0.0336734693877551,
+  "terminosPrecision": 0.821656050955414,
+  "numerosErrores": 5,
+  "numerosTotal": 75,
+  "unidadesErrores": 2,
+  "unidadesTotal": 34,
+  "rtf": 1.5777541867455507,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 661.4,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 8.2,
+   "terminos": 1.4,
+   "medicamentos": 18.6,
+   "numeros": 2.9,
+   "velocidad": 9.5,
+   "pausas": 0,
+   "ruido": 14.6,
+   "acentos": 7.4
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen 7 días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.04878048780487805,
+    "hipotesis": "Paciente de 64 años, con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicárdico, con presión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93% ambiental. Se auscultan crepitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriurético. Se plantea insuficiencia cardíaca descompensada y se inicia",
+    "fallidos": [
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.22058823529411764,
+    "hipotesis": "Mujer de 38 años que ingresa por dolor abdominal en fosa ilíaca derecha de 24 horas de evolución, con náuseas y vómitos. Presenta fiebre de 38,2 grados. Signo de Bloomberg positivo. Los exámenes muestran leucocitosis de 18,000 células por microlitro y proteína se reactiva elevada. La ecografía abdominal sugiere apendicitis aguda. Se indica ayuno, hidratación parenteral y se triaxona",
+    "fallidos": [
+     "Blumberg",
+     "microlitro",
+     "ceftriaxona",
+     "apendicectomía",
+     "laparoscópica"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.027777777777777776,
+    "hipotesis": "Lactante de 8 meses, previamente sano, que presenta cuadro de 3 días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias expiratorias difusas. La saturación es de 90%. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salbutamol inhalado cada 4 horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "sincicial"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.03333333333333333,
+    "hipotesis": "Hombre de 55 años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito, irradiado al brazo izquierdo, acompañado de sudoración y náuseas. El electrocardiograma muestra supradesnivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilsalicílico 300 miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplast",
+    "fallidos": [
+     "angioplastía",
+     "coronaria"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+    "fallidos": []
+   },
+   "terminos-02": {
+    "wer": 0.1,
+    "hipotesis": "Se realiza colesistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": []
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de Hashimoto en tratamiento sustitutivo.",
+    "fallidos": []
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para Zetamol 500 miligramos cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0,
+    "hipotesis": "Iniciar amoxicilina con ácido clavulánico 875 miligramos cada 12 horas.",
+    "fallidos": []
+   },
+   "medicamentos-03": {
+    "wer": 0,
+    "hipotesis": "Continuar con Metformina 1000 miligramos al día y Atorvastatina 20 miligramos en la noche.",
+    "fallidos": []
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspende en al april y se cambia a los Artán 50 miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.45454545454545453,
+    "hipotesis": "o me prasol 20 miligramos en ayunas, que toprofeno solo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Levotiloxina 75 microgramos en ayunas, clonazepam medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial 120 sobre 80 milímetros de mercurio, frecuencia cardíaca 72 latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0,
+    "hipotesis": "Temperatura 37,5 grados, saturación 97%, frecuencia respiratoria 18 por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0,
+    "hipotesis": "Glicemia en ayunas 142 miligramos por decilitro, creatinina 1,2 miligramos por decilitro.",
+    "fallidos": []
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.1,
+    "hipotesis": "Administrar insulina Glaargin A24 unidades subcutáneas cada noche y control de glicemia a las 6 y a las 22 horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina 11,8 gramos por decilitro, plaquetas 150.000 por microlitro, leucocitos 9.500.",
+    "fallidos": []
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se preaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se preaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.125,
+    "hipotesis": "Mujer de 40 años con migraña con aura, se inicia su matriz tan 50 miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica a citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "moonshine",
+  "entorno": "Chrome real, WASM 1 hilo",
+  "carga_s": 0.694,
+  "memoria_pico_mb": 1085,
+  "memoria_base_mb": 509,
+  "wer": 0.07938718662952646,
+  "cer": 0.0336734693877551,
+  "terminosPrecision": 0.821656050955414,
+  "numerosErrores": 5,
+  "numerosTotal": 75,
+  "unidadesErrores": 2,
+  "unidadesTotal": 34,
+  "rtf": 0.3183429552936685,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 133.4,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 8.2,
+   "terminos": 1.4,
+   "medicamentos": 18.6,
+   "numeros": 2.9,
+   "velocidad": 9.5,
+   "pausas": 0,
+   "ruido": 14.6,
+   "acentos": 7.4
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen 7 días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.04878048780487805,
+    "hipotesis": "Paciente de 64 años, con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicárdico, con presión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93% ambiental. Se auscultan crepitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriurético. Se plantea insuficiencia cardíaca descompensada y se inicia",
+    "fallidos": [
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.22058823529411764,
+    "hipotesis": "Mujer de 38 años que ingresa por dolor abdominal en fosa ilíaca derecha de 24 horas de evolución, con náuseas y vómitos. Presenta fiebre de 38,2 grados. Signo de Bloomberg positivo. Los exámenes muestran leucocitosis de 18,000 células por microlitro y proteína se reactiva elevada. La ecografía abdominal sugiere apendicitis aguda. Se indica ayuno, hidratación parenteral y se triaxona",
+    "fallidos": [
+     "Blumberg",
+     "microlitro",
+     "ceftriaxona",
+     "apendicectomía",
+     "laparoscópica"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.027777777777777776,
+    "hipotesis": "Lactante de 8 meses, previamente sano, que presenta cuadro de 3 días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias expiratorias difusas. La saturación es de 90%. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salbutamol inhalado cada 4 horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "sincicial"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.03333333333333333,
+    "hipotesis": "Hombre de 55 años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito, irradiado al brazo izquierdo, acompañado de sudoración y náuseas. El electrocardiograma muestra supradesnivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilsalicílico 300 miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplast",
+    "fallidos": [
+     "angioplastía",
+     "coronaria"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+    "fallidos": []
+   },
+   "terminos-02": {
+    "wer": 0.1,
+    "hipotesis": "Se realiza colesistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": []
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de Hashimoto en tratamiento sustitutivo.",
+    "fallidos": []
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para Zetamol 500 miligramos cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0,
+    "hipotesis": "Iniciar amoxicilina con ácido clavulánico 875 miligramos cada 12 horas.",
+    "fallidos": []
+   },
+   "medicamentos-03": {
+    "wer": 0,
+    "hipotesis": "Continuar con Metformina 1000 miligramos al día y Atorvastatina 20 miligramos en la noche.",
+    "fallidos": []
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspende en al april y se cambia a los Artán 50 miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.45454545454545453,
+    "hipotesis": "o me prasol 20 miligramos en ayunas, que toprofeno solo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Levotiloxina 75 microgramos en ayunas, clonazepam medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial 120 sobre 80 milímetros de mercurio, frecuencia cardíaca 72 latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0,
+    "hipotesis": "Temperatura 37,5 grados, saturación 97%, frecuencia respiratoria 18 por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0,
+    "hipotesis": "Glicemia en ayunas 142 miligramos por decilitro, creatinina 1,2 miligramos por decilitro.",
+    "fallidos": []
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.1,
+    "hipotesis": "Administrar insulina Glaargin A24 unidades subcutáneas cada noche y control de glicemia a las 6 y a las 22 horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina 11,8 gramos por decilitro, plaquetas 150.000 por microlitro, leucocitos 9.500.",
+    "fallidos": []
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se preaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se preaxona un gramo endovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.125,
+    "hipotesis": "Mujer de 40 años con migraña con aura, se inicia su matriz tan 50 miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica a citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "canary-180m",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.9,
+  "memoria_pico_mb": 879,
+  "memoria_base_mb": 30,
+  "wer": 0.10863509749303621,
+  "cer": 0.02576530612244898,
+  "terminosPrecision": 0.7643312101910829,
+  "numerosErrores": 1,
+  "numerosTotal": 75,
+  "unidadesErrores": 3,
+  "unidadesTotal": 34,
+  "rtf": 0.2444486855288897,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 102.5,
+  "werPorCategoria": {
+   "corto": 10,
+   "extenso": 9.2,
+   "terminos": 6.9,
+   "medicamentos": 20,
+   "numeros": 15.7,
+   "velocidad": 4.8,
+   "pausas": 3.8,
+   "ruido": 20.8,
+   "acentos": 7.4
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0.25,
+    "hipotesis": "Paciente refiere ese fallea de tres días de evolución.",
+    "fallidos": [
+     "cefalea"
+    ]
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen siete días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.08536585365853659,
+    "hipotesis": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicardico, compresión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ciento ambiental. Se ausculta en crépitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido naturético. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos en dovenosos.",
+    "fallidos": [
+     "natriurético",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa ilíaca derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho. Dos grados signo de Bloomberg positivo. Los exámenes muestran leucositosis de dieciocho mil células por microlitro y proteína se reactiva elevada. La ecografía abdominal sugiere apendicitis aguda. Se indica ayuno, hidratación parenteral y se friaxona a un gramo cada veinticuatro horas y se programa apendicectomía laparoscópica de urgencia.",
+    "fallidos": [
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "ceftriaxona"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.06944444444444445,
+    "hipotesis": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnia, retracción subcostal y civilancias respiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salvutamol inhalado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "polipnea",
+     "sibilancias",
+     "espiratorias",
+     "sincicial",
+     "salbutamol"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.1,
+    "hipotesis": "Hombre de cincuenta y cinco años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de sudoración y náuseas. El electrocardiograma muestra su predesnivel del segmento ST en derivaciones inferiores. Se activa Protocoro de Infarto Agudo Al Miocarrio, se administra ácido acetilsalicílico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+    "fallidos": [
+     "supradesnivel",
+     "miocardio"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+    "fallidos": []
+   },
+   "terminos-02": {
+    "wer": 0.2,
+    "hipotesis": "Se realiza colesystectomía laparoscópica por colesitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía",
+     "colelitiasis"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": []
+   },
+   "terminos-04": {
+    "wer": 0.1,
+    "hipotesis": "Cuadro compatible con taquicardia superventricular paroxística, resuelta con maniobras vagales.",
+    "fallidos": [
+     "supraventricular"
+    ]
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de Asimoto en tratamiento sustitutivo.",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Tomografía axial computarizada de cerebros sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para cetamol quinientos miligramos cada ocho horas por tres días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.2,
+    "hipotesis": "Iniciará moxicilina con ácido clavulánico ochocientos setenta y cinco miligramos cada doce horas.",
+    "fallidos": [
+     "amoxicilina"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Continuar con metformina mil miligramos al día y atorbastatina veinte miligramos en la noche.",
+    "fallidos": [
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspende en la príl y se cambia a los Artán cincuenta miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Omeprasol veinte miligramos en ayunas, que toprofeno solo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Levotiroxina setenta y cinco microgramos en ayunas, clonacepa medio miligramo antes de dormir.",
+    "fallidos": [
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio frecuencia cardíaca setenta y dos latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0,
+    "hipotesis": "Temperatura treinta y siete coma cinco grados saturación noventa y siete por ciento frecuencia respiratoria dieciocho por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0.875,
+    "hipotesis": "Glicemia en ayunas ciento cuarenta y dos miligramos por desilitro, criatinina uno coma dos miligramos por desilitro.",
+    "fallidos": [
+     "creatinina"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "peso setenta y ocho kilos, talla uno coma setenta y dos metros, índice de masa corporal veintiséis coma tres.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0,
+    "hipotesis": "Administrar insulina glargina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+    "fallidos": []
+   },
+   "numeros-06": {
+    "wer": 0.5,
+    "hipotesis": "Hemoglobina once coma ocho gramos por desilitro, plaquetas ciento cincuenta mil por microlitro, leucositos nueve mil quinientos.",
+    "fallidos": [
+     "leucocitos"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y bufefeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+    "fallidos": []
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "PACIENTE ESTABLE. Presión arterial normal. Se indica alta médica con control ambulatorio en diez días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Dolor torácico atípico. Electocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": [
+     "electrocardiograma"
+    ]
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "Se indica que se fríaxona a un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Mujer de cuarenta años con migraña con aura, se inicia su matrimonio tan cincuenta miligramos al inicio del dolor y se solicita resonancia magnética del cerebro.",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica a citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "conformer-transductor-es",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.77,
+  "memoria_pico_mb": 622,
+  "memoria_base_mb": 30,
+  "wer": 0.12116991643454039,
+  "cer": 0.029081632653061223,
+  "terminosPrecision": 0.7579617834394905,
+  "numerosErrores": 7,
+  "numerosTotal": 75,
+  "unidadesErrores": 3,
+  "unidadesTotal": 34,
+  "rtf": 0.030984302686196855,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 13,
+  "werPorCategoria": {
+   "corto": 7.5,
+   "extenso": 6.7,
+   "terminos": 9.7,
+   "medicamentos": 20,
+   "numeros": 37.1,
+   "velocidad": 9.5,
+   "pausas": 7.7,
+   "ruido": 16.7,
+   "acentos": 5.9
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0.125,
+    "hipotesis": "Paciente refiere sefalea de tres días de evolución.",
+    "fallidos": [
+     "cefalea"
+    ]
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen siete días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.012195121951219513,
+    "hipotesis": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicardico con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ciento ambiental se auscultan crépitos en ambas bases pulmonares. Se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natrioético. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos endovenosos.",
+    "fallidos": [
+     "natriurético"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.1323529411764706,
+    "hipotesis": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa iliaca derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho grados, signo de blumber positivo. Los exámenes muestran leucocitosis de diez y ocho mil células por microlitro y proteína se reactiva. Elevada. La ecografía abdominal sugiere apendicitis aguda se indica ayuno, hidratación parentera y se triaxona un gramo cada veinticuatro horas y se programa apendicectomía laparoscópica de urgencia.",
+    "fallidos": [
+     "Blumberg",
+     "microlitro",
+     "ceftriaxona",
+     "parenteral"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.05555555555555555,
+    "hipotesis": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias respiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxígenoterapia, salvutamolinado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "sincicial",
+     "salbutamol"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.08333333333333333,
+    "hipotesis": "Hombre de cincuenta y cinco años tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de su doración y náuseas. El electrocardiograma muestra supradesnivel del segmento. St en derivaciones inferiores se activa protocolo de infarto agudo al miocardio, se administra ácido acetisalicídico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+    "fallidos": [
+     "acetilsalicílico"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular y químico.",
+    "fallidos": [
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0.2,
+    "hipotesis": "Se realiza con estectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0.07692307692307693,
+    "hipotesis": "Hemoglobina glicoxilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": [
+     "glicosilada"
+    ]
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de acimoto, en tratamiento sustitutivo.",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Tomografía axial computarizada de cerebros sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para setamol quinientos miligramos cada ocho horas por tres días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.2,
+    "hipotesis": "Iniciara moxilina con ácido clavulánico ochocientos setenta y cinco miligramos cada doce horas.",
+    "fallidos": [
+     "amoxicilina"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0,
+    "hipotesis": "Continuar con metformina mil miligramos al día y atorvastatina veinte miligramos en la noche.",
+    "fallidos": []
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspenden al april y se cambia a los hartán cincuenta miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Homeprasol veinte miligramos en ayunas, que topófeno sólo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Levotiloxina setenta y cinco microgramos en ayunas, clonacepan medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio, frecuencia cardíaca setenta y dos latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Temperatura treinta y siete cinco grados, saturación noventa y siete por ciento frecuencia respiratoria dieciocho por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 1.5,
+    "hipotesis": "Glicemia enauna ciento cuarenta y dos miligramos por deshilitro que atimina uno dos miligramos por deshilito.",
+    "fallidos": [
+     "ayunas",
+     "creatinina"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Peso setenta y ocho kilos, talla uno setenta y dos metros, índice de masa corporal veintiséis.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.05,
+    "hipotesis": "Administrar insulina glarina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 1,
+    "hipotesis": "Hemoglobina once com ocho gramos por deshilito, plaqueta ciento cincuenta mil por microlitro, leucositos nueve mil quinientos.",
+    "fallidos": [
+     "plaquetas",
+     "leucocitos"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Se indica hibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Se indica hibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica el buprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "pausas-01": {
+    "wer": 0.13333333333333333,
+    "hipotesis": "Paciente estable Presión arterial normal. Se indica altamérica con control ambulatorio en diez días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se friagna un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Mujer de cuarenta años conmigraña con Aura, se inicia su matritán cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "migraña",
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "conformer",
+  "entorno": "Chrome real, WASM 1 hilo, CPU 4x más lenta (emulada)",
+  "carga_s": 4.049,
+  "memoria_pico_mb": 1254,
+  "memoria_base_mb": 518,
+  "wer": 0.12395543175487465,
+  "cer": 0.0326530612244898,
+  "terminosPrecision": 0.7388535031847133,
+  "numerosErrores": 7,
+  "numerosTotal": 75,
+  "unidadesErrores": 3,
+  "unidadesTotal": 34,
+  "rtf": 0.32007490815401507,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 134.2,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 8.2,
+   "terminos": 5.6,
+   "medicamentos": 20,
+   "numeros": 37.1,
+   "velocidad": 9.5,
+   "pausas": 15.4,
+   "ruido": 16.7,
+   "acentos": 5.9
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen siete días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.012195121951219513,
+    "hipotesis": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicardico, con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ciento ambiental se auscultan crépitos en ambas bases pulmonares se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriotico. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos endovenosos.",
+    "fallidos": [
+     "natriurético"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa iliaca derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho grados, signo de blumber positivo. Los exámenes muestran leucositosis de diez y ocho mil células por microlitro y proteínas de reactiva elevada la ecografía abdominal sugiere apendicitis aguda se indica ayuno, hidratación parentera y se triaxona un gramo cada veinticuatro horas y se programa pendisectomía laparoscópica de urgencia.",
+    "fallidos": [
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "proteína",
+     "ceftriaxona",
+     "parenteral",
+     "apendicectomía"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.041666666666666664,
+    "hipotesis": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias respiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxígenoterapia, salvutamol inhalado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "sincicial",
+     "salbutamol"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.11666666666666667,
+    "hipotesis": "Hombre de cincuenta y cinco años tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de su doración y náuseas. El electrocardiograma muestra su pladesnivel del segmento. St en derivaciones inferiores se activa protocolo de infarto agudo al miocardio, se administra ácido acetisalicílico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+    "fallidos": [
+     "supradesnivel",
+     "acetilsalicílico"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular y químico.",
+    "fallidos": [
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0,
+    "hipotesis": "Se realiza colecistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": []
+   },
+   "terminos-03": {
+    "wer": 0.07692307692307693,
+    "hipotesis": "Hemoglobina glicoxilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": [
+     "glicosilada"
+    ]
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de acimoto, en tratamiento sustitutivo.",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para setamol quinientos miligramos cada ocho horas por tres días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.3,
+    "hipotesis": "Iniciara moxilina con ácido clavánico ochocientos setenta y cinco miligramos cada doce horas.",
+    "fallidos": [
+     "amoxicilina",
+     "clavulánico"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0,
+    "hipotesis": "Continuar con metformina mil miligramos al día y atorvastatina veinte miligramos en la noche.",
+    "fallidos": []
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspenden al april y se cambia a los hartán cincuenta miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Homeprasol veinte miligramos en ayunas, quetoprofeno sólo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Levotiloxina setenta y cinco microgramos en ayunas, clonacepan medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio, frecuencia cardíaca setenta y dos latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Temperatura treinta y siete cinco grados, saturación noventa y siete por ciento frecuencia respiratoria dieciocho por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 1.5,
+    "hipotesis": "Glicemia enauna ciento cuarenta y dos miligramos por deshilitro, que atimina uno dos miligramos por deshilito.",
+    "fallidos": [
+     "ayunas",
+     "creatinina"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Peso setenta y ocho kilos, talla uno setenta y dos metros, índice de masa corporal veintiséis.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.05,
+    "hipotesis": "Administrar insulina glarina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 1,
+    "hipotesis": "Hemoglobina once com ocho gramos por deshilitro, plaqueta ciento cincuenta mil por microlitro, leucositos nueve mil quinientos.",
+    "fallidos": [
+     "plaquetas",
+     "leucocitos"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Se indica hibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Se indica hiborofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "pausas-01": {
+    "wer": 0.26666666666666666,
+    "hipotesis": "Presión arterial normal. Se indica altamédica con control ambulatorio en diez días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaglona un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Mujer de cuarenta años conmigraña con Aura, se inicia su matriztán cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "migraña",
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica acitromecina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "conformer",
+  "entorno": "Chrome real, WASM 1 hilo",
+  "carga_s": 0.969,
+  "memoria_pico_mb": 1247,
+  "memoria_base_mb": 521,
+  "wer": 0.12395543175487465,
+  "cer": 0.0326530612244898,
+  "terminosPrecision": 0.7388535031847133,
+  "numerosErrores": 7,
+  "numerosTotal": 75,
+  "unidadesErrores": 3,
+  "unidadesTotal": 34,
+  "rtf": 0.06422777804284555,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 26.9,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 8.2,
+   "terminos": 5.6,
+   "medicamentos": 20,
+   "numeros": 37.1,
+   "velocidad": 9.5,
+   "pausas": 15.4,
+   "ruido": 16.7,
+   "acentos": 5.9
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen siete días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.012195121951219513,
+    "hipotesis": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicardico, con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ciento ambiental se auscultan crépitos en ambas bases pulmonares se solicita radiografía de tórax, electrocardiograma, troponinas y péptido natriotico. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos endovenosos.",
+    "fallidos": [
+     "natriurético"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa iliaca derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho grados, signo de blumber positivo. Los exámenes muestran leucositosis de diez y ocho mil células por microlitro y proteínas de reactiva elevada la ecografía abdominal sugiere apendicitis aguda se indica ayuno, hidratación parentera y se triaxona un gramo cada veinticuatro horas y se programa pendisectomía laparoscópica de urgencia.",
+    "fallidos": [
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "proteína",
+     "ceftriaxona",
+     "parenteral",
+     "apendicectomía"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.041666666666666664,
+    "hipotesis": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias respiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus incisial respiratorio. Se indica oxígenoterapia, salvutamol inhalado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "sincicial",
+     "salbutamol"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.11666666666666667,
+    "hipotesis": "Hombre de cincuenta y cinco años tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de su doración y náuseas. El electrocardiograma muestra su pladesnivel del segmento. St en derivaciones inferiores se activa protocolo de infarto agudo al miocardio, se administra ácido acetisalicílico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+    "fallidos": [
+     "supradesnivel",
+     "acetilsalicílico"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular y químico.",
+    "fallidos": [
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0,
+    "hipotesis": "Se realiza colecistectomía laparoscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": []
+   },
+   "terminos-03": {
+    "wer": 0.07692307692307693,
+    "hipotesis": "Hemoglobina glicoxilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": [
+     "glicosilada"
+    ]
+   },
+   "terminos-04": {
+    "wer": 0,
+    "hipotesis": "Cuadro compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de acimoto, en tratamiento sustitutivo.",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa.",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para setamol quinientos miligramos cada ocho horas por tres días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.3,
+    "hipotesis": "Iniciara moxilina con ácido clavánico ochocientos setenta y cinco miligramos cada doce horas.",
+    "fallidos": [
+     "amoxicilina",
+     "clavulánico"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0,
+    "hipotesis": "Continuar con metformina mil miligramos al día y atorvastatina veinte miligramos en la noche.",
+    "fallidos": []
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "Se suspenden al april y se cambia a los hartán cincuenta miligramos por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Homeprasol veinte miligramos en ayunas, quetoprofeno sólo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Levotiloxina setenta y cinco microgramos en ayunas, clonacepan medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio, frecuencia cardíaca setenta y dos latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Temperatura treinta y siete cinco grados, saturación noventa y siete por ciento frecuencia respiratoria dieciocho por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 1.5,
+    "hipotesis": "Glicemia enauna ciento cuarenta y dos miligramos por deshilitro, que atimina uno dos miligramos por deshilito.",
+    "fallidos": [
+     "ayunas",
+     "creatinina"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Peso setenta y ocho kilos, talla uno setenta y dos metros, índice de masa corporal veintiséis.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.05,
+    "hipotesis": "Administrar insulina glarina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 1,
+    "hipotesis": "Hemoglobina once com ocho gramos por deshilitro, plaqueta ciento cincuenta mil por microlitro, leucositos nueve mil quinientos.",
+    "fallidos": [
+     "plaquetas",
+     "leucocitos"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Se indica hibuprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Se indica hiborofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "pausas-01": {
+    "wer": 0.26666666666666666,
+    "hipotesis": "Presión arterial normal. Se indica altamédica con control ambulatorio en diez días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "Dolor torácico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaxona un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaglona un gramo endovenoso cada veinticuatro horas por siete días.",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Mujer de cuarenta años conmigraña con Aura, se inicia su matriztán cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "migraña",
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica acitromecina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "conformer-ctc-es",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.79,
+  "memoria_pico_mb": 615,
+  "memoria_base_mb": 30,
+  "wer": 0.14345403899721448,
+  "cer": 0.033928571428571426,
+  "terminosPrecision": 0.6942675159235668,
+  "numerosErrores": 6,
+  "numerosTotal": 75,
+  "unidadesErrores": 4,
+  "unidadesTotal": 34,
+  "rtf": 0.031063027816212608,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 13,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 11.7,
+   "terminos": 12.5,
+   "medicamentos": 22.9,
+   "numeros": 31.4,
+   "velocidad": 14.3,
+   "pausas": 11.5,
+   "ruido": 16.7,
+   "acentos": 5.9
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "Se solicita electrocardiograma de control",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.25,
+    "hipotesis": "Controlen siete días con exámenes de laboratorio",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.06097560975609756,
+    "hipotesis": "Paciente de sesenta y cuatro años, con antecedentes de hipertensión arterial y diabetes mellitus tipo dos, que consulta por disnea progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicarádico con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio, saturación de oxígeno de noventa y tres por ci ambiental. se auscultan crépitos en ambas bases pulmonares. se solicita radiografía de tórax, electrocardiograma, troponinas y pptido natriuético. Se plantea insuficiencia cardíaca descompensada y se inicia furosemida cuarenta miligramos endovenosos.",
+    "fallidos": [
+     "taquicárdico",
+     "péptido",
+     "natriurético"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "Mujer de treinta y ocho años que ingresa por dolor abdominal en fosa iíaca derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho dos grados. Signo de blumber positivo. Los exámenes muestran leucositosis de diezecio ocho mil células por microlitro y proteína se reactiva Elevada. La ecografía abdominal sugiere apendicitis aguda. se indica ayuno, hidratación parenteráli se faxona un gramo cada veinticuatro horas y se programa pendisectomía laparoscópica de urgencia",
+    "fallidos": [
+     "ilíaca",
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "ceftriaxona",
+     "parenteral",
+     "apendicectomía"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.041666666666666664,
+    "hipotesis": "Lactante de ocho meses, previamente sano, que presenta cuadro de tres días de tos, rinorrea y dificultad respiratoria. Al examen se observa polipnea, retracción subcostal y sibilancias respiratorias difusas. La saturación es de noventa por ciento. Se diagnostica bronquiolitis aguda probable por virus sincicial respiratorio. Se indica oxígenoterapia, salbutamoli inhaado cada cuatro horas y control de signos vitales. Se educa a los padres sobre signos de alarma y se mantiene hospitalizado en observación.",
+    "fallidos": [
+     "espiratorias",
+     "salbutamol"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.21666666666666667,
+    "hipotesis": "Hombre de cincuenta y cinco años tabáquico, que consulta por dolor torácico opresivo de inicio súbito ir radiado al brazo izquierdo, acompañado de su doración y náuseas. el electrocardiograma muestra sup pladesnivel del segmento S T En derivaciones inferiores Se activa protocolo de infarto agudo al miocardio, sedministra ácido aceti salicídirico trescientos miligramos y se traslada de inmediato a la unidad de hemodinamia para angiooplastitíaa coronaria",
+    "fallidos": [
+     "supradesnivel",
+     "acetilsalicílico",
+     "angioplastía"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular y químico",
+    "fallidos": [
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0.4,
+    "hipotesis": "Se realiza conlesiistectomía la pararoscópica por colelitiasi sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía",
+     "laparoscópica",
+     "colelitiasis"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0.07692307692307693,
+    "hipotesis": "Hemoglobina glicocilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente",
+    "fallidos": [
+     "glicosilada"
+    ]
+   },
+   "terminos-04": {
+    "wer": 0.1,
+    "hipotesis": "Cuadro compmpatible con taquicardia supraventricular paroxística resuelta con maniobras vagales",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Paciente con hipotiroidismo secundario a tiroiditis de acimoto, en tratamiento sustitutivo",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0,
+    "hipotesis": "Tomografía axial computarizada de cerebro sin evidencia de hemorragia subaracnoidea ni efecto de masa",
+    "fallidos": []
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para cetamol quinientos miligramos cada ocho horas por tres días",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.3,
+    "hipotesis": "Iniciara moxilina con ácido clavuláico ochocientos setenta y cinco miligramos cada doce horas",
+    "fallidos": [
+     "amoxicilina",
+     "clavulánico"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.07142857142857142,
+    "hipotesis": "Continuar con metformina mil miligramos al día y atorbastatina veinte miligramos en la noche",
+    "fallidos": [
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.46153846153846156,
+    "hipotesis": "Se suspenden en al april y se cambia a los hartán cincuenta miligramos por tos persistente",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Omeprasol veinte miligramos en ayunas, quetoprofeno sólo si presenta dolor intenso",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Lebotiroxiina setenta y cinco microgramos en ayunas clonacepa medio miligramo antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "Presión arterial ciento veinte sobre ochenta milímetros de mercurio, frecuencia cardíaca setenta y dos latidos por minuto",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Temperatura treinta y siete cinco grados, saturación noventa y siete por ciento frecuencia respiratoria dieciocho por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 1.25,
+    "hipotesis": "Glicemia en ayna ciento cuarenta y dos miligramos por deilitro queatimina uno dos miligramos por deilitro.",
+    "fallidos": [
+     "ayunas",
+     "creatinina"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0.36363636363636365,
+    "hipotesis": "Peso setenta y ocho kilos, talla uno setenta y dos metros, índice de masa corporal veintiséis tres",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.05,
+    "hipotesis": "Administrar insulina glarrgina veinticuatro unidades subcutáneas cada noche y control de glicemia a las seis y a las veintidós horas.",
+    "fallidos": [
+     "glargina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0.625,
+    "hipotesis": "Hemoglobina once coma ocho gramos por desilitro, plaqueta ciento cincuenta mil por microlitro, leucositos nueve mil quinientos.",
+    "fallidos": [
+     "plaquetas",
+     "leucocitos"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprófeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica hi buprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica hi buprofeno cuatrocientos miligramos cada ocho horas por cinco días, con las comidas",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "pausas-01": {
+    "wer": 0.13333333333333333,
+    "hipotesis": "Paciente estable. Presión arterial normal. Se indica altamédica con control ambulatorio en diez días",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Dolor toráciico atípico. Electrocardiograma sin alteraciones. Se solicita prueba de esfuerzo",
+    "fallidos": [
+     "torácico"
+    ]
+   },
+   "ruido-20db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se triaxona un gramo endovenoso cada veinticuatro horas por siete días",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Se indica se faxona un gramo endovenoso cada veinticuatro horas por siete días",
+    "fallidos": [
+     "ceftriaxona"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.16666666666666666,
+    "hipotesis": "Mujer de cuarenta años conmigña con Aura, se inicia su matritán cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "migraña",
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica acitromiciina quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromisciina quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "whisper-small",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 1.26,
+  "memoria_pico_mb": 1315,
+  "memoria_base_mb": 30,
+  "wer": 0.18523676880222842,
+  "cer": 0.08545918367346939,
+  "terminosPrecision": 0.6687898089171974,
+  "numerosErrores": 7,
+  "numerosTotal": 75,
+  "unidadesErrores": 5,
+  "unidadesTotal": 34,
+  "rtf": 0.3462021088792405,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 145.1,
+  "werPorCategoria": {
+   "corto": 5,
+   "extenso": 22.7,
+   "terminos": 13.9,
+   "medicamentos": 35.7,
+   "numeros": 21.4,
+   "velocidad": 0,
+   "pausas": 11.5,
+   "ruido": 18.8,
+   "acentos": 7.4
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "Paciente refiere cefalea de tres días de evolución.",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0,
+    "hipotesis": "Sin antecedentes de alergias medicamentosas.",
+    "fallidos": []
+   },
+   "corto-03": {
+    "wer": 0.2,
+    "hipotesis": "Se solicite electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0.125,
+    "hipotesis": "Controle en 7 días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0,
+    "hipotesis": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.2926829268292683,
+    "hipotesis": "paciente de 64 años, con antecedentes de hipertensión arterial y diabetes mellitos tipo 2, que consulta por Disney a Progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicárdico, con presión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93 por ciento ambiental. Se auscultan créditos en ambas bases pulmonares. Se solicita",
+    "fallidos": [
+     "disnea",
+     "crépitos",
+     "radiografía",
+     "electrocardiograma",
+     "troponinas",
+     "péptido",
+     "natriurético",
+     "insuficiencia",
+     "cardíaca",
+     "descompensada",
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "Mujer de 38 años que ingresa por dolor abdominal en fosa y líaca derecha de 24 horas de evolución, con náuseas y vómitos. Presenta fiebre de 38,2 grados. Signo de Blumberg positivo. Los exámenes muestran la ocositosis de 18000 células por microlitro y proteína se reactiva elevada. La ecografía abdominal sugiere appendicitis aguda. Se indica ayuno, hidratación parenteral y se friaczona 1 gramo cada 24 horas, y se programa appendicitis aguda.",
+    "fallidos": [
+     "ilíaca",
+     "leucocitosis",
+     "microlitro",
+     "apendicitis",
+     "ceftriaxona",
+     "apendicectomía",
+     "laparoscópica"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.2777777777777778,
+    "hipotesis": "Lactante de 8 meses, previamente sano, que presenta cuadro de 3 días de tos, rinorrea y dificultad respiratoria. Al examen se observa polípnea, retracción subcostal y civilanzias respiratorias difusas. Las saturaciones de 90%. Se diagnostica bronchiolitis aguda probable por virus sincicial respiratorio. Se indica oxigenoterapia, salvutamol inhalado cada 4 horas y control de signos vitales. Se educa",
+    "fallidos": [
+     "sibilancias",
+     "espiratorias",
+     "bronquiolitis",
+     "salbutamol",
+     "hospitalizado"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.13333333333333333,
+    "hipotesis": "Hombre de 55 años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de su doración y náuseas. El electrocardiograma muestra su prades nivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilzalicídico 300 miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+    "fallidos": [
+     "supradesnivel",
+     "acetilsalicílico"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0,
+    "hipotesis": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+    "fallidos": []
+   },
+   "terminos-02": {
+    "wer": 0.4,
+    "hipotesis": "Se realiza con la sistectomiala paroscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+    "fallidos": [
+     "colecistectomía",
+     "laparoscópica"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0,
+    "hipotesis": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+    "fallidos": []
+   },
+   "terminos-04": {
+    "wer": 0.1,
+    "hipotesis": "Cuado compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+    "fallidos": []
+   },
+   "terminos-05": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Paciente con hipotiroidismo secundario atiroiditis de asimoto en tratamiento sustitutivo.",
+    "fallidos": [
+     "tiroiditis",
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Tomografía axial computarizada de cerebros sin evidencia de hemorragia subarachnoidea ni efecto de masa.",
+    "fallidos": [
+     "subaracnoidea"
+    ]
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para cetamol 500 mg cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.3,
+    "hipotesis": "Iniciere la moxicilina con ácido clavulánico 875 mg cada 12 horas.",
+    "fallidos": [
+     "amoxicilina"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Continuar con metformina 1000 mg al día y a torbastatina 20 mg en la noche.",
+    "fallidos": [
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.46153846153846156,
+    "hipotesis": "Se suspenden al aprile y se cambia a los artán 50mg por tos persistente.",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.8181818181818182,
+    "hipotesis": "O me plazó el 20 mg en ayunas, que tu profeno solos y presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Le botiloxina 75 microgramos en ayunas, clonasepan medio miligramos antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0.4166666666666667,
+    "hipotesis": "Preción arterial 120/80 mm de mercurio, frecuencia cardíaca 72 latidos por minuto.",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Temperatura 37,5º, Saturación 97%, Frecuencia respiratoria 18x minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0.25,
+    "hipotesis": "Glicemia enallonas 142 mg/dL, creatinina 1,2 mg/dL.",
+    "fallidos": [
+     "ayunas"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3.",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.15,
+    "hipotesis": "Administrar en su línea Glargina 24 unidades subcutáneas cada noche y control de Glicemia a las 6 y a las 22 horas.",
+    "fallidos": [
+     "insulina"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0.25,
+    "hipotesis": "Hemoglobina 11,8 gramos por decilitro, plaquetas 150 mil por microlitro, leucocitos 9.500.",
+    "fallidos": []
+   },
+   "velocidad-lenta": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 mg cada 8 horas por 5 días con las comidas.",
+    "fallidos": []
+   },
+   "velocidad-normal": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 mg cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "Se indica ibuprofeno 400 mg cada 8 horas por 5 días, con las comidas.",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Dolor torácico atípico. Electrocardiogramas inalteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": [
+     "electrocardiograma"
+    ]
+   },
+   "ruido-20db": {
+    "wer": 0.25,
+    "hipotesis": "Se indica se priaxona un gramo endobenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.25,
+    "hipotesis": "Se indica se priaxona un gramo endobenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.125,
+    "hipotesis": "Mujer de 40 años con migraña con aura, se inicia su matritán 50mg al inicio del dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica acetromicina 500 mg al día por 3 días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina de 500 mg al día por 3 días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 mg al día por 3 días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "vosk-small-es",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.37,
+  "memoria_pico_mb": 208,
+  "memoria_base_mb": 30,
+  "wer": 0.26880222841225626,
+  "cer": 0.07627551020408163,
+  "terminosPrecision": 0.535031847133758,
+  "numerosErrores": 0,
+  "numerosTotal": 75,
+  "unidadesErrores": 8,
+  "unidadesTotal": 34,
+  "rtf": 0.053757335750751464,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 22.5,
+  "werPorCategoria": {
+   "corto": 12.5,
+   "extenso": 27,
+   "terminos": 41.7,
+   "medicamentos": 45.7,
+   "numeros": 34.3,
+   "velocidad": 0,
+   "pausas": 7.7,
+   "ruido": 27.1,
+   "acentos": 16.2
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0,
+    "hipotesis": "paciente refiere cefalea de tres días de evolución",
+    "fallidos": []
+   },
+   "corto-02": {
+    "wer": 0.4,
+    "hipotesis": "sin antecedentes de alergias medicamento osas",
+    "fallidos": [
+     "medicamentosas"
+    ]
+   },
+   "corto-03": {
+    "wer": 0,
+    "hipotesis": "se solicita electrocardiograma de control",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0.125,
+    "hipotesis": "abdomen blando depresivo sin signos de irritación peritoneal",
+    "fallidos": [
+     "depresible"
+    ]
+   },
+   "corto-05": {
+    "wer": 0,
+    "hipotesis": "control en siete días con exámenes de laboratorio",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "ruidos cardíacos rítmicos sin soplos audible es",
+    "fallidos": []
+   },
+   "extenso-01": {
+    "wer": 0.2682926829268293,
+    "hipotesis": "paciente de sesenta y cuatro años con antecedentes de hipertensión arterial y diabetes mellizos tipo dos que consulta por disnea progresiva de dos semanas de evolución asociada a edema de extremidades interiores y ortopedia al examen físico se encuentra ataque taquicardia con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio saturación de oxígeno de noventa y tres porciento ambiental se oculta entre pitos en ambas bases pulmonares se solicita radiografía de tórax electrocardiograma proponen así pepito nature ético se plantea insuficiencia cardíaca des compensada y se inicia foro se cuarenta miligramos en do venoso s",
+    "fallidos": [
+     "ortopnea",
+     "taquicárdico",
+     "crépitos",
+     "troponinas",
+     "péptido",
+     "natriurético",
+     "descompensada",
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.2647058823529412,
+    "hipotesis": "mujer de treinta y ocho años que ingresa por dolor abdominal en fosa ilia que derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho coma dos grados signo de bloomberg positivo los exámenes muestra leucocitos is de dieciocho mil células por micro litro y proteínas reactiva elevada la ecografía abdominal sugiere apendicitis aguda se indica ayuno hidratación para enterarse freak zona un gramo cada veinticuatro horas y se programa apéndice comía laparoscópica de urgencia",
+    "fallidos": [
+     "ilíaca",
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "proteína",
+     "ceftriaxona",
+     "parenteral",
+     "apendicectomía"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.2777777777777778,
+    "hipotesis": "lactante de ocho meses previamente sano que presenta cuadro de tres días de todos rhino rea y dificultad respiratoria al examen se observa poli vna retracción su costal y civil ansias respiratorias difusas la saturación es de noventa porciento se diagnostica bronquitis aguda probable por virus inicial respiratorio se indica oxígeno terapia salvo molina lado cada cuatro horas y control de signos vitales se ducha los padres sobre signos de alarma y se mantiene hospitalizado en observación",
+    "fallidos": [
+     "rinorrea",
+     "polipnea",
+     "subcostal",
+     "sibilancias",
+     "espiratorias",
+     "bronquiolitis",
+     "sincicial",
+     "oxigenoterapia",
+     "salbutamol"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.26666666666666666,
+    "hipotesis": "hombre de cincuenta y cinco años la báquico que consulta por dolor torácico opresivo de inicio súbito y rallado al brazo izquierdo acompañado de sudoración y náuseas el electrocardiograma muestra su pradesh nivel del segmento ese te en derivaciones interiores se activa protocolo de facto agudo al miocardio se administra ácido salicílico trescientos miligramos y se traslada de inmediato a la unidad de emo dinámica para angie plástica coronaria",
+    "fallidos": [
+     "tabáquico",
+     "supradesnivel",
+     "infarto",
+     "acetilsalicílico",
+     "hemodinamia",
+     "angioplastía"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "diagnóstico de fabricación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular escénico",
+    "fallidos": [
+     "fibrilación",
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0.7,
+    "hipotesis": "se realiza con existe comía laparoscópica por coléricas y sintomática sin complicaciones intra operatoria",
+    "fallidos": [
+     "colecistectomía",
+     "colelitiasis",
+     "intraoperatorias"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "hemoglobina kiko sílaba elevada compatible con diabetes me tus mal controlada y neuropatía diabética incipiente",
+    "fallidos": [
+     "glicosilada",
+     "mellitus",
+     "nefropatía"
+    ]
+   },
+   "terminos-04": {
+    "wer": 0.6,
+    "hipotesis": "cuatro compatible con taquicardia supra ventricular para existía resuelta con maniobras varales",
+    "fallidos": [
+     "supraventricular",
+     "paroxística",
+     "vagales"
+    ]
+   },
+   "terminos-05": {
+    "wer": 0.36363636363636365,
+    "hipotesis": "paciente con hipotiroidismo secundario a tiro y di this de hashimoto en tratamiento sustitutivo",
+    "fallidos": [
+     "tiroiditis"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0.42857142857142855,
+    "hipotesis": "tomografía axial computa erizada de cerebro sin evidencia de hemorragia su barack no idea ni efecto de masa",
+    "fallidos": [
+     "computarizada",
+     "subaracnoidea"
+    ]
+   },
+   "medicamentos-01": {
+    "wer": 0,
+    "hipotesis": "se indica paracetamol quinientos miligramos cada ocho horas por tres días",
+    "fallidos": []
+   },
+   "medicamentos-02": {
+    "wer": 0.8,
+    "hipotesis": "in hiciéramos celina con ha sido clavó la nico ochocientos setenta y cinco miligramos cada doce horas",
+    "fallidos": [
+     "amoxicilina",
+     "clavulánico"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.42857142857142855,
+    "hipotesis": "continuar con mi for mina mil miligramos al día y ator basta tina veinte miligramos en la noche",
+    "fallidos": [
+     "metformina",
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.38461538461538464,
+    "hipotesis": "se suspenden al april y se cambia los hartan cincuenta miligramos por tos persistente",
+    "fallidos": [
+     "enalapril",
+     "losartán"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.5454545454545454,
+    "hipotesis": "omeprazol veinte miligramos en ayunas que to profe no solos y presenta dolor intenso",
+    "fallidos": [
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.6363636363636364,
+    "hipotesis": "le botín china setenta y cinco micro gramos en ayunas plena sepan medio miligramo antes de dormir",
+    "fallidos": [
+     "levotiroxina",
+     "microgramos",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0,
+    "hipotesis": "presión arterial ciento veinte sobre ochenta milímetros de mercurio frecuencia cardíaca setenta y dos latidos por minuto",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "temperatura treinta y siete coma cinco grados saturación noventa y siete porciento frecuencia respiratoria dieciocho por minuto",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 1.375,
+    "hipotesis": "dice mi en ayuna ciento cuarenta y dos miligramos por decir litro creatina uno coma dos miligramos por litro",
+    "fallidos": [
+     "glicemia",
+     "ayunas",
+     "creatinina"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "peso setenta y ocho kilos talla uno coma setenta y dos metros índice de masa corporal veintiséis coma tres",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.3,
+    "hipotesis": "administrar insulina clark gina veinticuatro unidades su cutáneas cada noche y control de cliché mi a las seis y a las veintidós horas",
+    "fallidos": [
+     "glargina",
+     "subcutáneas",
+     "glicemia"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0.75,
+    "hipotesis": "hemoglobina once coma ocho gramos por litro plaquetas ciento cincuenta mil por micro litro leucocitos nueve mil quinientos",
+    "fallidos": []
+   },
+   "velocidad-lenta": {
+    "wer": 0,
+    "hipotesis": "se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+    "fallidos": []
+   },
+   "velocidad-normal": {
+    "wer": 0,
+    "hipotesis": "se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+    "fallidos": []
+   },
+   "velocidad-rapida": {
+    "wer": 0,
+    "hipotesis": "se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+    "fallidos": []
+   },
+   "pausas-01": {
+    "wer": 0.13333333333333333,
+    "hipotesis": "pacientes table presión arterial normal se indica alta médica con control ambulatorio en diez días",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0,
+    "hipotesis": "dolor torácico atípico electrocardiograma sin alteraciones se solicita prueba de esfuerzo",
+    "fallidos": []
+   },
+   "ruido-20db": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "se indica se zona un gramo indo venoso cada veinticuatro horas por siete días",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.5,
+    "hipotesis": "se indica se freak zona un gran mundo venoso cada veinticuatro horas por siete días",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.125,
+    "hipotesis": "mujer de cuarenta años con migraña con aura se inicia su matiz tan cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.11764705882352941,
+    "hipotesis": "paciente con neumonía adquirida en la comunidad se indica cita homicida quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "paciente con neumonía adquirida en la comunidad se indica así tro homicida quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "paciente con neumonía adquirida en la comunidad se indica si mi sina quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "paciente con neumonía adquirida en la comunidad se indica mi sin a quinientos miligramos al día por tres días",
+    "fallidos": [
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "whisper-base",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.53,
+  "memoria_pico_mb": 732,
+  "memoria_base_mb": 30,
+  "wer": 0.2924791086350975,
+  "cer": 0.10918367346938776,
+  "terminosPrecision": 0.43312101910828027,
+  "numerosErrores": 7,
+  "numerosTotal": 75,
+  "unidadesErrores": 6,
+  "unidadesTotal": 34,
+  "rtf": 0.11895844267379163,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 49.9,
+  "werPorCategoria": {
+   "corto": 20,
+   "extenso": 35.5,
+   "terminos": 40.3,
+   "medicamentos": 38.6,
+   "numeros": 21.4,
+   "velocidad": 19,
+   "pausas": 3.8,
+   "ruido": 22.9,
+   "acentos": 16.2
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0.25,
+    "hipotesis": "Paciente refiere se falea de tres días de evolución.",
+    "fallidos": [
+     "cefalea"
+    ]
+   },
+   "corto-02": {
+    "wer": 0.4,
+    "hipotesis": "Sin antecedentes de alegría esmericamentosas.",
+    "fallidos": [
+     "alergias",
+     "medicamentosas"
+    ]
+   },
+   "corto-03": {
+    "wer": 0.2,
+    "hipotesis": "Se solicita el electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0,
+    "hipotesis": "Abdomen Blando, Depresible, Sin Signos de Irritación Peritoneal",
+    "fallidos": []
+   },
+   "corto-05": {
+    "wer": 0,
+    "hipotesis": "Control en 7 días con exámenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0.5,
+    "hipotesis": "Bridos cardíaco srítmicos, sin soplos audibles.",
+    "fallidos": [
+     "cardíacos",
+     "rítmicos"
+    ]
+   },
+   "extenso-01": {
+    "wer": 0.3902439024390244,
+    "hipotesis": "pacientes de 64 años, con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, que consulta por disnea progresiva de 12 semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Alexán en físicos encuentra tachicárdico, compresión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93% ambiental. Se osculta en créditos en ambas bases pulmonares. Se solicita radi…",
+    "fallidos": [
+     "taquicárdico",
+     "crépitos",
+     "radiografía",
+     "electrocardiograma",
+     "troponinas",
+     "péptido",
+     "natriurético",
+     "insuficiencia",
+     "cardíaca",
+     "descompensada",
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.3235294117647059,
+    "hipotesis": "mujer de 38 años que ingresa por dolor abdominal en fosa y líaca derecha de 24 horas de evolución, con nausea si vómitos. presenta fiebre de 38,2 grados. signo de Bloomberg positivo. los exámenes muestran lo cositosis de 18 mil células por microlitro y proteína se reactiva elevada. la ecografía abdominal sugiere a pendicitis aguda. se indica a lluno, hidratación para enterálico se fríaxona un gramo cada 24 horas, y se programa a pendur",
+    "fallidos": [
+     "ilíaca",
+     "náuseas",
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "apendicitis",
+     "ceftriaxona",
+     "parenteral",
+     "apendicectomía",
+     "laparoscópica"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.4166666666666667,
+    "hipotesis": "La actante de 8 meses, previamente sano, que presenta cuadro de 3 días de dos, rinorea y dificultad respiratoria. Alexamen se observa polípnea, retracción subcostal y civilancias respiratorias y fusas. Las saturaciones de 90%. Se diagnostica bronqueolítis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salgutamol inhalado cada 4 horas y control de signos vitales.",
+    "fallidos": [
+     "lactante",
+     "rinorrea",
+     "sibilancias",
+     "espiratorias",
+     "bronquiolitis",
+     "sincicial",
+     "salbutamol",
+     "hospitalizado"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.26666666666666666,
+    "hipotesis": "Hombres de 55 años, tabáquico, que consulta por dolor torásico presivo de inicio súbito, y radiado al brazo izquierdo, acompañado de sudoración y naúseas. El electrocardiograma muestra su prades nivel del segmento STN derivaciones inferiores. Se activa protocolo de infarto agudo al meu cardio, se administra ácido a setil salicílico 300 miligramos y se traslada de inmediato a la unidad de hemodinámica para ángioplastia coronaria.",
+    "fallidos": [
+     "torácico",
+     "opresivo",
+     "supradesnivel",
+     "miocardio",
+     "acetilsalicílico",
+     "hemodinamia"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.21428571428571427,
+    "hipotesis": "Diagnóstico de Fibrilación auricular con respuesta ventricular rápida y antecedente de accidentes cerebrovasculares quémicos.",
+    "fallidos": [
+     "cerebrovascular",
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0.8,
+    "hipotesis": "se realiza con el sistemaía la paroscópica por colelitis sintomática sin complicaciones sin traoperatorias.",
+    "fallidos": [
+     "colecistectomía",
+     "laparoscópica",
+     "colelitiasis",
+     "intraoperatorias"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0.46153846153846156,
+    "hipotesis": "Emoglobina de icosilada elevada compatible con diabetes mellitus mal controlada e inefropatía diabética insipiente.",
+    "fallidos": [
+     "hemoglobina",
+     "glicosilada",
+     "nefropatía",
+     "incipiente"
+    ]
+   },
+   "terminos-04": {
+    "wer": 0.4,
+    "hipotesis": "Cuadro compatible contacticar de su praventricular paroxística resuelta con maniobras vagales.",
+    "fallidos": [
+     "taquicardia",
+     "supraventricular"
+    ]
+   },
+   "terminos-05": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "paciente con hipotiroidismo secundario a tiroiditis de asimoto, en tratamiento sustitutivo.",
+    "fallidos": [
+     "Hashimoto"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0.5,
+    "hipotesis": "tomografía axial computarizada de cerebros sin evidencia de hemorraje su barackno y de año efecto de masa.",
+    "fallidos": [
+     "hemorragia",
+     "subaracnoidea"
+    ]
+   },
+   "medicamentos-01": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Se indica para setamol 500 mg cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.2,
+    "hipotesis": "Iniciéramos oxisilina con ácido clavulánico 875 mg cada 12 horas.",
+    "fallidos": [
+     "amoxicilina"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.35714285714285715,
+    "hipotesis": "Continuar con Metformina 1000mg al día y a Torbastatina 20mg en la noche.",
+    "fallidos": [
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.6153846153846154,
+    "hipotesis": "Se suspenden a la pril y se cambia a los artán 50 miligramos por todos persistentes.",
+    "fallidos": [
+     "enalapril",
+     "losartán",
+     "persistente"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 0.6363636363636364,
+    "hipotesis": "O me pasó al 20 miligramos en ayunas, que tu profeno solo si presenta dolor intenso.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.2727272727272727,
+    "hipotesis": "Le botiloxina 75 microgramos en ayunas, clonacepan medio miligramos antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0.25,
+    "hipotesis": "presion arterial 120/80 milímetros de mercurio, frecuencia cardíaca 72 latidos por minuto",
+    "fallidos": []
+   },
+   "numeros-02": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Temperatura 37,5º, saturación 97%, frecuencia respiratoria 18 por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 0.625,
+    "hipotesis": "17.000 nallones 142 mg/dc, creatinina 1,2 mg/dc",
+    "fallidos": [
+     "glicemia",
+     "ayunas"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0,
+    "hipotesis": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.2,
+    "hipotesis": "Administrar en su lina glargina 24 unidades subcutaneas cada noche y control de glissemia a las 6 y a las 22 horas.",
+    "fallidos": [
+     "insulina",
+     "glicemia"
+    ]
+   },
+   "numeros-06": {
+    "wer": 0.25,
+    "hipotesis": "Emoglobina 11,8 gramos por decilitro, plaqueta 150.000 por microlitro, leucocitos 9.500.",
+    "fallidos": [
+     "hemoglobina",
+     "plaquetas"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.21428571428571427,
+    "hipotesis": "se indica y vuro fenó 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.21428571428571427,
+    "hipotesis": "Se indica y vuro fenó 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofeno 400 mg cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "pausas-01": {
+    "wer": 0,
+    "hipotesis": "paciente estable presión arterial normal se indica alta médica con control ambulatorio en 10 días",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "dolor trápsico atípico electrocardiograma sin alteraciones se solicita prueba de esfuerzo",
+    "fallidos": [
+     "torácico"
+    ]
+   },
+   "ruido-20db": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "Se indica se preaxona un gramo en dobloso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "Se indica se preaxona un gramo en dobloso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.125,
+    "hipotesis": "mujer de 40 años con migraña con aura se inicia su matriptan 50 miligramos al inicio de dolor y se solicita resonancia magnética de cerebro",
+    "fallidos": [
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "Paciente con neumonía adquirida en la comunidad se indica citromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "paciente con neomonía adquirida en la comunidad, se indica así tromicina 500 miligramos al día por 3 días.",
+    "fallidos": [
+     "neumonía",
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.17647058823529413,
+    "hipotesis": "Paciente con homonía adquirida en la comunidad, se indica si tromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "neumonía",
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.23529411764705882,
+    "hipotesis": "Paciente con neumoniat quería en la comunidad, se indica si tromicina 500 miligramos al día por tres días.",
+    "fallidos": [
+     "neumonía",
+     "adquirida",
+     "azitromicina"
+    ]
+   }
+  }
+ },
+ {
+  "motor": "whisper-tiny",
+  "entorno": "nativo (Python, CPU, 1 hilo)",
+  "carga_s": 0.37,
+  "memoria_pico_mb": 504,
+  "memoria_base_mb": 30,
+  "wer": 0.44428969359331477,
+  "cer": 0.1989795918367347,
+  "terminosPrecision": 0.29936305732484075,
+  "numerosErrores": 14,
+  "numerosTotal": 75,
+  "unidadesErrores": 14,
+  "unidadesTotal": 34,
+  "rtf": 0.06413712486282742,
+  "audioSegundos": 419,
+  "decodificacionSegundos": 26.9,
+  "werPorCategoria": {
+   "corto": 35,
+   "extenso": 48.6,
+   "terminos": 58.3,
+   "medicamentos": 57.1,
+   "numeros": 50,
+   "velocidad": 23.8,
+   "pausas": 23.1,
+   "ruido": 33.3,
+   "acentos": 27.9
+  },
+  "detalle": {
+   "corto-01": {
+    "wer": 0.625,
+    "hipotesis": "pacientes refieres se falé a de tres días de evolución.",
+    "fallidos": [
+     "cefalea"
+    ]
+   },
+   "corto-02": {
+    "wer": 0.4,
+    "hipotesis": "Sin antecedentes de alejias medicamentos.",
+    "fallidos": [
+     "alergias",
+     "medicamentosas"
+    ]
+   },
+   "corto-03": {
+    "wer": 0.2,
+    "hipotesis": "Se solicita el electrocardiograma de control.",
+    "fallidos": []
+   },
+   "corto-04": {
+    "wer": 0.375,
+    "hipotesis": "Abdomen Blando, Depresible, Sincigno de Irritación Peritonal",
+    "fallidos": [
+     "peritoneal"
+    ]
+   },
+   "corto-05": {
+    "wer": 0.125,
+    "hipotesis": "Controle en siete días con examenes de laboratorio.",
+    "fallidos": []
+   },
+   "corto-06": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "Gridos Cardiacos Rhythmicos, sin soplos audibles.",
+    "fallidos": [
+     "rítmicos"
+    ]
+   },
+   "extenso-01": {
+    "wer": 0.5,
+    "hipotesis": "paciente de 64 años, con antecedentes de I.A.A. de 20 años, que consulta por Disney a progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopneas. Al examen físicos encuentras aquí cárrico, compresión arterial de 149 milímetros de mercurio, saturación de oxigeno de 93% ambiental. Se oscultan clépitos en ambas bases pulmonares. Se solicita",
+    "fallidos": [
+     "hipertensión",
+     "diabetes",
+     "disnea",
+     "ortopnea",
+     "taquicárdico",
+     "crépitos",
+     "radiografía",
+     "electrocardiograma",
+     "troponinas",
+     "péptido",
+     "natriurético",
+     "insuficiencia",
+     "cardíaca",
+     "descompensada",
+     "furosemida",
+     "endovenosos"
+    ]
+   },
+   "extenso-02": {
+    "wer": 0.4852941176470588,
+    "hipotesis": "mujeres 38 años que ingresan por dolor abdominal en FOSA y LIA caderecha de 24 horas de evolución, con 9CA y Bómitos. Recenta fiebre de 38,2 grados. Siglo de Bloomberg positivo. Los examines muestran los cuositosis de 18 mil células por micrólito y proteína se reactiva elevada. La ecografía abdominal sugiere a penicítis aguda. Se indicate uno, hidratación para enterálices reactiona a un grano cada 24 horas y se programa a penicítulos.",
+    "fallidos": [
+     "ilíaca",
+     "náuseas",
+     "Blumberg",
+     "leucocitosis",
+     "microlitro",
+     "apendicitis",
+     "ceftriaxona",
+     "parenteral",
+     "apendicectomía",
+     "laparoscópica"
+    ]
+   },
+   "extenso-03": {
+    "wer": 0.5,
+    "hipotesis": "La actante de 8 meses, previamente sano, que presenta 4 de 3 días de 2, reinorea y dificultad respiratoria. Alexamente observa polipnea, retracción subcostal y civilancia y respiratorias y fusas. Las saturaciones de 90%. Se diagnóstico bronchialitiza aguda probable por virus inicial respiratorio. Se indica oxigenoterapia, salgutamol y nalado cada cuatro horas y control de signos vitales.",
+    "fallidos": [
+     "lactante",
+     "rinorrea",
+     "sibilancias",
+     "espiratorias",
+     "bronquiolitis",
+     "sincicial",
+     "salbutamol",
+     "hospitalizado"
+    ]
+   },
+   "extenso-04": {
+    "wer": 0.45,
+    "hipotesis": "Hombre de 55 años, tabáquicos, que consulta por dolor asi como recibe de inicio subito, irradio al brazo izquierdo, acompañado de su duración y nausias. El electrocardiograma muestra su plaz nivel del segmento S7 en derivaciones inferiores. Sectiva protocolo de Infarto Aduo Al mio Cardio, se administra a sido a setil salicídico 300 miligramos y se trasladad de inmediato a la Unidad de Modinami a Paráxio Plastía Coronaria.",
+    "fallidos": [
+     "tabáquico",
+     "torácico",
+     "opresivo",
+     "supradesnivel",
+     "miocardio",
+     "ácido",
+     "acetilsalicílico",
+     "hemodinamia",
+     "angioplastía"
+    ]
+   },
+   "terminos-01": {
+    "wer": 0.21428571428571427,
+    "hipotesis": "Diagnóstico de Fibrilación auricular con respuesta ventricular rápida y antecedente de accidentes cerebrobascularisquemico.",
+    "fallidos": [
+     "cerebrovascular",
+     "isquémico"
+    ]
+   },
+   "terminos-02": {
+    "wer": 0.9,
+    "hipotesis": "Se realiza con el sector mundial para oscópica por conelitias sintomática, sin complicaciones entre operators.",
+    "fallidos": [
+     "colecistectomía",
+     "laparoscópica",
+     "colelitiasis",
+     "intraoperatorias"
+    ]
+   },
+   "terminos-03": {
+    "wer": 0.9230769230769231,
+    "hipotesis": "En Moglobina de la Cociela elevada compatible con diabetes meditus mal controlada en el frotatía diabetica en si piente.",
+    "fallidos": [
+     "hemoglobina",
+     "glicosilada",
+     "mellitus",
+     "nefropatía",
+     "incipiente"
+    ]
+   },
+   "terminos-04": {
+    "wer": 1,
+    "hipotesis": "Cuadro compatible con táquicar y a su plan de circular para oxística, resulta con maniobras vagales.",
+    "fallidos": [
+     "taquicardia",
+     "supraventricular",
+     "paroxística"
+    ]
+   },
+   "terminos-05": {
+    "wer": 0.45454545454545453,
+    "hipotesis": "paciente con hipótiloidismo secundario a tiroiditis de acimoto, entreatamiento sustituitivo.",
+    "fallidos": [
+     "hipotiroidismo",
+     "Hashimoto",
+     "sustitutivo"
+    ]
+   },
+   "terminos-06": {
+    "wer": 0.21428571428571427,
+    "hipotesis": "Tomografía actual computarizada de cerebro sin evidencia de hemorragia subaraccneidean y efecto de masa.",
+    "fallidos": [
+     "axial",
+     "subaracnoidea"
+    ]
+   },
+   "medicamentos-01": {
+    "wer": 0.45454545454545453,
+    "hipotesis": "Se indica para sete a mol 500mg cada 8 horas por 3 días.",
+    "fallidos": [
+     "paracetamol",
+     "miligramos"
+    ]
+   },
+   "medicamentos-02": {
+    "wer": 0.2,
+    "hipotesis": "iniciar a mucsicilina con ácido clavulánico 875 miligramos cada 12 horas.",
+    "fallidos": [
+     "amoxicilina"
+    ]
+   },
+   "medicamentos-03": {
+    "wer": 0.5714285714285714,
+    "hipotesis": "Continuamos el 14.000mg al día y aturbas latina 20mg en la noche.",
+    "fallidos": [
+     "metformina",
+     "atorvastatina"
+    ]
+   },
+   "medicamentos-04": {
+    "wer": 0.6153846153846154,
+    "hipotesis": "Se suspenden a la pril y se cambia a los Art. 50 miligramos por dos persistentes.",
+    "fallidos": [
+     "enalapril",
+     "losartán",
+     "persistente"
+    ]
+   },
+   "medicamentos-05": {
+    "wer": 1,
+    "hipotesis": "O me presó el 20 miligramos en ayunas, que tu profe no sólo se presenta $20.000.",
+    "fallidos": [
+     "omeprazol",
+     "ketoprofeno"
+    ]
+   },
+   "medicamentos-06": {
+    "wer": 0.5454545454545454,
+    "hipotesis": "Lebochi Loxinas 75 microgramos en junas, clonas 7.000mg antes de dormir.",
+    "fallidos": [
+     "levotiroxina",
+     "clonazepam"
+    ]
+   },
+   "numeros-01": {
+    "wer": 0.6666666666666666,
+    "hipotesis": "Precuencia cardíacas 72 latidos por minuto.",
+    "fallidos": [
+     "cardíaca"
+    ]
+   },
+   "numeros-02": {
+    "wer": 0.09090909090909091,
+    "hipotesis": "Temperatura 37.5°, saturación 97%, frecuencia respiratoria 18 por minuto.",
+    "fallidos": []
+   },
+   "numeros-03": {
+    "wer": 1,
+    "hipotesis": "Licemia en 112 miligramos por deciliter, creatinina 1,2 miligramos por deciliter.",
+    "fallidos": [
+     "glicemia",
+     "ayunas"
+    ]
+   },
+   "numeros-04": {
+    "wer": 0.18181818181818182,
+    "hipotesis": "Pesos 78 kilos, daria 1,72 metros, índice de masa corporal 26.3",
+    "fallidos": []
+   },
+   "numeros-05": {
+    "wer": 0.25,
+    "hipotesis": "administrar en su línea glargina 24 unidades subcutanas cada noche y control de glisemia a las seis y a las 22 horas.",
+    "fallidos": [
+     "insulina",
+     "subcutáneas",
+     "glicemia"
+    ]
+   },
+   "numeros-06": {
+    "wer": 1.375,
+    "hipotesis": "En Moglobina 11,8 g por decilitro, la que está 150.000 por micrólg, leocositos 9.500.",
+    "fallidos": [
+     "hemoglobina",
+     "plaquetas",
+     "leucocitos"
+    ]
+   },
+   "velocidad-lenta": {
+    "wer": 0.14285714285714285,
+    "hipotesis": "Se indica y buprofesno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-normal": {
+    "wer": 0.21428571428571427,
+    "hipotesis": "Se indicate y buprofeno 400 miligramos cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "velocidad-rapida": {
+    "wer": 0.35714285714285715,
+    "hipotesis": "Se indicate y buprofé en 4.5.000g cada 8 horas por 5 días, con las comidas.",
+    "fallidos": [
+     "ibuprofeno"
+    ]
+   },
+   "pausas-01": {
+    "wer": 0.13333333333333333,
+    "hipotesis": "pacientes estable. Resion arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+    "fallidos": []
+   },
+   "pausas-02": {
+    "wer": 0.36363636363636365,
+    "hipotesis": "Dolor thoracicoatípico. Electrocardiogramas y alteraciones. Se solicita prueba de esfuerzo.",
+    "fallidos": [
+     "torácico",
+     "atípico",
+     "electrocardiograma"
+    ]
+   },
+   "ruido-20db": {
+    "wer": 0.3333333333333333,
+    "hipotesis": "Se indica se preacciona un gramo en dovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-10db": {
+    "wer": 0.4166666666666667,
+    "hipotesis": "Se indica se preak zona un gran ovenoso cada 24 horas por 7 días.",
+    "fallidos": [
+     "ceftriaxona",
+     "endovenoso"
+    ]
+   },
+   "ruido-15db-largo": {
+    "wer": 0.2916666666666667,
+    "hipotesis": "Mujer de 40 años con mi grania con ahora, se inicia su matrictan 50 miligramos al inicio de en dolor y se solicita resonancia magnética de cerebro.",
+    "fallidos": [
+     "migraña",
+     "sumatriptán"
+    ]
+   },
+   "acento-es-ES": {
+    "wer": 0.058823529411764705,
+    "hipotesis": "paciente con neumonia adquirida en la comunidad, se indica citromicina 500 miligramos al día por 3 días.",
+    "fallidos": [
+     "azitromicina"
+    ]
+   },
+   "acento-es-MX": {
+    "wer": 0.35294117647058826,
+    "hipotesis": "paciente con la comunidad, se indican si promiscina 500 miligramos al día por 3 días.",
+    "fallidos": [
+     "neumonía",
+     "adquirida",
+     "azitromicina"
+    ]
+   },
+   "acento-es-AR": {
+    "wer": 0.35294117647058826,
+    "hipotesis": "paciente con la comunidad, se indica si transmisina 500 miliéramos al día por 3 días.",
+    "fallidos": [
+     "neumonía",
+     "adquirida",
+     "azitromicina"
+    ]
+   },
+   "acento-es-CO": {
+    "wer": 0.35294117647058826,
+    "hipotesis": "paciente con la comunidad, se indican si 3.5 miligramos al día por 3 días.",
+    "fallidos": [
+     "neumonía",
+     "adquirida",
+     "azitromicina"
+    ]
+   }
+  }
+ }
+]

@@ -270,7 +270,7 @@ describe('Estructura de archivos', () => {
       scriptsEnLinea: [...document.querySelectorAll('script:not([src])')].length
     }));
     assert.deepEqual(rutas.estilos, ['css/fuentes.css', 'css/styles.css']);
-    assert.deepEqual(rutas.scripts, ['js/vendor/docx-8.5.0.umd.js', 'js/config.js', 'js/medicos.js', 'js/almacen-seguro.js', 'js/panel-seguridad.js', 'js/script.js']);
+    assert.deepEqual(rutas.scripts, ['js/vendor/docx-8.5.0.umd.js', 'js/config.js', 'js/medicos.js', 'js/almacen-seguro.js', 'js/panel-seguridad.js', 'js/panel-diccionario.js', 'js/script.js']);
     assert.equal(rutas.estilosEnLinea, 0);
     assert.equal(rutas.scriptsEnLinea, 0);
   });

@@ -1,0 +1,210 @@
+{
+ "motor": "whisper-small",
+ "entorno": "nativo (Python, CPU, 1 hilo)",
+ "carga_s": 1.26,
+ "memoria_base_mb": 30,
+ "memoria_tras_carga_mb": 483,
+ "memoria_pico_mb": 1315,
+ "resultados": {
+  "corto-01": {
+   "texto": "Paciente refiere cefalea de tres días de evolución.",
+   "tiempo_s": 1.617,
+   "duracion_s": 5.02
+  },
+  "corto-02": {
+   "texto": "Sin antecedentes de alergias medicamentosas.",
+   "tiempo_s": 1.406,
+   "duracion_s": 4.51
+  },
+  "corto-03": {
+   "texto": "Se solicite electrocardiograma de control.",
+   "tiempo_s": 1.35,
+   "duracion_s": 4.42
+  },
+  "corto-04": {
+   "texto": "Abdomen blando, depresible, sin signos de irritación peritoneal.",
+   "tiempo_s": 2.08,
+   "duracion_s": 5.93
+  },
+  "corto-05": {
+   "texto": "Controle en 7 días con exámenes de laboratorio.",
+   "tiempo_s": 1.619,
+   "duracion_s": 4.82
+  },
+  "corto-06": {
+   "texto": "Ruidos cardíacos rítmicos, sin soplos audibles.",
+   "tiempo_s": 1.965,
+   "duracion_s": 5.02
+  },
+  "extenso-01": {
+   "texto": "paciente de 64 años, con antecedentes de hipertensión arterial y diabetes mellitos tipo 2, que consulta por Disney a Progresiva de dos semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Al examen físico se encuentra taquicárdico, con presión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93 por ciento ambiental. Se auscultan créditos en ambas bases pulmonares. Se solicita",
+   "tiempo_s": 14.537,
+   "duracion_s": 42.22
+  },
+  "extenso-02": {
+   "texto": "Mujer de 38 años que ingresa por dolor abdominal en fosa y líaca derecha de 24 horas de evolución, con náuseas y vómitos. Presenta fiebre de 38,2 grados. Signo de Blumberg positivo. Los exámenes muestran la ocositosis de 18000 células por microlitro y proteína se reactiva elevada. La ecografía abdominal sugiere appendicitis aguda. Se indica ayuno, hidratación parenteral y se friaczona 1 gramo cada 24 horas, y se programa appendicitis aguda.",
+   "tiempo_s": 15.838,
+   "duracion_s": 32.86
+  },
+  "extenso-03": {
+   "texto": "Lactante de 8 meses, previamente sano, que presenta cuadro de 3 días de tos, rinorrea y dificultad respiratoria. Al examen se observa polípnea, retracción subcostal y civilanzias respiratorias difusas. Las saturaciones de 90%. Se diagnostica bronchiolitis aguda probable por virus sincicial respiratorio. Se indica oxigenoterapia, salvutamol inhalado cada 4 horas y control de signos vitales. Se educa",
+   "tiempo_s": 12.455,
+   "duracion_s": 34.94
+  },
+  "extenso-04": {
+   "texto": "Hombre de 55 años, tabáquico, que consulta por dolor torácico opresivo de inicio súbito y radiado al brazo izquierdo, acompañado de su doración y náuseas. El electrocardiograma muestra su prades nivel del segmento ST en derivaciones inferiores. Se activa protocolo de infarto agudo al miocardio, se administra ácido acetilzalicídico 300 miligramos y se traslada de inmediato a la unidad de hemodinamia para angioplastia coronaria.",
+   "tiempo_s": 13.892,
+   "duracion_s": 27.0
+  },
+  "terminos-01": {
+   "texto": "Diagnóstico de fibrilación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular isquémico.",
+   "tiempo_s": 3.099,
+   "duracion_s": 8.83
+  },
+  "terminos-02": {
+   "texto": "Se realiza con la sistectomiala paroscópica por colelitiasis sintomática, sin complicaciones intraoperatorias.",
+   "tiempo_s": 2.877,
+   "duracion_s": 7.92
+  },
+  "terminos-03": {
+   "texto": "Hemoglobina glicosilada elevada compatible con diabetes mellitus mal controlada y nefropatía diabética incipiente.",
+   "tiempo_s": 2.953,
+   "duracion_s": 8.54
+  },
+  "terminos-04": {
+   "texto": "Cuado compatible con taquicardia supraventricular paroxística, resuelta con maniobras vagales.",
+   "tiempo_s": 2.59,
+   "duracion_s": 7.18
+  },
+  "terminos-05": {
+   "texto": "Paciente con hipotiroidismo secundario atiroiditis de asimoto en tratamiento sustitutivo.",
+   "tiempo_s": 2.464,
+   "duracion_s": 7.27
+  },
+  "terminos-06": {
+   "texto": "Tomografía axial computarizada de cerebros sin evidencia de hemorragia subarachnoidea ni efecto de masa.",
+   "tiempo_s": 2.628,
+   "duracion_s": 7.34
+  },
+  "medicamentos-01": {
+   "texto": "Se indica para cetamol 500 mg cada 8 horas por 3 días.",
+   "tiempo_s": 1.76,
+   "duracion_s": 6.46
+  },
+  "medicamentos-02": {
+   "texto": "Iniciere la moxicilina con ácido clavulánico 875 mg cada 12 horas.",
+   "tiempo_s": 2.389,
+   "duracion_s": 7.22
+  },
+  "medicamentos-03": {
+   "texto": "Continuar con metformina 1000 mg al día y a torbastatina 20 mg en la noche.",
+   "tiempo_s": 2.295,
+   "duracion_s": 7.15
+  },
+  "medicamentos-04": {
+   "texto": "Se suspenden al aprile y se cambia a los artán 50mg por tos persistente.",
+   "tiempo_s": 2.248,
+   "duracion_s": 6.5
+  },
+  "medicamentos-05": {
+   "texto": "O me plazó el 20 mg en ayunas, que tu profeno solos y presenta dolor intenso.",
+   "tiempo_s": 2.391,
+   "duracion_s": 6.86
+  },
+  "medicamentos-06": {
+   "texto": "Le botiloxina 75 microgramos en ayunas, clonasepan medio miligramos antes de dormir.",
+   "tiempo_s": 2.473,
+   "duracion_s": 7.2
+  },
+  "numeros-01": {
+   "texto": "Preción arterial 120/80 mm de mercurio, frecuencia cardíaca 72 latidos por minuto.",
+   "tiempo_s": 2.729,
+   "duracion_s": 8.69
+  },
+  "numeros-02": {
+   "texto": "Temperatura 37,5º, Saturación 97%, Frecuencia respiratoria 18x minuto.",
+   "tiempo_s": 2.41,
+   "duracion_s": 8.88
+  },
+  "numeros-03": {
+   "texto": "Glicemia enallonas 142 mg/dL, creatinina 1,2 mg/dL.",
+   "tiempo_s": 2.433,
+   "duracion_s": 8.64
+  },
+  "numeros-04": {
+   "texto": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3.",
+   "tiempo_s": 2.317,
+   "duracion_s": 8.11
+  },
+  "numeros-05": {
+   "texto": "Administrar en su línea Glargina 24 unidades subcutáneas cada noche y control de Glicemia a las 6 y a las 22 horas.",
+   "tiempo_s": 3.227,
+   "duracion_s": 9.36
+  },
+  "numeros-06": {
+   "texto": "Hemoglobina 11,8 gramos por decilitro, plaquetas 150 mil por microlitro, leucocitos 9.500.",
+   "tiempo_s": 3.029,
+   "duracion_s": 9.12
+  },
+  "velocidad-lenta": {
+   "texto": "Se indica ibuprofeno 400 mg cada 8 horas por 5 días con las comidas.",
+   "tiempo_s": 2.414,
+   "duracion_s": 10.49
+  },
+  "velocidad-normal": {
+   "texto": "Se indica ibuprofeno 400 mg cada 8 horas por 5 días, con las comidas.",
+   "tiempo_s": 2.277,
+   "duracion_s": 7.73
+  },
+  "velocidad-rapida": {
+   "texto": "Se indica ibuprofeno 400 mg cada 8 horas por 5 días, con las comidas.",
+   "tiempo_s": 2.071,
+   "duracion_s": 6.05
+  },
+  "pausas-01": {
+   "texto": "Paciente estable. Presión arterial normal. Se indica alta médica con control ambulatorio en 10 días.",
+   "tiempo_s": 3.09,
+   "duracion_s": 14.77
+  },
+  "pausas-02": {
+   "texto": "Dolor torácico atípico. Electrocardiogramas inalteraciones. Se solicita prueba de esfuerzo.",
+   "tiempo_s": 3.23,
+   "duracion_s": 14.1
+  },
+  "ruido-20db": {
+   "texto": "Se indica se priaxona un gramo endobenoso cada 24 horas por 7 días.",
+   "tiempo_s": 2.07,
+   "duracion_s": 6.74
+  },
+  "ruido-10db": {
+   "texto": "Se indica se priaxona un gramo endobenoso cada 24 horas por 7 días.",
+   "tiempo_s": 2.074,
+   "duracion_s": 6.74
+  },
+  "ruido-15db-largo": {
+   "texto": "Mujer de 40 años con migraña con aura, se inicia su matritán 50mg al inicio del dolor y se solicita resonancia magnética de cerebro.",
+   "tiempo_s": 3.617,
+   "duracion_s": 9.84
+  },
+  "acento-es-ES": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 miligramos al día por tres días.",
+   "tiempo_s": 2.86,
+   "duracion_s": 8.5
+  },
+  "acento-es-MX": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica acetromicina 500 mg al día por 3 días.",
+   "tiempo_s": 2.743,
+   "duracion_s": 8.45
+  },
+  "acento-es-AR": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina de 500 mg al día por 3 días.",
+   "tiempo_s": 2.799,
+   "duracion_s": 8.74
+  },
+  "acento-es-CO": {
+   "texto": "Paciente con neumonía adquirida en la comunidad, se indica citromicina 500 mg al día por 3 días.",
+   "tiempo_s": 2.805,
+   "duracion_s": 9.02
+  }
+ }
+}
