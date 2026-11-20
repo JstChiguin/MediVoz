@@ -3,3 +3,5 @@ js/vendor/* -text
 modelos/** binary
 *.wasm binary
 *.parte* binary
+*.png binary
+*.ico binary

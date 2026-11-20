@@ -1,6 +1,6 @@
 # 🩺 MediVoz
 
-**Versión 2.2.1**
+**Versión 2.2.2**
 
 MediVoz es una aplicación web de transcripción médica por voz desarrollada para facilitar el registro de información clínica de manera rápida y sencilla.
 
@@ -41,13 +41,16 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 ```text
 MediVoz/
 ├── index.html            Estructura HTML
+├── favicon.ico           Ícono clásico (16, 32 y 48 px)
+├── manifest.webmanifest  Nombre, colores e íconos para Android
+├── iconos/               PNG de 32, 192, 512 (normal y enmascarable) y 180 px (iOS)
 ├── css/
 │   ├── styles.css        Estilos, incluida la firma flotante
 │   ├── fuentes.css       Tipografías locales (sin Google Fonts)
 │   ├── fuentes/          Archivos woff2
 │   └── impresion.css     Estilos de la ventana de impresión
 ├── js/
-│   ├── config.js         Configuración central (versión 2.2.1 y texto de la firma)
+│   ├── config.js         Configuración central (versión 2.2.2 y texto de la firma)
 │   ├── medicos.js        Administrador de médicos (lista editable)
 │   ├── almacen-seguro.js Almacenamiento del historial y cifrado opcional
 │   ├── panel-seguridad.js Panel de seguridad y privacidad
@@ -81,7 +84,7 @@ El botón ⚙️ junto al selector abre el administrador de médicos. La lista n
 
 ## Versión y firma
 
-La versión se define una sola vez en `js/config.js`. La firma flotante `by Chiguin` con la versión debajo se muestra en la esquina inferior derecha mediante el elemento `<firma-medivoz>`, que lee sus datos de esa configuración. En pantallas de hasta 1100 px de ancho la página se desplaza de forma natural y una franja inferior opaca reservada para la firma evita que ésta se superponga a botones o controles; el contenido siempre es alcanzable gracias a un margen inferior equivalente. Para publicar una nueva versión basta con cambiar `version` en `js/config.js` y actualizar la versión esperada en `tests/firma.test.js`.
+La versión se define una sola vez en `js/config.js`. La firma flotante `by Chiguin` con la versión debajo se muestra en la esquina inferior izquierda (en móviles y en escritorio) mediante el elemento `<firma-medivoz>`, que lee sus datos de esa configuración. En pantallas de hasta 1100 px de ancho la página se desplaza de forma natural y no hay ninguna barra inferior: la firma flota sobre la página, es translúcida y no intercepta toques, y solo se reserva al final del contenido el margen mínimo (alto de la firma más el área segura del dispositivo) para que el último elemento pueda desplazarse hasta quedar libre. Mientras se desplaza, el contenido puede pasar por debajo de la firma, que no bloquea ningún control. Para publicar una nueva versión basta con cambiar `version` en `js/config.js` y actualizar la versión esperada en `tests/firma.test.js`.
 
 ## Pruebas
 
@@ -91,7 +94,7 @@ Requieren Node.js 22 o superior y Chrome o Edge instalado (se puede indicar otro
 npm test
 ```
 
-* `tests/firma.test.js`: protege la firma. Falla si cambia el texto `by Chiguin` (cualquier carácter, espacio o mayúscula), si se oculta, si deja de ser fija, si sale de la esquina inferior derecha, si la versión no es `2.2.1` o si se duplica. Se ejecuta en escritorio y móvil, y recorre todo el scroll en 12 resoluciones (de 320x568 a 1366x768) comprobando que la firma no se superponga a botones, campos ni contenido.
+* `tests/firma.test.js`: protege la firma. Falla si cambia el texto `by Chiguin` (cualquier carácter, espacio o mayúscula), si se oculta, si deja de ser fija, si sale de la esquina inferior izquierda, si reaparece una barra inferior reservada, si la versión no es `2.2.2` o si se duplica. Se ejecuta en escritorio y móvil, y recorre todo el scroll en 12 resoluciones (de 320x568 a 1366x768) comprobando que permanezca en la esquina inferior izquierda, que no haya desplazamiento horizontal y que al final del scroll no quede sobre botones, campos ni contenido.
 * `tests/movil.test.js`: en Chrome con emulación móvil (320 a 412 px de ancho) verifica el desplazamiento vertical de toda la página, que la tarjeta no recorte contenido, que transcripciones extensas se puedan leer completas, que los botones se adapten sin desplazamiento horizontal, el acceso al historial, el dictado simulado y una altura reducida que simula el teclado virtual.
 * `tests/medicos.test.js`: verifica que no haya médicos en el código, el aviso de lista vacía, agregar, editar, eliminar con confirmación, validaciones, orden alfabético, persistencia al recargar, la protección de los registros históricos y el panel en móviles.
 * `tests/funcionalidad.test.js`: verifica el reconocimiento de voz simulado, el temporizador, la recuperación de grabación, el guardado, el historial local, la edición, la eliminación, la exportación a Word y la impresión.
@@ -142,6 +145,7 @@ El botón **📖 Diccionario** abre un editor de términos propios que se suman 
 * `tests/selector-motor.test.js`: nombres completos, ausencia de desbordamiento y de superposición con el micrófono a 320, 360, 390, 412, 768 y 1366 px, desplazamiento vertical y accesibilidad del selector nativo.
 * `tests/aviso-cifrado.test.js`: texto, ubicación y adaptación a pantallas del aviso del cifrado, coincidencia con el botón 🔒 Seguridad y fidelidad con el estado real (sin cifrar, cifrado, bloqueado y solo sesión).
 * `tests/cabeceras.test.js`: formato y límites de `_headers`, coincidencia de su CSP con la del `<meta>`, permisos (micrófono solo del propio sitio), requisitos de Cloudflare Pages (25 MiB por archivo) y entrega real de las cabeceras. Todas las pruebas con navegador sirven el sitio con esas cabeceras.
+* `tests/favicon.test.js`: formatos y tamaños de los íconos (`favicon.ico` de 16, 32 y 48 px, PNG de 32, 192, 512 y 180 px y uno enmascarable), rutas relativas, parámetro de versión contra la caché, manifiesto válido y carga real sin errores en la raíz (Cloudflare Pages) y bajo `/MediVoz/` (GitHub Pages).
 * `tests/modelo-fragmentos.test.js`: el modelo reconstruido es idéntico al original, huellas por fragmento, herramienta de división y descarga (fragmento alterado, desordenado, faltante o inexistente).
 * `tests/movil-seguridad.test.js`: diseño del panel y de la firma en 320, 390 y 412 px, y tiempos con CPU limitada 4 veces. Es una emulación en un Chrome de escritorio: no sustituye una prueba en un teléfono Android real.
 
@@ -184,7 +188,7 @@ El archivo `encoder.int8.onnx` (131 MB) está dividido en 7 fragmentos (seis de 
 
 ## Estado del proyecto
 
-🟢 Versión 2.2.1 funcional en desarrollo activo.
+🟢 Versión 2.2.2 funcional en desarrollo activo.
 
 Actualmente MediVoz permite realizar transcripciones médicas por voz, gestionar un historial local de registros y exportar registros individuales a documentos Word para facilitar el trabajo administrativo y clínico.
 
