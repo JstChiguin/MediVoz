@@ -18,6 +18,8 @@ const SIMULACION = `
 const TEXTO_LOCAL = 'El audio se procesa directamente en este dispositivo y no se envía a servidores externos de transcripción. Puede ser más lenta y consumir más memoria. La primera vez necesita descargar el modelo de IA.';
 const TEXTO_CHROME = 'Puede ofrecer una transcripción más rápida y precisa, dependiendo del dispositivo y del tipo de dictado. El audio podría enviarse a servidores externos para su procesamiento, por lo que ofrece menor privacidad.';
 
+const LIMITE_IA_MS = 90000;
+
 let servidor;
 let navegador;
 
@@ -174,7 +176,7 @@ describe('Nunca se cambia solo al motor externo', () => {
       return JSON.stringify(manifiesto);
     });
     await pulsar('micBtn');
-    await navegador.esperarCondicion(() => document.getElementById('errorBanner').classList.contains('show'), 'aviso de fallo de la IA local');
+    await navegador.esperarCondicionConLimite(LIMITE_IA_MS, () => document.getElementById('errorBanner').classList.contains('show'), 'aviso de fallo de la IA local');
     assert.equal(await motor(), 'local');
     assert.equal(await consentimientoGuardado(), null);
     assert.equal(await reconocimientosCreados(), 0);
