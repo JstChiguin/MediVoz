@@ -71,7 +71,8 @@ describe('Favicon: referencias en index.html y manifiesto', () => {
   });
 
   it('cada enlace lleva la huella de su archivo como parámetro, de modo que la caché solo se invalida cuando el ícono cambia', () => {
-    const huella = (ruta) => crypto.createHash('sha256').update(leerBytes(ruta)).digest('hex').slice(0, 8);
+    const sinSaltosWindows = (bytes) => Buffer.from(bytes.toString('utf8').split('\r\n').join('\n'));
+    const huella = (ruta) => crypto.createHash('sha256').update(ruta.endsWith('.webmanifest') ? sinSaltosWindows(leerBytes(ruta)) : leerBytes(ruta)).digest('hex').slice(0, 8);
     const manifiesto = JSON.parse(leerTexto('manifest.webmanifest'));
     const referencias = [
       ...enlacesDeIcono.map((e) => atributo(e, 'href')),
