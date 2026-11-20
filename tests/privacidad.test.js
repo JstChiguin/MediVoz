@@ -112,7 +112,7 @@ describe('Privacidad de red durante el flujo completo de la aplicación', () => 
     const bases = await navegador.evaluar(async () => (indexedDB.databases ? await indexedDB.databases() : []));
     assert.deepEqual(bases, []);
     const claves = await navegador.evaluar(() => Object.keys(localStorage).concat(Object.keys(sessionStorage)));
-    assert.deepEqual(claves.sort(), ['mediVozHistorialCifrado', 'mediVozMedicos', 'mediVozMotor', 'mediVozSeguridad']);
+    assert.deepEqual(claves.sort(), ['mediVozHistorialCifrado', 'mediVozMedicos', 'mediVozMotorNavegador', 'mediVozSeguridad']);
     const caches = await navegador.evaluar(async () => (self.caches ? await caches.keys() : []));
     assert.deepEqual(caches, []);
     const registros = await navegador.evaluar(async () => (navigator.serviceWorker ? (await navigator.serviceWorker.getRegistrations()).length : 0));
