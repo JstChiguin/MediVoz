@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
+const https = require('https');
 const { execFileSync } = require('child_process');
 const { iniciarServidor, leerCabeceras, cabecerasPara } = require('./servidor-estatico');
 
@@ -105,7 +106,7 @@ describe('Cabeceras entregadas por el servidor de pruebas (misma configuración 
 
   function pedir(url) {
     return new Promise((resolver, rechazar) => {
-      http.get(url, (respuesta) => { respuesta.resume(); respuesta.on('end', () => resolver(respuesta)); }).on('error', rechazar);
+      (url.startsWith('https:') ? https : http).get(url, (respuesta) => { respuesta.resume(); respuesta.on('end', () => resolver(respuesta)); }).on('error', rechazar);
     });
   }
 
@@ -120,6 +121,10 @@ describe('Cabeceras entregadas por el servidor de pruebas (misma configuración 
       }
     }
     assert.match((await pedir(servidor.url + 'js/vendor/ort/ort-wasm-simd-threaded.wasm')).headers['content-type'], /application\/wasm/);
+    assert.match((await pedir(servidor.url + 'js/vendor/ort/ort.wasm.min.mjs')).headers['content-type'], /(text|application)\/javascript/);
+    assert.match((await pedir(servidor.url + 'js/ia/trabajador.js')).headers['content-type'], /(text|application)\/javascript/);
+    const index = (await pedir(servidor.url)).headers;
+    for (const [nombre, valor] of Object.entries(cabeceras)) assert.equal(index[nombre.toLowerCase()], valor, nombre);
   });
 });
 

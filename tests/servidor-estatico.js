@@ -47,6 +47,10 @@ const rutaCabeceras = path.join(raiz, '_headers');
 const reglasCabeceras = fs.existsSync(rutaCabeceras) ? leerCabeceras(fs.readFileSync(rutaCabeceras, 'utf8')) : [];
 
 function iniciarServidor(puerto = 0) {
+  if (process.env.MEDIVOZ_URL) {
+    const url = new URL(process.env.MEDIVOZ_URL).href;
+    return Promise.resolve({ servidor: { close() {} }, url: url.endsWith('/') ? url : url + '/' });
+  }
   const servidor = http.createServer((peticion, respuesta) => {
     const ruta = decodeURIComponent(new URL(peticion.url, 'http://localhost').pathname);
     const archivo = path.join(raiz, ruta === '/' ? 'index.html' : ruta);
