@@ -219,6 +219,10 @@ class Navegador {
     return esperarHasta(() => this.evaluar(funcion, ...argumentos), 8000, descripcion);
   }
 
+  async esperarCondicionConLimite(limiteMs, funcion, descripcion, ...argumentos) {
+    return esperarHasta(() => this.evaluar(funcion, ...argumentos), limiteMs, descripcion);
+  }
+
   async cerrar() {
     try { await this.cliente.enviar('Browser.close'); } catch (_) {}
     try { this.socket.close(); } catch (_) {}
