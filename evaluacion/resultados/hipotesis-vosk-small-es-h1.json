@@ -1,0 +1,210 @@
+{
+ "motor": "vosk-small-es",
+ "entorno": "nativo (Python, CPU, 1 hilo)",
+ "carga_s": 0.37,
+ "memoria_base_mb": 30,
+ "memoria_tras_carga_mb": 146,
+ "memoria_pico_mb": 208,
+ "resultados": {
+  "corto-01": {
+   "texto": "paciente refiere cefalea de tres días de evolución",
+   "tiempo_s": 0.329,
+   "duracion_s": 5.02
+  },
+  "corto-02": {
+   "texto": "sin antecedentes de alergias medicamento osas",
+   "tiempo_s": 0.29,
+   "duracion_s": 4.51
+  },
+  "corto-03": {
+   "texto": "se solicita electrocardiograma de control",
+   "tiempo_s": 0.329,
+   "duracion_s": 4.42
+  },
+  "corto-04": {
+   "texto": "abdomen blando depresivo sin signos de irritación peritoneal",
+   "tiempo_s": 0.361,
+   "duracion_s": 5.93
+  },
+  "corto-05": {
+   "texto": "control en siete días con exámenes de laboratorio",
+   "tiempo_s": 0.338,
+   "duracion_s": 4.82
+  },
+  "corto-06": {
+   "texto": "ruidos cardíacos rítmicos sin soplos audible es",
+   "tiempo_s": 0.337,
+   "duracion_s": 5.02
+  },
+  "extenso-01": {
+   "texto": "paciente de sesenta y cuatro años con antecedentes de hipertensión arterial y diabetes mellizos tipo dos que consulta por disnea progresiva de dos semanas de evolución asociada a edema de extremidades interiores y ortopedia al examen físico se encuentra ataque taquicardia con presión arterial de ciento cuarenta sobre noventa milímetros de mercurio saturación de oxígeno de noventa y tres porciento ambiental se oculta entre pitos en ambas bases pulmonares se solicita radiografía de tórax electrocardiograma proponen así pepito nature ético se plantea insuficiencia cardíaca des compensada y se inicia foro se cuarenta miligramos en do venoso s",
+   "tiempo_s": 1.671,
+   "duracion_s": 42.22
+  },
+  "extenso-02": {
+   "texto": "mujer de treinta y ocho años que ingresa por dolor abdominal en fosa ilia que derecha de veinticuatro horas de evolución con náuseas y vómitos presenta fiebre de treinta y ocho coma dos grados signo de bloomberg positivo los exámenes muestra leucocitos is de dieciocho mil células por micro litro y proteínas reactiva elevada la ecografía abdominal sugiere apendicitis aguda se indica ayuno hidratación para enterarse freak zona un gramo cada veinticuatro horas y se programa apéndice comía laparoscópica de urgencia",
+   "tiempo_s": 1.429,
+   "duracion_s": 32.86
+  },
+  "extenso-03": {
+   "texto": "lactante de ocho meses previamente sano que presenta cuadro de tres días de todos rhino rea y dificultad respiratoria al examen se observa poli vna retracción su costal y civil ansias respiratorias difusas la saturación es de noventa porciento se diagnostica bronquitis aguda probable por virus inicial respiratorio se indica oxígeno terapia salvo molina lado cada cuatro horas y control de signos vitales se ducha los padres sobre signos de alarma y se mantiene hospitalizado en observación",
+   "tiempo_s": 1.441,
+   "duracion_s": 34.94
+  },
+  "extenso-04": {
+   "texto": "hombre de cincuenta y cinco años la báquico que consulta por dolor torácico opresivo de inicio súbito y rallado al brazo izquierdo acompañado de sudoración y náuseas el electrocardiograma muestra su pradesh nivel del segmento ese te en derivaciones interiores se activa protocolo de facto agudo al miocardio se administra ácido salicílico trescientos miligramos y se traslada de inmediato a la unidad de emo dinámica para angie plástica coronaria",
+   "tiempo_s": 1.237,
+   "duracion_s": 27.0
+  },
+  "terminos-01": {
+   "texto": "diagnóstico de fabricación auricular con respuesta ventricular rápida y antecedente de accidente cerebrovascular escénico",
+   "tiempo_s": 0.537,
+   "duracion_s": 8.83
+  },
+  "terminos-02": {
+   "texto": "se realiza con existe comía laparoscópica por coléricas y sintomática sin complicaciones intra operatoria",
+   "tiempo_s": 0.499,
+   "duracion_s": 7.92
+  },
+  "terminos-03": {
+   "texto": "hemoglobina kiko sílaba elevada compatible con diabetes me tus mal controlada y neuropatía diabética incipiente",
+   "tiempo_s": 0.515,
+   "duracion_s": 8.54
+  },
+  "terminos-04": {
+   "texto": "cuatro compatible con taquicardia supra ventricular para existía resuelta con maniobras varales",
+   "tiempo_s": 0.441,
+   "duracion_s": 7.18
+  },
+  "terminos-05": {
+   "texto": "paciente con hipotiroidismo secundario a tiro y di this de hashimoto en tratamiento sustitutivo",
+   "tiempo_s": 0.469,
+   "duracion_s": 7.27
+  },
+  "terminos-06": {
+   "texto": "tomografía axial computa erizada de cerebro sin evidencia de hemorragia su barack no idea ni efecto de masa",
+   "tiempo_s": 0.466,
+   "duracion_s": 7.34
+  },
+  "medicamentos-01": {
+   "texto": "se indica paracetamol quinientos miligramos cada ocho horas por tres días",
+   "tiempo_s": 0.399,
+   "duracion_s": 6.46
+  },
+  "medicamentos-02": {
+   "texto": "in hiciéramos celina con ha sido clavó la nico ochocientos setenta y cinco miligramos cada doce horas",
+   "tiempo_s": 0.466,
+   "duracion_s": 7.22
+  },
+  "medicamentos-03": {
+   "texto": "continuar con mi for mina mil miligramos al día y ator basta tina veinte miligramos en la noche",
+   "tiempo_s": 0.459,
+   "duracion_s": 7.15
+  },
+  "medicamentos-04": {
+   "texto": "se suspenden al april y se cambia los hartan cincuenta miligramos por tos persistente",
+   "tiempo_s": 0.399,
+   "duracion_s": 6.5
+  },
+  "medicamentos-05": {
+   "texto": "omeprazol veinte miligramos en ayunas que to profe no solos y presenta dolor intenso",
+   "tiempo_s": 0.448,
+   "duracion_s": 6.86
+  },
+  "medicamentos-06": {
+   "texto": "le botín china setenta y cinco micro gramos en ayunas plena sepan medio miligramo antes de dormir",
+   "tiempo_s": 0.497,
+   "duracion_s": 7.2
+  },
+  "numeros-01": {
+   "texto": "presión arterial ciento veinte sobre ochenta milímetros de mercurio frecuencia cardíaca setenta y dos latidos por minuto",
+   "tiempo_s": 0.497,
+   "duracion_s": 8.69
+  },
+  "numeros-02": {
+   "texto": "temperatura treinta y siete coma cinco grados saturación noventa y siete porciento frecuencia respiratoria dieciocho por minuto",
+   "tiempo_s": 0.505,
+   "duracion_s": 8.88
+  },
+  "numeros-03": {
+   "texto": "dice mi en ayuna ciento cuarenta y dos miligramos por decir litro creatina uno coma dos miligramos por litro",
+   "tiempo_s": 0.507,
+   "duracion_s": 8.64
+  },
+  "numeros-04": {
+   "texto": "peso setenta y ocho kilos talla uno coma setenta y dos metros índice de masa corporal veintiséis coma tres",
+   "tiempo_s": 0.491,
+   "duracion_s": 8.11
+  },
+  "numeros-05": {
+   "texto": "administrar insulina clark gina veinticuatro unidades su cutáneas cada noche y control de cliché mi a las seis y a las veintidós horas",
+   "tiempo_s": 0.539,
+   "duracion_s": 9.36
+  },
+  "numeros-06": {
+   "texto": "hemoglobina once coma ocho gramos por litro plaquetas ciento cincuenta mil por micro litro leucocitos nueve mil quinientos",
+   "tiempo_s": 0.526,
+   "duracion_s": 9.12
+  },
+  "velocidad-lenta": {
+   "texto": "se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+   "tiempo_s": 0.52,
+   "duracion_s": 10.49
+  },
+  "velocidad-normal": {
+   "texto": "se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+   "tiempo_s": 0.465,
+   "duracion_s": 7.73
+  },
+  "velocidad-rapida": {
+   "texto": "se indica ibuprofeno cuatrocientos miligramos cada ocho horas por cinco días con las comidas",
+   "tiempo_s": 0.404,
+   "duracion_s": 6.05
+  },
+  "pausas-01": {
+   "texto": "pacientes table presión arterial normal se indica alta médica con control ambulatorio en diez días",
+   "tiempo_s": 0.616,
+   "duracion_s": 14.77
+  },
+  "pausas-02": {
+   "texto": "dolor torácico atípico electrocardiograma sin alteraciones se solicita prueba de esfuerzo",
+   "tiempo_s": 0.568,
+   "duracion_s": 14.1
+  },
+  "ruido-20db": {
+   "texto": "se indica se zona un gramo indo venoso cada veinticuatro horas por siete días",
+   "tiempo_s": 0.453,
+   "duracion_s": 6.74
+  },
+  "ruido-10db": {
+   "texto": "se indica se freak zona un gran mundo venoso cada veinticuatro horas por siete días",
+   "tiempo_s": 0.502,
+   "duracion_s": 6.74
+  },
+  "ruido-15db-largo": {
+   "texto": "mujer de cuarenta años con migraña con aura se inicia su matiz tan cincuenta miligramos al inicio del dolor y se solicita resonancia magnética de cerebro",
+   "tiempo_s": 0.556,
+   "duracion_s": 9.84
+  },
+  "acento-es-ES": {
+   "texto": "paciente con neumonía adquirida en la comunidad se indica cita homicida quinientos miligramos al día por tres días",
+   "tiempo_s": 0.506,
+   "duracion_s": 8.5
+  },
+  "acento-es-MX": {
+   "texto": "paciente con neumonía adquirida en la comunidad se indica así tro homicida quinientos miligramos al día por tres días",
+   "tiempo_s": 0.515,
+   "duracion_s": 8.45
+  },
+  "acento-es-AR": {
+   "texto": "paciente con neumonía adquirida en la comunidad se indica si mi sina quinientos miligramos al día por tres días",
+   "tiempo_s": 0.507,
+   "duracion_s": 8.74
+  },
+  "acento-es-CO": {
+   "texto": "paciente con neumonía adquirida en la comunidad se indica mi sin a quinientos miligramos al día por tres días",
+   "tiempo_s": 0.5,
+   "duracion_s": 9.02
+  }
+ }
+}

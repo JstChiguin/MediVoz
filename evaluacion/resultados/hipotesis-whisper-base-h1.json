@@ -1,0 +1,210 @@
+{
+ "motor": "whisper-base",
+ "entorno": "nativo (Python, CPU, 1 hilo)",
+ "carga_s": 0.53,
+ "memoria_base_mb": 30,
+ "memoria_tras_carga_mb": 245,
+ "memoria_pico_mb": 732,
+ "resultados": {
+  "corto-01": {
+   "texto": "Paciente refiere se falea de tres días de evolución.",
+   "tiempo_s": 0.54,
+   "duracion_s": 5.02
+  },
+  "corto-02": {
+   "texto": "Sin antecedentes de alegría esmericamentosas.",
+   "tiempo_s": 0.502,
+   "duracion_s": 4.51
+  },
+  "corto-03": {
+   "texto": "Se solicita el electrocardiograma de control.",
+   "tiempo_s": 0.475,
+   "duracion_s": 4.42
+  },
+  "corto-04": {
+   "texto": "Abdomen Blando, Depresible, Sin Signos de Irritación Peritoneal",
+   "tiempo_s": 0.672,
+   "duracion_s": 5.93
+  },
+  "corto-05": {
+   "texto": "Control en 7 días con exámenes de laboratorio.",
+   "tiempo_s": 0.496,
+   "duracion_s": 4.82
+  },
+  "corto-06": {
+   "texto": "Bridos cardíaco srítmicos, sin soplos audibles.",
+   "tiempo_s": 0.588,
+   "duracion_s": 5.02
+  },
+  "extenso-01": {
+   "texto": "pacientes de 64 años, con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, que consulta por disnea progresiva de 12 semanas de evolución, asociada a edema de extremidades inferiores y ortopnea. Alexán en físicos encuentra tachicárdico, compresión arterial de 140 sobre 90 milímetros de mercurio, saturación de oxígeno de 93% ambiental. Se osculta en créditos en ambas bases pulmonares. Se solicita radi…",
+   "tiempo_s": 4.539,
+   "duracion_s": 42.22
+  },
+  "extenso-02": {
+   "texto": "mujer de 38 años que ingresa por dolor abdominal en fosa y líaca derecha de 24 horas de evolución, con nausea si vómitos. presenta fiebre de 38,2 grados. signo de Bloomberg positivo. los exámenes muestran lo cositosis de 18 mil células por microlitro y proteína se reactiva elevada. la ecografía abdominal sugiere a pendicitis aguda. se indica a lluno, hidratación para enterálico se fríaxona un gramo cada 24 horas, y se programa a pendur",
+   "tiempo_s": 4.809,
+   "duracion_s": 32.86
+  },
+  "extenso-03": {
+   "texto": "La actante de 8 meses, previamente sano, que presenta cuadro de 3 días de dos, rinorea y dificultad respiratoria. Alexamen se observa polípnea, retracción subcostal y civilancias respiratorias y fusas. Las saturaciones de 90%. Se diagnostica bronqueolítis aguda probable por virus incisial respiratorio. Se indica oxigenoterapia, salgutamol inhalado cada 4 horas y control de signos vitales.",
+   "tiempo_s": 4.623,
+   "duracion_s": 34.94
+  },
+  "extenso-04": {
+   "texto": "Hombres de 55 años, tabáquico, que consulta por dolor torásico presivo de inicio súbito, y radiado al brazo izquierdo, acompañado de sudoración y naúseas. El electrocardiograma muestra su prades nivel del segmento STN derivaciones inferiores. Se activa protocolo de infarto agudo al meu cardio, se administra ácido a setil salicílico 300 miligramos y se traslada de inmediato a la unidad de hemodinámica para ángioplastia coronaria.",
+   "tiempo_s": 4.918,
+   "duracion_s": 27.0
+  },
+  "terminos-01": {
+   "texto": "Diagnóstico de Fibrilación auricular con respuesta ventricular rápida y antecedente de accidentes cerebrovasculares quémicos.",
+   "tiempo_s": 1.199,
+   "duracion_s": 8.83
+  },
+  "terminos-02": {
+   "texto": "se realiza con el sistemaía la paroscópica por colelitis sintomática sin complicaciones sin traoperatorias.",
+   "tiempo_s": 0.944,
+   "duracion_s": 7.92
+  },
+  "terminos-03": {
+   "texto": "Emoglobina de icosilada elevada compatible con diabetes mellitus mal controlada e inefropatía diabética insipiente.",
+   "tiempo_s": 1.047,
+   "duracion_s": 8.54
+  },
+  "terminos-04": {
+   "texto": "Cuadro compatible contacticar de su praventricular paroxística resuelta con maniobras vagales.",
+   "tiempo_s": 0.847,
+   "duracion_s": 7.18
+  },
+  "terminos-05": {
+   "texto": "paciente con hipotiroidismo secundario a tiroiditis de asimoto, en tratamiento sustitutivo.",
+   "tiempo_s": 0.958,
+   "duracion_s": 7.27
+  },
+  "terminos-06": {
+   "texto": "tomografía axial computarizada de cerebros sin evidencia de hemorraje su barackno y de año efecto de masa.",
+   "tiempo_s": 0.931,
+   "duracion_s": 7.34
+  },
+  "medicamentos-01": {
+   "texto": "Se indica para setamol 500 mg cada 8 horas por 3 días.",
+   "tiempo_s": 0.618,
+   "duracion_s": 6.46
+  },
+  "medicamentos-02": {
+   "texto": "Iniciéramos oxisilina con ácido clavulánico 875 mg cada 12 horas.",
+   "tiempo_s": 0.795,
+   "duracion_s": 7.22
+  },
+  "medicamentos-03": {
+   "texto": "Continuar con Metformina 1000mg al día y a Torbastatina 20mg en la noche.",
+   "tiempo_s": 0.849,
+   "duracion_s": 7.15
+  },
+  "medicamentos-04": {
+   "texto": "Se suspenden a la pril y se cambia a los artán 50 miligramos por todos persistentes.",
+   "tiempo_s": 0.806,
+   "duracion_s": 6.5
+  },
+  "medicamentos-05": {
+   "texto": "O me pasó al 20 miligramos en ayunas, que tu profeno solo si presenta dolor intenso.",
+   "tiempo_s": 0.798,
+   "duracion_s": 6.86
+  },
+  "medicamentos-06": {
+   "texto": "Le botiloxina 75 microgramos en ayunas, clonacepan medio miligramos antes de dormir.",
+   "tiempo_s": 0.884,
+   "duracion_s": 7.2
+  },
+  "numeros-01": {
+   "texto": "presion arterial 120/80 milímetros de mercurio, frecuencia cardíaca 72 latidos por minuto",
+   "tiempo_s": 0.918,
+   "duracion_s": 8.69
+  },
+  "numeros-02": {
+   "texto": "Temperatura 37,5º, saturación 97%, frecuencia respiratoria 18 por minuto.",
+   "tiempo_s": 0.818,
+   "duracion_s": 8.88
+  },
+  "numeros-03": {
+   "texto": "17.000 nallones 142 mg/dc, creatinina 1,2 mg/dc",
+   "tiempo_s": 0.851,
+   "duracion_s": 8.64
+  },
+  "numeros-04": {
+   "texto": "Peso 78 kilos, talla 1,72 metros, índice de masa corporal 26,3",
+   "tiempo_s": 0.826,
+   "duracion_s": 8.11
+  },
+  "numeros-05": {
+   "texto": "Administrar en su lina glargina 24 unidades subcutaneas cada noche y control de glissemia a las 6 y a las 22 horas.",
+   "tiempo_s": 1.132,
+   "duracion_s": 9.36
+  },
+  "numeros-06": {
+   "texto": "Emoglobina 11,8 gramos por decilitro, plaqueta 150.000 por microlitro, leucocitos 9.500.",
+   "tiempo_s": 1.08,
+   "duracion_s": 9.12
+  },
+  "velocidad-lenta": {
+   "texto": "se indica y vuro fenó 400 miligramos cada 8 horas por 5 días, con las comidas.",
+   "tiempo_s": 0.941,
+   "duracion_s": 10.49
+  },
+  "velocidad-normal": {
+   "texto": "Se indica y vuro fenó 400 miligramos cada 8 horas por 5 días, con las comidas.",
+   "tiempo_s": 0.851,
+   "duracion_s": 7.73
+  },
+  "velocidad-rapida": {
+   "texto": "Se indica y buprofeno 400 mg cada 8 horas por 5 días, con las comidas.",
+   "tiempo_s": 0.739,
+   "duracion_s": 6.05
+  },
+  "pausas-01": {
+   "texto": "paciente estable presión arterial normal se indica alta médica con control ambulatorio en 10 días",
+   "tiempo_s": 1.091,
+   "duracion_s": 14.77
+  },
+  "pausas-02": {
+   "texto": "dolor trápsico atípico electrocardiograma sin alteraciones se solicita prueba de esfuerzo",
+   "tiempo_s": 1.056,
+   "duracion_s": 14.1
+  },
+  "ruido-20db": {
+   "texto": "Se indica se preaxona un gramo en dobloso cada 24 horas por 7 días.",
+   "tiempo_s": 0.734,
+   "duracion_s": 6.74
+  },
+  "ruido-10db": {
+   "texto": "Se indica se preaxona un gramo en dobloso cada 24 horas por 7 días.",
+   "tiempo_s": 0.738,
+   "duracion_s": 6.74
+  },
+  "ruido-15db-largo": {
+   "texto": "mujer de 40 años con migraña con aura se inicia su matriptan 50 miligramos al inicio de dolor y se solicita resonancia magnética de cerebro",
+   "tiempo_s": 1.199,
+   "duracion_s": 9.84
+  },
+  "acento-es-ES": {
+   "texto": "Paciente con neumonía adquirida en la comunidad se indica citromicina 500 miligramos al día por tres días.",
+   "tiempo_s": 0.968,
+   "duracion_s": 8.5
+  },
+  "acento-es-MX": {
+   "texto": "paciente con neomonía adquirida en la comunidad, se indica así tromicina 500 miligramos al día por 3 días.",
+   "tiempo_s": 1.05,
+   "duracion_s": 8.45
+  },
+  "acento-es-AR": {
+   "texto": "Paciente con homonía adquirida en la comunidad, se indica si tromicina 500 miligramos al día por tres días.",
+   "tiempo_s": 1.035,
+   "duracion_s": 8.74
+  },
+  "acento-es-CO": {
+   "texto": "Paciente con neumoniat quería en la comunidad, se indica si tromicina 500 miligramos al día por tres días.",
+   "tiempo_s": 1.0,
+   "duracion_s": 9.02
+  }
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "control": {
+  "sugerenciasEnTextoCorrecto": 0,
+  "ejemplos": []
+ },
+ "motores": [
+  {
+   "archivo": "hipotesis-conformer-ctc-es-h1.json",
+   "werAntes": 14.3,
+   "werDespues": 10.7,
+   "terminosAntes": "109/157",
+   "terminosDespues": "125/157",
+   "sugerencias": 19,
+   "acertadas": 19,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  },
+  {
+   "archivo": "hipotesis-conformer-navegador.json",
+   "werAntes": 12.4,
+   "werDespues": 9.9,
+   "terminosAntes": "116/157",
+   "terminosDespues": "127/157",
+   "sugerencias": 13,
+   "acertadas": 13,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  },
+  {
+   "archivo": "hipotesis-conformer-transductor-es-h1.json",
+   "werAntes": 12.1,
+   "werDespues": 10.4,
+   "terminosAntes": "119/157",
+   "terminosDespues": "127/157",
+   "sugerencias": 9,
+   "acertadas": 9,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  },
+  {
+   "archivo": "hipotesis-moonshine-base-es-h1.json",
+   "werAntes": 7.9,
+   "werDespues": 7.1,
+   "terminosAntes": "129/157",
+   "terminosDespues": "134/157",
+   "sugerencias": 5,
+   "acertadas": 5,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  },
+  {
+   "archivo": "hipotesis-moonshine-navegador.json",
+   "werAntes": 7.9,
+   "werDespues": 7.1,
+   "terminosAntes": "129/157",
+   "terminosDespues": "134/157",
+   "sugerencias": 5,
+   "acertadas": 5,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  },
+  {
+   "archivo": "hipotesis-parakeet-v3-h1.json",
+   "werAntes": 6.5,
+   "werDespues": 5.8,
+   "terminosAntes": "129/157",
+   "terminosDespues": "134/157",
+   "sugerencias": 5,
+   "acertadas": 5,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  },
+  {
+   "archivo": "hipotesis-whisper-small-h1.json",
+   "werAntes": 18.5,
+   "werDespues": 17,
+   "terminosAntes": "105/157",
+   "terminosDespues": "115/157",
+   "sugerencias": 12,
+   "acertadas": 12,
+   "incorrectas": 0,
+   "incorrectasEjemplos": []
+  }
+ ]
+}

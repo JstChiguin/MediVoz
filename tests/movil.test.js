@@ -11,6 +11,7 @@ const vistasMoviles = [
 ];
 
 const SIMULACION_VOZ = `
+  try { if (!localStorage.getItem('mediVozMotor')) localStorage.setItem('mediVozMotor', 'navegador-consentido'); } catch (e) {}
   class ReconocimientoFalso {
     constructor() { window.__reconocimiento = this; }
     start() {}

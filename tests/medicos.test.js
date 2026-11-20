@@ -69,7 +69,8 @@ describe('Sin lista predeterminada', () => {
       const contenido = fs.readFileSync(path.join(raiz, archivo), 'utf8');
       assert.ok(!/\bDra?\.\s+[A-ZÁÉÍÓÚÑ]/.test(contenido), `${archivo} contiene nombres de médicos`);
     }
-    assert.equal((fs.readFileSync(path.join(raiz, 'index.html'), 'utf8').match(/<option/g) || []).length, 1);
+    const selectorMedicos = fs.readFileSync(path.join(raiz, 'index.html'), 'utf8').match(/<select id="doctorSelect">[\s\S]*?<\/select>/)[0];
+    assert.equal((selectorMedicos.match(/<option/g) || []).length, 1);
   });
 
   it('muestra el aviso para agregar el primer médico cuando la lista está vacía', async () => {

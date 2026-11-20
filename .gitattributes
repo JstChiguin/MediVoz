@@ -1,2 +1,5 @@
 js/vendor/* -text
 *.woff2 binary
+modelos/** binary
+*.wasm binary
+*.parte* binary

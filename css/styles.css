@@ -225,6 +225,10 @@ firma-medivoz .firma-medivoz__version {
   firma-medivoz .firma-medivoz__version { font-size:9px; }
 }
 
+.consentimiento-motor { max-width:420px; margin:10px auto 0; padding:10px 12px; border:1.5px solid var(--teal); border-radius:10px; background:var(--ice); color:var(--navy); font-size:12px; line-height:1.45; text-align:left; }
+.consentimiento-motor[hidden] { display:none; }
+.consentimiento-motor p { margin:4px 0 8px; }
+.consentimiento-botones { display:flex; flex-wrap:wrap; gap:8px; }
 .aviso-privacidad { max-width:420px; margin:6px auto 0; font-size:11px; line-height:1.4; color:var(--slate); text-align:center; }
 .historial-bloqueado { display:flex; flex-direction:column; align-items:center; gap:10px; padding:12px 0; }
 .seguridad-cuerpo { display:flex; flex-direction:column; gap:12px; padding:16px 20px 20px; overflow-y:auto; min-height:0; }
@@ -237,3 +241,19 @@ firma-medivoz .firma-medivoz__version {
 .seguridad-cuerpo input[type="password"]:focus { outline:none; border-color:var(--teal); }
 .seguridad-opcion { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--navy); }
 .seguridad-cuerpo .medicos-error { padding:0; min-height:18px; }
+
+.selector-motor { display:flex; align-items:center; gap:8px; margin-top:4px; font-size:12px; color:var(--slate); }
+.selector-motor select { padding:6px 10px; border:1.5px solid #c8d8de; border-radius:8px; font-size:12px;
+  font-family:'Inter',sans-serif; color:var(--navy); background:var(--white); max-width:220px; }
+.selector-motor select:focus { outline:none; border-color:var(--teal); }
+.mic-btn:disabled { opacity:0.6; cursor:progress; }
+
+.sugerencias { margin-top:10px; padding:10px 12px; background:#fff8e6; border:1px solid #f0d58a; border-radius:10px;
+  display:flex; flex-direction:column; gap:8px; }
+.sugerencias[hidden] { display:none; }
+.sugerencias-titulo { font-size:12px; color:#7a5c00; }
+.sugerencia-fila { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:14px; color:var(--navy); }
+.sugerencia-texto { flex:1; min-width:160px; overflow-wrap:anywhere; }
+.sugerencia-original { text-decoration:line-through; color:var(--danger); }
+.diccionario-ayuda { padding:12px 20px 0; }
+.cuenta-diccionario { padding:0 20px; }

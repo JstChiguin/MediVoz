@@ -200,16 +200,68 @@ transcriptBox.addEventListener('paste', (evento) => {
   seleccion.addRange(rango);
 });
 
-function startRecording() {
-  if (recording) return;
-  if (!SpeechRecognition) { showError('Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.'); return; }
-  hideError();
-  recording = true;
-  lastFinalPhrase = '';
-  lastFinalTime = 0;
+const motorVoz = document.getElementById('motorVoz');
+const avisoMotor = document.getElementById('avisoMotor');
+const CLAVE_MOTOR = 'mediVozMotor';
+const AVISO_NAVEGADOR = 'Motor del navegador: puede enviar el audio a servicios externos (por ejemplo, los de Google en Chrome).';
+const AVISO_LOCAL = 'IA local: el audio se procesa solo en este dispositivo y no se envía a ningún servidor. La primera vez descarga unos 135 MB y usa cerca de 1 GB de memoria mientras se usa.';
+let reconocedorLocal = null;
+let usandoLocal = false;
+let esperandoTranscripcionLocal = false;
+let descartandoLocal = false;
+
+const MOTOR_NAVEGADOR_CONSENTIDO = 'navegador-consentido';
+const consentimientoNavegador = document.getElementById('consentimientoNavegador');
+let navegadorConsentido = false;
+
+function leerMotorGuardado() {
+  try {
+    return localStorage.getItem(CLAVE_MOTOR) === MOTOR_NAVEGADOR_CONSENTIDO ? 'navegador' : 'local';
+  } catch (error) {
+    return 'local';
+  }
+}
+
+function guardarMotor(valor) {
+  try {
+    localStorage.setItem(CLAVE_MOTOR, valor);
+  } catch (error) {
+    showError('No se pudo recordar la elección del motor de voz.');
+  }
+}
+
+function actualizarAvisoMotor() {
+  avisoMotor.textContent = motorVoz.value === 'local' ? AVISO_LOCAL : AVISO_NAVEGADOR;
+  consentimientoNavegador.hidden = motorVoz.value !== 'navegador' || navegadorConsentido;
+}
+
+motorVoz.value = leerMotorGuardado();
+navegadorConsentido = motorVoz.value === 'navegador';
+actualizarAvisoMotor();
+motorVoz.addEventListener('change', () => {
+  if (recording) stopRecording();
+  navegadorConsentido = false;
+  guardarMotor('local');
+  actualizarAvisoMotor();
+  if (motorVoz.value === 'local' && navigator.deviceMemory && navigator.deviceMemory < 4) {
+    showToast('Este dispositivo tiene poca memoria: la IA local podría ir lenta o cerrarse. Puedes cambiar manualmente al motor del navegador.');
+  }
+});
+document.getElementById('aceptarMotorNavegador').addEventListener('click', () => {
+  navegadorConsentido = true;
+  guardarMotor(MOTOR_NAVEGADOR_CONSENTIDO);
+  actualizarAvisoMotor();
+});
+document.getElementById('volverIaLocal').addEventListener('click', () => {
+  motorVoz.value = 'local';
+  navegadorConsentido = false;
+  guardarMotor('local');
+  actualizarAvisoMotor();
+});
+
+function iniciarTemporizador() {
   secondsRecording = 0;
   document.getElementById('recordTimer').textContent = '⏱ 00:00';
-
   timerInterval = setInterval(() => {
     secondsRecording++;
 
@@ -218,9 +270,85 @@ function startRecording() {
 
     document.getElementById('recordTimer').textContent = `⏱ ${min}:${sec}`;
   }, 1000);
+}
+
+function prepararTextoInicial() {
   const current = transcriptBox.innerText.trim();
   finalText = (current === TEXTO_VACIO ? '' : current + ' ');
   mostrarTexto(finalText, '');
+}
+
+function marcarGrabando() {
+  micBtn.classList.add('recording');
+  micRing.classList.add('recording');
+  wave.classList.add('show', 'rec');
+  micStatus.textContent = 'Escuchando… hable ahora';
+  micStatus.classList.add('active');
+}
+
+function finalizarTexto() {
+  const text = transcriptBox.innerText.trim();
+  if (text && text !== TEXTO_VACIO) {
+    transcriptBox.textContent = text;
+    PanelDiccionario.revisar();
+  }
+}
+
+function mensajeErrorLocal(error, modulo) {
+  if (error && error.name === 'NotAllowedError') return 'Permiso de micrófono denegado.';
+  if (error && error.name === 'NotFoundError') return 'No se detectó ningún micrófono disponible.';
+  return modulo ? modulo.mensajeDeError(error && error.message) : 'No se pudo iniciar la IA local.';
+}
+
+async function iniciarGrabacionLocal() {
+  hideError();
+  descartandoLocal = false;
+  micBtn.disabled = true;
+  micStatus.textContent = 'Preparando la IA local…';
+  let modulo = null;
+  try {
+    modulo = await import('./ia/reconocedor-local.js');
+    if (!reconocedorLocal) {
+      reconocedorLocal = new modulo.ReconocedorLocal({
+        alTexto: (texto) => {
+          finalText += texto + ' ';
+          mostrarTexto(finalText, '');
+          lastTextTime = Date.now();
+        },
+        alEstado: (estado, pendientes) => {
+          if (estado === 'pendientes' && !descartandoLocal) mostrarTexto(finalText, pendientes > 0 ? '…' : '');
+        },
+        alError: (mensaje) => showError(mensaje)
+      });
+    }
+    await reconocedorLocal.preparar((fraccion) => {
+      micStatus.textContent = 'Descargando el modelo… ' + Math.round(fraccion * 100) + '%';
+    });
+    prepararTextoInicial();
+    await reconocedorLocal.iniciar();
+    recording = true;
+    usandoLocal = true;
+    iniciarTemporizador();
+    marcarGrabando();
+  } catch (error) {
+    showError(mensajeErrorLocal(error, modulo));
+    micStatus.textContent = 'Presiona el micrófono para dictar';
+  } finally {
+    micBtn.disabled = false;
+  }
+}
+
+function startRecording() {
+  if (recording || micBtn.disabled) return;
+  if (motorVoz.value === 'local') { iniciarGrabacionLocal(); return; }
+  if (!navegadorConsentido) { showError('Para usar el motor del navegador, acepta primero el aviso de privacidad o vuelve a la IA local.'); return; }
+  if (!SpeechRecognition) { showError('Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.'); return; }
+  hideError();
+  recording = true;
+  lastFinalPhrase = '';
+  lastFinalTime = 0;
+  iniciarTemporizador();
+  prepararTextoInicial();
   recognition = setupRecognition();
   recognition.start();
   lastTextTime = Date.now();
@@ -244,14 +372,12 @@ function startRecording() {
     }
   }, 5000);
 
-  micBtn.classList.add('recording');
-  micRing.classList.add('recording');
-  wave.classList.add('show', 'rec');
-  micStatus.textContent = 'Escuchando… hable ahora';
-  micStatus.classList.add('active');
+  marcarGrabando();
 }
 
 function stopRecording() {
+  const eraLocal = usandoLocal;
+  usandoLocal = false;
   recording = false;
   clearInterval(timerInterval);
   clearInterval(stuckChecker);
@@ -261,10 +387,19 @@ function stopRecording() {
   micBtn.classList.remove('recording');
   micRing.classList.remove('recording');
   wave.classList.remove('show', 'rec');
-  micStatus.textContent = 'Presiona el micrófono para dictar';
   micStatus.classList.remove('active');
-  const text = transcriptBox.innerText.trim();
-  if (text && text !== TEXTO_VACIO) transcriptBox.textContent = text;
+  if (eraLocal && reconocedorLocal) {
+    esperandoTranscripcionLocal = true;
+    micStatus.textContent = 'Terminando la transcripción…';
+    reconocedorLocal.detener().catch(() => showError('La IA local tuvo un problema y se detuvo.')).then(() => {
+      esperandoTranscripcionLocal = false;
+      micStatus.textContent = 'Presiona el micrófono para dictar';
+      finalizarTexto();
+    });
+    return;
+  }
+  micStatus.textContent = 'Presiona el micrófono para dictar';
+  finalizarTexto();
 }
 
 micBtn.addEventListener('click', () => { recording ? stopRecording() : startRecording(); });
@@ -276,7 +411,12 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 });
 
 document.getElementById('clearBtn').addEventListener('click', () => {
+  PanelDiccionario.limpiar();
   if (recording) stopRecording();
+  if (reconocedorLocal) {
+    descartandoLocal = true;
+    reconocedorLocal.descartarPendientes();
+  }
   finalText = '';
   mostrarMarcadorVacio();
   hideError();
@@ -295,6 +435,7 @@ function historialBloqueado() {
 document.getElementById('saveBtn').addEventListener('click', () => {
   const text = transcriptBox.innerText.trim();
   if (!text || text === TEXTO_VACIO) { showToast('Dicta o escribe algo primero.'); return; }
+  if (esperandoTranscripcionLocal) { showToast('Espera a que termine la transcripción.'); return; }
   if (historialBloqueado()) { showToast('🔒 Desbloquea el historial para guardar.'); PanelSeguridad.abrir(); return; }
   const doctor = doctorSelect.value || 'Médico sin especificar';
   const patient = patientInput.value.trim() || 'Paciente sin nombre';
@@ -308,6 +449,7 @@ document.getElementById('saveBtn').addEventListener('click', () => {
   showToast(AlmacenSeguro.estado().guardarEnDispositivo ? '✓ Transcripción guardada' : '✓ Guardada solo en esta sesión');
   finalText = '';
   mostrarMarcadorVacio();
+  PanelDiccionario.limpiar();
   patientInput.value = '';
 });
 
@@ -515,6 +657,17 @@ document.getElementById('printHistoryBtn').addEventListener('click', () => {
   });
 
   abrirVentanaImpresion('Historial MediVoz', contenido);
+});
+
+PanelDiccionario.iniciar({
+  obtenerTexto: () => {
+    const texto = transcriptBox.innerText.trim();
+    return texto === TEXTO_VACIO ? '' : texto;
+  },
+  reemplazarTexto: (texto) => {
+    transcriptBox.textContent = texto;
+    finalText = texto + ' ';
+  }
 });
 
 PanelSeguridad.iniciar({
