@@ -2,6 +2,19 @@
 
 **Versión 2.2.2**
 
+## 🌐 Dónde usar MediVoz
+
+| Alojamiento | Dirección | Papel |
+|---|---|---|
+| **Cloudflare Pages** | https://medivoz-chiguin.pages.dev/ | **Principal (recomendado)** |
+| GitHub Pages | https://jstchiguin.github.io/MediVoz/ | Alternativo |
+
+Ambos sitios publican **MediVoz v2.2.2** con los mismos archivos (en la auditoría se compararon por huella SHA-256 los archivos publicados con el repositorio y coincidieron).
+
+**Cloudflare Pages es el alojamiento recomendado** porque entrega cabeceras HTTP de seguridad reales (CSP con `frame-ancestors`, `X-Frame-Options`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, HSTS) y porque su origen `pages.dev` es propio de este proyecto, de modo que el `localStorage` no se comparte con otras páginas.
+
+**GitHub Pages sigue disponible como alternativa**, con menos protecciones: no permite cabeceras HTTP propias (solo entrega HSTS), la CSP va únicamente en una etiqueta `<meta>` que no admite `frame-ancestors` y el origen `jstchiguin.github.io` es compartido con otros proyectos del mismo usuario, así que comparte almacenamiento con ellos. Los datos de cada sitio son independientes: el historial, los médicos y los ajustes guardados en un origen no aparecen en el otro.
+
 MediVoz es una aplicación web de transcripción médica por voz desarrollada para facilitar el registro de información clínica de manera rápida y sencilla.
 
 El proyecto nació a partir de una necesidad real observada en el entorno hospitalario: reducir el tiempo destinado a escribir o transcribir información después de una atención médica, permitiendo que el profesional pueda concentrarse más en el paciente y menos en el teclado.
@@ -34,7 +47,7 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 * Web Speech API y, opcionalmente, IA local con ONNX Runtime Web 1.22.0 (WebAssembly) y un Web Worker
 * LocalStorage y Web Crypto API (AES-GCM)
 * Docx.js 8.5.0 (incluido en el repositorio, sin CDN)
-* GitHub Pages (actual); preparado para Cloudflare Pages
+* Cloudflare Pages (principal, publicación manual) y GitHub Pages (alternativo)
 
 ## Estructura del proyecto
 
@@ -68,13 +81,14 @@ MediVoz/
 └── README.md
 ```
 
-Todas las rutas son relativas, por lo que el sitio funciona sin cambios en GitHub Pages.
+Todas las rutas son relativas, por lo que el sitio funciona sin cambios en Cloudflare Pages (raíz del dominio) y en GitHub Pages (bajo `/MediVoz/`).
 
 ## Instalación y uso
 
 MediVoz no requiere instalación ni dependencias.
 
-* En línea: https://jstchiguin.github.io/MediVoz/
+* En línea (principal): https://medivoz-chiguin.pages.dev/
+* En línea (alternativo): https://jstchiguin.github.io/MediVoz/
 * Local: servir la carpeta con cualquier servidor estático (por ejemplo `node -e "require('./tests/servidor-estatico').iniciarServidor(8080).then(s => console.log(s.url))"`) y abrir la dirección en Chrome o Edge.
 * El reconocimiento de voz (español de Chile) requiere Chrome o Edge y permiso de micrófono.
 
@@ -111,7 +125,7 @@ Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se sim
 * **Aviso para activar el cifrado:** junto a los botones del historial se muestra una nota fija («Protege tu historial») que explica que el cifrado es opcional, que se activa con el botón 🔒 Seguridad y que, si no se activa, el historial se guarda sin cifrar en este navegador, y advierte que una contraseña perdida no se puede recuperar. La nota refleja el estado real: si el cifrado está activo dice «Historial cifrado» y si el guardado en el dispositivo está desactivado lo indica. No es una ventana emergente, no activa nada por sí sola y no modifica el almacenamiento.
 * **Historial cifrado (opcional):** el botón 🔒 Seguridad permite cifrarlo con AES-GCM de 256 bits; la clave se deriva de una contraseña con PBKDF2-SHA-256 (600 000 iteraciones, sal aleatoria por activación y vector nuevo en cada escritura). La contraseña no se guarda ni existe clave fija en el código; la clave derivada vive solo en memoria, no es exportable y se descarta al bloquear. Si se pierde la contraseña, los datos no se pueden recuperar y solo se pueden borrar. El historial se bloquea tras 10 minutos sin actividad (no mientras se graba). La activación migra el historial existente y borra la copia sin cifrar solo después de verificar que se descifra idéntico. También es posible dejar de guardar el historial en el dispositivo, exportar una copia JSON (sin cifrar, solo a petición) y quitar el cifrado.
 * **Datos que quedan en el dispositivo:** historial (cifrado o no), lista de médicos y ajustes, en `localStorage` del navegador. La lista de médicos y los ajustes no se cifran. No se guardan grabaciones.
-* **Origen compartido en GitHub Pages:** todas las páginas de proyecto bajo `jstchiguin.github.io` comparten el mismo origen y por tanto el mismo `localStorage`. Otra aplicación del mismo usuario podría leer el historial sin cifrar; el cifrado con contraseña mitiga esto. El aislamiento completo requiere un origen propio (por ejemplo un dominio personalizado, que puede tener costo).
+* **Origen compartido en GitHub Pages (alternativo):** todas las páginas de proyecto bajo `jstchiguin.github.io` comparten el mismo origen y por tanto el mismo `localStorage`. Otra aplicación del mismo usuario podría leer el historial sin cifrar; el cifrado con contraseña mitiga esto. El sitio principal en Cloudflare Pages tiene un origen propio (`medivoz-chiguin.pages.dev`) y no comparte almacenamiento con GitHub Pages.
 
 ## IA local de transcripción (opcional)
 
@@ -120,8 +134,8 @@ El selector **Motor de voz** junto al micrófono usa por defecto la **IA local p
 * **Modelo:** NVIDIA NeMo FastConformer Hybrid en español, rama transductora cuantizada a 8 bits (licencia CC-BY-4.0, atribución en `modelos/conformer-es/ATRIBUCION.md`). Se ejecuta con ONNX Runtime Web (WebAssembly, un hilo) dentro de un Web Worker, por lo que la interfaz no se congela.
 * **Privacidad:** el audio se captura con un `AudioWorklet`, se segmenta por pausas en el propio dispositivo y se transcribe localmente. Las pruebas automatizadas registran toda la red durante un dictado completo: solo hay solicitudes `GET` al propio sitio (el modelo y el código), ninguna con datos de audio o texto. No se guardan grabaciones.
 * **Descarga y caché:** unos 135 MB la primera vez, alojados en este mismo sitio (no hay servidores de terceros). Se descargan por fragmentos de 20 MiB como máximo; cada fragmento y el archivo ya unido se verifican contra las huellas SHA-256 de `modelos/conformer-es/manifiesto.json` y se guardan en la caché del navegador (Cache Storage) para no repetir la descarga. Un archivo corrupto se descarta con un aviso.
-* **Memoria y liberación:** el modelo en uso ocupa cerca de 0,8 GB de memoria. Se descarga de la memoria tras 10 minutos sin dictar. No se carga al iniciar la aplicación.
-* **Sin conexión:** una vez descargado el modelo, la IA local no necesita red. La página en sí sí se carga desde GitHub Pages (no hay service worker), así que para abrir MediVoz sin conexión la página debe seguir abierta o estar en la caché normal del navegador.
+* **Memoria y liberación:** el modelo en uso ocupa cerca de 0,8 GB de memoria; medido en la auditoría v2.2.2 con Chrome de escritorio, el pico total del navegador fue de unos 1,3 GB (de los cuales unos 0,5 GB son del propio navegador vacío). Se descarga de la memoria tras 10 minutos sin dictar. No se carga al iniciar la aplicación.
+* **Sin conexión:** una vez descargado el modelo, la IA local no necesita red. La página en sí sí se carga desde el sitio publicado (no hay service worker), así que para abrir MediVoz sin conexión la página debe seguir abierta o estar en la caché normal del navegador.
 * **Recuperación:** si la descarga o la carga fallan, el micrófono queda libre y se muestra un aviso; el motor del navegador sigue disponible.
 * **Limitaciones conocidas:** los nombres de fármacos son el punto débil del modelo (por ejemplo, "enalapril" puede salir como "en el april"). Las cifras y las unidades se reconocen mucho mejor. Toda transcripción debe revisarse antes de usarse con fines clínicos.
 
@@ -149,34 +163,67 @@ El botón **📖 Diccionario** abre un editor de términos propios que se suman 
 * `tests/modelo-fragmentos.test.js`: el modelo reconstruido es idéntico al original, huellas por fragmento, herramienta de división y descarga (fragmento alterado, desordenado, faltante o inexistente).
 * `tests/movil-seguridad.test.js`: diseño del panel y de la firma en 320, 390 y 412 px, y tiempos con CPU limitada 4 veces. Es una emulación en un Chrome de escritorio: no sustituye una prueba en un teléfono Android real.
 
-## Alojamiento: GitHub Pages y Cloudflare Pages
+## Alojamiento: Cloudflare Pages (principal) y GitHub Pages (alternativo)
 
-MediVoz se publica hoy en **GitHub Pages**. El repositorio ya está preparado para **Cloudflare Pages** (plan gratuito), pero **no se ha cambiado el alojamiento ni se ha publicado nada en Cloudflare**: la decisión queda pendiente.
+MediVoz v2.2.2 está publicado en **Cloudflare Pages** (https://medivoz-chiguin.pages.dev/) y en **GitHub Pages** (https://jstchiguin.github.io/MediVoz/). Cloudflare Pages usa el plan gratuito, sin Workers, Functions ni otros servicios de pago.
 
-| | GitHub Pages (actual) | Cloudflare Pages (plan gratuito) |
+| | Cloudflare Pages (principal) | GitHub Pages (alternativo) |
 |---|---|---|
-| Costo | Gratis para repositorios públicos | Gratis; dominio propio opcional (el dominio sí tiene costo) |
-| Cabeceras HTTP propias | No: la CSP solo puede ir en `<meta>` y no admite `frame-ancestors` | Sí, con el archivo `_headers` incluido (CSP completa, `X-Frame-Options`, `nosniff`, `Permissions-Policy`, HSTS, etc.) |
-| Protección contra incrustación (clickjacking) | No es posible | Sí (`frame-ancestors 'none'` y `X-Frame-Options: DENY`) |
-| Origen del sitio | `jstchiguin.github.io`, compartido con otros proyectos del usuario (mismo `localStorage`) | `proyecto.pages.dev`, propio de este proyecto: aísla el historial |
-| Tamaño máximo por archivo | 100 MB | **25 MiB** (por eso el modelo se divide en fragmentos de 20 MiB) |
-| Número de archivos | Sin límite práctico | 20 000 |
-| Despliegue | Automático desde `main` | Conexión con el repositorio o subida directa; el sitio es estático y no necesita compilación |
-| Datos existentes | — | **Un origen nuevo empieza con `localStorage` vacío**: el historial, los médicos y los ajustes del origen actual no se trasladan solos |
+| Costo | Gratis; dominio propio opcional (el dominio sí tiene costo) | Gratis para repositorios públicos |
+| Cabeceras HTTP propias | Sí, con el archivo `_headers` (CSP completa, `X-Frame-Options`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, HSTS, etc.) | No: la CSP solo puede ir en `<meta>` y no admite `frame-ancestors` |
+| Protección contra incrustación (clickjacking) | Sí (`frame-ancestors 'none'` y `X-Frame-Options: DENY`) | No es posible |
+| Origen del sitio | `medivoz-chiguin.pages.dev`, propio de este proyecto | `jstchiguin.github.io`, compartido con otros proyectos del usuario (mismo `localStorage`) |
+| Tamaño máximo por archivo | **25 MiB** (por eso el modelo se divide en fragmentos de 20 MiB) | 100 MB |
+| Número de archivos | 20 000 (subida manual: hasta 1 000 archivos) | Sin límite práctico |
+| Despliegue | **Manual**, subiendo una carpeta | Automático desde `main` |
 
-Los límites y precios de ambas plataformas son los publicados por ellas a la fecha de esta documentación ([límites de Cloudflare Pages](https://developers.cloudflare.com/pages/platform/limits/)) y pueden cambiar: conviene revisarlos antes de migrar.
+Los límites y precios son los publicados por las plataformas ([límites de Cloudflare Pages](https://developers.cloudflare.com/pages/platform/limits/)) y pueden cambiar. La cuota de despliegues de la cuenta no se verificó en la auditoría.
 
-**Riesgos y puntos por verificar al migrar:**
+### Protecciones de Cloudflare Pages
 
-* Cloudflare pasa a ser un tercero que atiende las solicitudes (ve direcciones IP y rutas pedidas, no el contenido dictado, que nunca sale del dispositivo). Es el mismo tipo de exposición que GitHub hoy.
-* No se ha comprobado en un despliegue real que Cloudflare entregue `.mjs` con tipo `text/javascript` y `.wasm` con `application/wasm`, ni que respete cada cabecera de `_headers`. Las pruebas sirven el sitio con esas mismas cabeceras en local, pero solo un despliegue de prueba (por ejemplo una rama de vista previa) lo confirma.
-* Cloudflare puede añadir cabeceras propias o modificar respuestas (por ejemplo cachés); hay que revisar las cabeceras finales con las herramientas del navegador.
-* El plan gratuito tiene límites de compilaciones mensuales y de archivos; MediVoz usa unos cien archivos (muy lejos de 20 000) y no requiere compilación.
-* Si el sitio cambia de dirección, los enlaces antiguos de GitHub Pages dejan de ser la versión vigente salvo que se redirija.
+En la auditoría de v2.2.2 se comprobó con peticiones reales que Cloudflare entrega estas cabeceras en el HTML, los scripts, los `.wasm`, el manifiesto del modelo, sus fragmentos, los íconos y las fuentes: Strict-Transport-Security (1 año), Content-Security-Policy con `frame-ancestors 'none'`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: no-referrer`, `Permissions-Policy` (micrófono solo del propio sitio), `Cross-Origin-Opener-Policy` y `Cross-Origin-Resource-Policy`. Los `.wasm` se sirven como `application/wasm` y los `.mjs` como `text/javascript`, y la inferencia local funcionó sin violaciones de CSP.
+
+Una calificación alta en un analizador externo de cabeceras (por ejemplo A o 100 %) solo indica que las cabeceras están bien configuradas: **no es una garantía absoluta de seguridad**. No protege frente a un dispositivo comprometido, a una extensión maliciosa del navegador ni a un fallo en el código de la aplicación. Tampoco se ocultó la cabecera `Server: cloudflare`: la documentación de Cloudflare impide modificar su valor y no aclara si puede eliminarse en el plan gratuito, por lo que se mantiene la configuración actual.
+
+### Despliegues manuales en Cloudflare Pages
+
+El sitio de Cloudflare **no está conectado al repositorio**: cada versión se sube a mano en el panel de Cloudflare Pages (subida directa de una carpeta). Para preparar el paquete actualizado:
+
+1. Verificar que `main` contiene la versión que se quiere publicar y que las pruebas pasan.
+2. Exportar solo los archivos versionados de `main` a una carpeta nueva y vacía, por ejemplo con `git -c core.autocrlf=false -c core.eol=lf archive main --format=tar` extraído en esa carpeta. Así no se incluyen `.git`, `node_modules`, archivos locales ni credenciales, y los textos conservan saltos de línea LF (con CRLF cambiarían las huellas de los archivos).
+3. Quitar de esa carpeta lo que no deba publicarse (`tests/`, `evaluacion/`, `herramientas/`, `.github/`, `.gitattributes`, `package.json`, `README.md`, `V1`), conservando `index.html`, `_headers`, `favicon.ico`, `manifest.webmanifest`, `iconos/`, `css/`, `js/` y `modelos/`.
+4. Comprobar que ningún archivo supera 25 MiB y que el modelo coincide con las huellas de `modelos/conformer-es/manifiesto.json`.
+5. Subir la carpeta con la opción de subida directa de Cloudflare Pages y revisar después, en el sitio publicado, la versión `2.2.2`, la firma y las cabeceras.
+
+La última carpeta publicada tenía 47 archivos y 143 MB, con el archivo más grande de 20 MiB. Al ser un origen distinto de GitHub Pages, sus datos locales no se trasladan solos.
 
 ### Fragmentos del modelo y cómo regenerarlos
 
 El archivo `encoder.int8.onnx` (131 MB) está dividido en 7 fragmentos (seis de 20 MiB y un resto); los demás archivos caben enteros. La división no altera el modelo: el archivo reconstruido tiene exactamente el mismo tamaño y la misma huella SHA-256 que el original, así que la transcripción es idéntica. `node herramientas/dividir-modelo.js` reconstruye cada archivo desde sus fragmentos, comprueba su huella, lo vuelve a dividir y regenera el manifiesto con las huellas de cada fragmento. El cargador verifica cada fragmento al descargarlo (y los que vienen de la caché) y luego el archivo completo.
+
+## Resultados de la auditoría de v2.2.2
+
+La auditoría de seguridad, privacidad, IA y rendimiento se hizo sin modificar código, configuración ni alojamiento. Resultados reales:
+
+* **Sitios publicados:** ambos muestran v2.2.2 con la firma `by Chiguin` abajo a la izquierda y sin barra inferior. Se compararon por SHA-256 23 archivos publicados con `main` y coincidieron en los dos sitios.
+* **Pruebas contra Cloudflare Pages** (13 archivos de prueba que se pueden ejecutar contra una URL remota): 235 ejecutadas, **231 aprobadas, 3 fallidas y 1 cancelada**. Las 3 fallidas no son fallos de la aplicación: una prueba de favicon usa un proxy HTTP que no sirve contra una URL HTTPS remota, y dos de IA local esperan solo 8 s a una descarga de unos 135 MB. La cancelada fue una ejecución de `favicon.test.js` que se detuvo tras quedarse colgada al abrir Chrome en Windows.
+* **Pruebas locales sin navegador:** 110 de 110 aprobadas. Las pruebas que revisan el repositorio local no se ejecutaron contra Cloudflare.
+* **Integración continua:** las ejecuciones de GitHub Actions están en verde.
+* **IA local en Cloudflare (audios ficticios, Chrome real con micrófono simulado):** 4 dictados transcritos sin ninguna solicitud externa ni violación de CSP. La primera carga, con descarga del modelo, tardó entre 9,6 y 16,8 s y el pico de memoria del navegador fue de 1,27 a 1,32 GB. Un dictado con órdenes ficticias dentro del texto se transcribió tal cual y no se ejecutó nada.
+* **Privacidad:** solo hay dos `fetch` en la aplicación, ambos al propio sitio (manifiesto y fragmentos del modelo); no hay `XMLHttpRequest`, `sendBeacon`, `WebSocket` ni `EventSource`. Con la IA local, `connect-src 'self'` impide enviar datos fuera. El tráfico interno del navegador cuando se usa el motor de Chrome no es observable desde la página, por lo que no se afirma ausencia absoluta de envíos con ese motor.
+* **Cifrado:** AES-GCM de 256 bits con PBKDF2-SHA-256 (600 000 iteraciones); activar, bloquear, contraseña incorrecta, datos alterados y migración están cubiertos por pruebas. El cifrado no protege frente a XSS, dispositivo comprometido o navegador desbloqueado.
+* **Dependencias:** sin paquetes npm; `docx` 8.5.0 y ONNX Runtime Web 1.22.0 van incluidos en el repositorio. No se encontraron avisos de seguridad para ONNX Runtime Web 1.22.0 y no hubo resultados concluyentes para `docx` 8.5.0.
+
+**No ejecutado o no verificado:** prueba en un teléfono Android físico, apertura de un `.docx` real y del diálogo de impresión real, comportamiento con poca memoria y uso de CPU, comparación reproducible con el motor de Chrome, la cuota de despliegues de Cloudflare y los fallos de descarga del modelo contra Cloudflare (verificados solo en local y en integración continua).
+
+### Problemas pendientes
+
+* **Precisión médica:** la IA local confunde nombres de fármacos y algunos términos (en la auditoría, "enalapril" salió como "al april", "losartán" como "los hartán" y "cefalea" como "sefalea"). En los 40 audios sintéticos de `evaluacion/INFORME.md` tuvo 12,4 % de error de palabras y 73,9 % de términos médicos exactos; con voz real puede ser peor. No se afirma que sea más precisa que el motor de Chrome. Toda transcripción debe revisarse antes de usarse con fines clínicos.
+* **Consumo de memoria:** unos 1,3 GB de pico total en Chrome de escritorio, lo que puede ser demasiado para teléfonos con poca memoria.
+* **Compatibilidad con Android:** no se ha probado en un teléfono Android físico; solo hay emulación móvil en Chrome de escritorio.
+* **GitHub Pages:** protecciones HTTP menores, como se explicó arriba.
+* **Cloudflare, de bajo riesgo:** las rutas inexistentes devuelven `index.html` con código 200, se envía `Access-Control-Allow-Origin: *` (valor por defecto de Pages; los archivos son públicos y llevan `Cross-Origin-Resource-Policy: same-origin`), el HSTS no incluye `includeSubDomains` ni `preload` y el manifiesto web y los fragmentos del modelo salen sin `Content-Type`.
+* **Pruebas en Windows:** algunas ejecuciones con navegador se cuelgan a veces al abrir Chrome; al repetirlas solas pasan.
 
 ## Beneficios
 
@@ -188,13 +235,17 @@ El archivo `encoder.int8.onnx` (131 MB) está dividido en 7 fragmentos (seis de 
 
 ## Estado del proyecto
 
-🟢 Versión 2.2.2 funcional en desarrollo activo.
+🟢 Versión 2.2.2 publicada en Cloudflare Pages y en GitHub Pages, en desarrollo activo.
 
 Actualmente MediVoz permite realizar transcripciones médicas por voz, gestionar un historial local de registros y exportar registros individuales a documentos Word para facilitar el trabajo administrativo y clínico.
 
 ## Acceso
 
-🌐 Sitio web:
+🌐 Sitio web principal (Cloudflare Pages):
+
+https://medivoz-chiguin.pages.dev/
+
+🌐 Sitio alternativo (GitHub Pages):
 
 https://jstchiguin.github.io/MediVoz/
 
