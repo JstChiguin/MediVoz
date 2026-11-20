@@ -45,10 +45,15 @@ export async function obtenerArchivo(base, descripcion, alBytes) {
   const resultado = new Uint8Array(descripcion.tamano);
   let posicion = 0;
   const guardados = [];
-  for (const parte of descripcion.partes) {
+  const huellasPartes = Array.isArray(descripcion.huellas_partes) ? descripcion.huellas_partes : null;
+  for (const [indice, parte] of descripcion.partes.entries()) {
     const url = new URL(parte, base).href;
     const leida = await leerParte(url, cache, alBytes);
     const bytes = leida instanceof Uint8Array ? leida : leida.bytes;
+    if (huellasPartes && aHexadecimal(await crypto.subtle.digest('SHA-256', bytes)) !== huellasPartes[indice]) {
+      if (cache) await cache.delete(new Request(url, { credentials: 'omit', cache: 'force-cache' })).catch(() => false);
+      throw new Error('integridad-invalida');
+    }
     if (posicion + bytes.length > resultado.length) throw new Error('tamano-invalido');
     resultado.set(bytes, posicion);
     posicion += bytes.length;

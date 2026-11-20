@@ -6,7 +6,7 @@ import sys
 
 ORIGEN = sys.argv[1]
 DESTINO = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'modelos', 'conformer-es')
-TAMANO_PARTE = 44 * 1024 * 1024
+TAMANO_PARTE = 20 * 1024 * 1024  # Cloudflare Pages admite 25 MiB por archivo; ver herramientas/dividir-modelo.js
 ARCHIVOS = ['encoder.int8.onnx', 'decoder.int8.onnx', 'joiner.int8.onnx', 'tokens.txt']
 
 

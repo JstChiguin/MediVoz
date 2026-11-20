@@ -9,7 +9,20 @@
    "partes": [
     "encoder.int8.onnx.parte0",
     "encoder.int8.onnx.parte1",
-    "encoder.int8.onnx.parte2"
+    "encoder.int8.onnx.parte2",
+    "encoder.int8.onnx.parte3",
+    "encoder.int8.onnx.parte4",
+    "encoder.int8.onnx.parte5",
+    "encoder.int8.onnx.parte6"
+   ],
+   "huellas_partes": [
+    "f4320f04783db4154a8023d98203c85907c76f93acf86493aafcde4f3ee2314d",
+    "b349363db2c6eea9a6baffa63b1b5535c09e307df983c95a57ced046495cff0d",
+    "a492776fd26b00d5c1d176dc39f1a37af73f0f30ca78caf6d2cdb50188c28afb",
+    "32659b1eb39b35187160a0570909bd667951549dbc8080a9e518bcab07c2c5eb",
+    "93b57e13018b65f40d1dac30f9780e32cef616e0c27b01e79d6f446eedbb12a7",
+    "65e22f1dc68361dbe3e57b1c953f6657a426643d9f8dd56621565c23bebf86c1",
+    "3faf9dfcab51d6a6ab59a21eda8e1d587a75ef36c2ee131be2c6c629c2f6ae77"
    ]
   },
   {
@@ -18,6 +31,9 @@
    "sha256": "e759e0c04faa31526c34a96927bd8c69574e9b5e83360559b4f924be98f89f0e",
    "partes": [
     "decoder.int8.onnx"
+   ],
+   "huellas_partes": [
+    "e759e0c04faa31526c34a96927bd8c69574e9b5e83360559b4f924be98f89f0e"
    ]
   },
   {
@@ -26,6 +42,9 @@
    "sha256": "78f941bcda8d7e3d43b89a8fd805a8e77e99d06bde4c6ceedc9ec423ee4d04bd",
    "partes": [
     "joiner.int8.onnx"
+   ],
+   "huellas_partes": [
+    "78f941bcda8d7e3d43b89a8fd805a8e77e99d06bde4c6ceedc9ec423ee4d04bd"
    ]
   },
   {
@@ -34,7 +53,11 @@
    "sha256": "6191b4853e3654f053c42f6fd184ca53b402987aefdd6ff6baa68034d803ee85",
    "partes": [
     "tokens.txt"
+   ],
+   "huellas_partes": [
+    "6191b4853e3654f053c42f6fd184ca53b402987aefdd6ff6baa68034d803ee85"
    ]
   }
- ]
+ ],
+ "tamano_maximo_parte": 20971520
 }
