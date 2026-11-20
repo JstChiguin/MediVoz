@@ -66,12 +66,13 @@ const textoTranscrito = (navegador) => navegador.evaluar(() => document.getEleme
 const clip = (id) => referencias.find((r) => r.id === id);
 
 describe('IA local: carga bajo demanda y elección del motor', () => {
-  it('el motor del navegador sigue siendo el predeterminado y no se carga ningún modelo al iniciar', async () => {
+  it('la IA local es el motor predeterminado, avisa que el audio no sale del dispositivo y no descarga ningún modelo al iniciar', async () => {
     const navegador = await abrirNavegador();
-    assert.equal(await navegador.evaluar(() => document.getElementById('motorVoz').value), 'navegador');
+    assert.equal(await navegador.evaluar(() => document.getElementById('motorVoz').value), 'local');
+    assert.match(await navegador.evaluar(() => document.getElementById('avisoMotor').innerText), /solo en este dispositivo/);
+    assert.equal(await navegador.evaluar(() => document.getElementById('consentimientoNavegador').hidden), true);
     await esperar(1500);
     assert.deepEqual(navegador.solicitudes.filter((s) => /\/modelos\//.test(s.url) || /\/js\/ia\//.test(s.url) || /vendor\/ort/.test(s.url)), []);
-    assert.match(await navegador.evaluar(() => document.getElementById('avisoMotor').innerText), /puede enviar el audio a servicios externos/);
   });
 
   it('elegir la IA local lo recuerda, avisa que el audio no sale del dispositivo y aun así no descarga nada hasta dictar', async () => {

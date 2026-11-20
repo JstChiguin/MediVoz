@@ -10,6 +10,7 @@ const TEXTO_UNO = 'Texto ficticio de prueba número uno';
 const TEXTO_DOS = 'Texto ficticio de prueba número dos';
 
 const SIMULACIONES = `
+  try { if (!localStorage.getItem('mediVozMotor')) localStorage.setItem('mediVozMotor', 'navegador-consentido'); } catch (e) {}
   window.confirm = () => true;
   window.__portapapeles = [];
   Object.defineProperty(navigator, 'clipboard', {
