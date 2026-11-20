@@ -153,7 +153,7 @@ for (const { ancho, alto } of vistasMoviles) {
       assert.ok(medida.horizontal <= 0, 'desplazamiento horizontal de ' + medida.horizontal + 'px');
     });
 
-    it('permite llegar al historial y pulsar sus botones sin que la franja los tape', async () => {
+    it('permite llegar al historial y pulsar sus botones sin que la firma los tape', async () => {
       await prepararPagina(ancho, alto);
       const medida = await navegador.evaluar(() => {
         document.scrollingElement.scrollTop = 100000;
@@ -219,11 +219,11 @@ for (const { ancho, alto } of vistasMoviles) {
         return {
           desplazable: raiz.scrollHeight > window.innerHeight,
           alcanzaHistorial: ultimo.bottom <= window.innerHeight - reserva + 1,
-          firmaAbajoDerecha: window.innerWidth - firma.right <= 48 && window.innerHeight - firma.bottom <= 48 && firma.left > window.innerWidth / 2,
+          firmaAbajoIzquierda: firma.left <= 48 && window.innerHeight - firma.bottom <= 48 && firma.right < window.innerWidth / 2,
           cajaAccesible: caja.bottom > 0 && caja.top < window.innerHeight - reserva
         };
       });
-      assert.deepEqual(medida, { desplazable: true, alcanzaHistorial: true, firmaAbajoDerecha: true, cajaAccesible: true });
+      assert.deepEqual(medida, { desplazable: true, alcanzaHistorial: true, firmaAbajoIzquierda: true, cajaAccesible: true });
     });
   });
 }

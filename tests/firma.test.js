@@ -5,9 +5,10 @@ const path = require('path');
 const { Navegador } = require('./ayudas/navegador');
 const { iniciarServidor } = require('./servidor-estatico');
 
-const VERSION_ESPERADA = '2.2.1';
+const VERSION_ESPERADA = '2.2.2';
 const TEXTO_FIRMA = 'by Chiguin';
 const MARGEN_ESQUINA = 48;
+const ALTURA_MAXIMA_RESERVA = 80;
 
 const vistas = [
   { nombre: 'escritorio', ancho: 1366, alto: 768, movil: false },
@@ -81,9 +82,8 @@ function medirSolapes() {
     controles,
     tarjeta: tarjeta.right > tarjeta.left && tarjeta.bottom > tarjeta.top && cruza(tarjeta, firma),
     reserva,
-    firmaEnFranja: reserva === 0 || firma.top >= recorte.bottom - 0.5,
     ventana: { ancho: window.innerWidth, alto: window.innerHeight },
-    firma: { derecha: firma.right, abajo: firma.bottom, izquierda: firma.left }
+    firma: { derecha: firma.right, abajo: firma.bottom, izquierda: firma.left, arriba: firma.top }
   };
 }
 
@@ -94,7 +94,7 @@ const resoluciones = [
 
 for (const [ancho, alto] of resoluciones) {
   describe(`Firma sin superposición a ${ancho}x${alto}`, () => {
-    it('queda fija en la esquina y nunca cubre controles ni contenido durante todo el scroll', async () => {
+    it('queda fija en la esquina inferior izquierda, sin barra reservada, y al final del scroll no cubre controles ni contenido', async () => {
       await navegador.configurarVista({ ancho, alto, movil: ancho <= 520 });
       await navegador.ir(servidor.url);
       await navegador.evaluar(() => {
@@ -113,13 +113,21 @@ for (const [ancho, alto] of resoluciones) {
         await navegador.evaluar(desplazarA, paso / 20);
         const s = await navegador.evaluar(medirSolapes);
         const etiqueta = `scroll ${paso / 20}`;
-        assert.deepEqual(s.controles, [], etiqueta + ': firma sobre controles');
-        assert.equal(s.tarjeta, false, etiqueta + ': firma sobre el contenido');
-        assert.equal(s.firmaEnFranja, true, etiqueta + ': firma fuera de la franja reservada');
-        assert.ok(s.ventana.ancho - s.firma.derecha <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina derecha');
+        assert.ok(s.firma.izquierda <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina izquierda');
         assert.ok(s.ventana.alto - s.firma.abajo <= MARGEN_ESQUINA, etiqueta + ': fuera de la esquina inferior');
-        assert.ok(s.firma.izquierda > s.ventana.ancho / 2, etiqueta + ': firma centrada');
+        assert.ok(s.firma.derecha < s.ventana.ancho / 2, etiqueta + ': la firma cruza el centro horizontal');
       }
+      await navegador.evaluar(desplazarA, 1);
+      const alFinal = await navegador.evaluar(medirSolapes);
+      assert.deepEqual(alFinal.controles, [], 'al final del desplazamiento la firma no debe quedar sobre controles');
+      assert.equal(alFinal.tarjeta, false, 'al final del desplazamiento la firma no debe quedar sobre el contenido');
+      assert.ok(alFinal.reserva <= ALTURA_MAXIMA_RESERVA, `reserva inferior excesiva: ${alFinal.reserva}px`);
+      assert.ok(alFinal.reserva === 0 || alFinal.ventana.alto - alFinal.firma.arriba <= alFinal.reserva + 1, 'la reserva no alcanza para la firma');
+      const sobrante = await navegador.evaluar(() => {
+        const elemento = document.scrollingElement;
+        return { desborde: elemento.scrollWidth > elemento.clientWidth };
+      });
+      assert.equal(sobrante.desborde, false, 'hay desplazamiento horizontal');
       await navegador.evaluar(() => localStorage.clear());
     });
   });
@@ -140,7 +148,7 @@ for (const vista of vistas) {
       assert.equal(crudo, TEXTO_FIRMA);
     });
 
-    it('muestra la versión 2.2.1 tomada de config.js', async () => {
+    it('muestra la versión 2.2.2 tomada de config.js', async () => {
       const medida = await navegador.evaluar(medirFirma);
       const configuracion = await navegador.evaluar(() => window.MEDIVOZ_CONFIG.version);
       assert.equal(configuracion, VERSION_ESPERADA);
@@ -162,14 +170,35 @@ for (const vista of vistas) {
       assert.equal(m.posicion, 'fixed');
     });
 
-    it('permanece en la esquina inferior derecha, sin centrarse, incluso al desplazarse', async () => {
+    it('permanece en la esquina inferior izquierda, sin centrarse, incluso al desplazarse', async () => {
       for (const fraccion of [0, 0.5, 1]) {
         await navegador.evaluar(desplazarA, fraccion);
         const m = await navegador.evaluar(medirFirma);
-        assert.ok(m.ventana.ancho - m.firma.derecha <= MARGEN_ESQUINA, `${fraccion}: lejos del borde derecho`);
+        assert.ok(m.firma.izquierda >= 0 && m.firma.izquierda <= MARGEN_ESQUINA, `${fraccion}: lejos del borde izquierdo`);
         assert.ok(m.ventana.alto - m.firma.abajo <= MARGEN_ESQUINA, `${fraccion}: lejos del borde inferior`);
-        assert.ok(m.firma.izquierda > m.ventana.ancho / 2, `${fraccion}: la firma cruza el centro horizontal`);
+        assert.ok(m.firma.derecha < m.ventana.ancho / 2, `${fraccion}: la firma cruza el centro horizontal`);
+        assert.ok(m.firma.abajo <= m.ventana.alto, `${fraccion}: la firma sale por abajo`);
       }
+    });
+
+    it('no existe ninguna barra inferior de ancho completo reservada para la firma', async () => {
+      const barra = await navegador.evaluar(() => {
+        const pseudo = getComputedStyle(document.body, '::after');
+        const sobreElBorde = document.elementsFromPoint(window.innerWidth / 2, window.innerHeight - 2);
+        return { contenido: pseudo.content, posicion: pseudo.position, fondoVisible: sobreElBorde.some((e) => e !== document.documentElement && e.tagName !== 'FIRMA-MEDIVOZ' && getComputedStyle(e).position === 'fixed') };
+      });
+      assert.equal(barra.contenido === 'none' || barra.contenido === 'normal', true, 'body::after sigue generando una franja');
+      assert.equal(barra.fondoVisible, false, 'hay un elemento fijo de ancho completo en el borde inferior');
+    });
+
+    it('tiene fondo translúcido, bordes redondeados y tipografía discreta', async () => {
+      const estilo = await navegador.evaluar(() => {
+        const e = getComputedStyle(document.querySelector('firma-medivoz'));
+        return { fondo: e.backgroundColor, radio: parseFloat(e.borderTopLeftRadius), opacidad: Number(e.opacity) };
+      });
+      assert.match(estilo.fondo, /^rgba\(.*,\s*0?\.\d+\)$/);
+      assert.ok(estilo.radio >= 8);
+      assert.ok(estilo.opacidad < 1);
     });
 
     it('muestra la versión debajo, más pequeña y centrada respecto del texto de la firma', async () => {
@@ -186,7 +215,7 @@ for (const vista of vistas) {
         elementos: document.querySelectorAll('firma-medivoz').length,
         textosVisibles: document.body.innerText.split('by Chiguin').length - 1,
         textosTotales: document.body.textContent.split('by Chiguin').length - 1,
-        versionesVisibles: document.body.innerText.split('v2.2.1').length - 1
+        versionesVisibles: document.body.innerText.split('v2.2.2').length - 1
       }));
       assert.equal(conteo.elementos, 1);
       assert.equal(conteo.textosVisibles, 1);
@@ -202,7 +231,7 @@ for (const vista of vistas) {
     it('resiste estilos que intenten ocultarla o moverla', async () => {
       await navegador.evaluar(() => {
         const estilo = document.createElement('style');
-        estilo.textContent = 'firma-medivoz, [class*="firma"] { display:none; visibility:hidden; opacity:0; position:static; right:auto; left:0; text-transform:uppercase; }';
+        estilo.textContent = 'firma-medivoz, [class*="firma"] { display:none; visibility:hidden; opacity:0; position:static; left:auto; right:0; bottom:auto; top:0; text-transform:uppercase; }';
         document.head.appendChild(estilo);
       });
       const m = await navegador.evaluar(medirFirma);
@@ -210,7 +239,7 @@ for (const vista of vistas) {
       assert.equal(m.visibilidad, 'visible');
       assert.notEqual(m.display, 'none');
       assert.equal(m.textoAutor, TEXTO_FIRMA);
-      assert.ok(m.firma.izquierda > m.ventana.ancho / 2);
+      assert.ok(m.firma.izquierda <= MARGEN_ESQUINA && m.firma.derecha < m.ventana.ancho / 2 && m.ventana.alto - m.firma.abajo <= MARGEN_ESQUINA);
     });
 
     it('se restaura si el elemento es eliminado o duplicado', async () => {
@@ -228,13 +257,13 @@ describe('Versión centralizada', () => {
   const raiz = path.resolve(__dirname, '..');
   const leer = (archivo) => fs.readFileSync(path.join(raiz, archivo), 'utf8');
 
-  it('config.js declara la versión 2.2.1', () => {
-    assert.match(leer('js/config.js'), /version:\s*'2\.2\.1'/);
+  it('config.js declara la versión 2.2.2', () => {
+    assert.match(leer('js/config.js'), /version:\s*'2.2.2'/);
   });
 
   it('la versión no está escrita en index.html, script.js ni styles.css', () => {
     for (const archivo of ['index.html', 'js/script.js', 'css/styles.css']) {
-      assert.ok(!leer(archivo).includes('2.2.1'), `${archivo} contiene la versión escrita`);
+      assert.ok(!leer(archivo).includes('2.2.2'), `${archivo} contiene la versión escrita`);
     }
   });
 
