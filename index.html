@@ -53,11 +53,19 @@
     <div class="selector-motor">
       <label for="motorVoz">Motor de voz</label>
       <select id="motorVoz">
-        <option value="navegador">Navegador (rápido de iniciar)</option>
-        <option value="local">IA local privada (experimental)</option>
+        <option value="local">IA local privada (predeterminada)</option>
+        <option value="navegador">Navegador (puede enviar el audio a terceros)</option>
       </select>
     </div>
     <p class="aviso-privacidad" id="avisoMotor"></p>
+    <div class="consentimiento-motor" id="consentimientoNavegador" role="group" aria-labelledby="tituloConsentimiento" hidden>
+      <strong id="tituloConsentimiento">Antes de usar el motor del navegador</strong>
+      <p>Este motor (Web Speech API) puede enviar tu voz a servicios externos, como los de Google en Chrome. MediVoz no controla ese envío ni puede borrarlo. No lo uses con datos de pacientes salvo que tu institución lo permita.</p>
+      <div class="consentimiento-botones">
+        <button type="button" class="btn-sm primary" id="volverIaLocal">Usar la IA local</button>
+        <button type="button" class="btn-sm" id="aceptarMotorNavegador">Entiendo y acepto</button>
+      </div>
+    </div>
     <p class="mic-status" id="recordTimer">⏱ 00:00</p>
   </div>
 

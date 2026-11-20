@@ -210,31 +210,53 @@ let usandoLocal = false;
 let esperandoTranscripcionLocal = false;
 let descartandoLocal = false;
 
+const MOTOR_NAVEGADOR_CONSENTIDO = 'navegador-consentido';
+const consentimientoNavegador = document.getElementById('consentimientoNavegador');
+let navegadorConsentido = false;
+
 function leerMotorGuardado() {
   try {
-    return localStorage.getItem(CLAVE_MOTOR) === 'local' ? 'local' : 'navegador';
+    return localStorage.getItem(CLAVE_MOTOR) === MOTOR_NAVEGADOR_CONSENTIDO ? 'navegador' : 'local';
   } catch (error) {
-    return 'navegador';
+    return 'local';
+  }
+}
+
+function guardarMotor(valor) {
+  try {
+    localStorage.setItem(CLAVE_MOTOR, valor);
+  } catch (error) {
+    showError('No se pudo recordar la elección del motor de voz.');
   }
 }
 
 function actualizarAvisoMotor() {
   avisoMotor.textContent = motorVoz.value === 'local' ? AVISO_LOCAL : AVISO_NAVEGADOR;
+  consentimientoNavegador.hidden = motorVoz.value !== 'navegador' || navegadorConsentido;
 }
 
 motorVoz.value = leerMotorGuardado();
+navegadorConsentido = motorVoz.value === 'navegador';
 actualizarAvisoMotor();
 motorVoz.addEventListener('change', () => {
   if (recording) stopRecording();
-  try {
-    localStorage.setItem(CLAVE_MOTOR, motorVoz.value);
-  } catch (error) {
-    showError('No se pudo recordar la elección del motor de voz.');
-  }
+  navegadorConsentido = false;
+  guardarMotor('local');
   actualizarAvisoMotor();
   if (motorVoz.value === 'local' && navigator.deviceMemory && navigator.deviceMemory < 4) {
-    showToast('Este dispositivo tiene poca memoria: la IA local podría ir lenta o cerrarse. Puedes volver al motor del navegador.');
+    showToast('Este dispositivo tiene poca memoria: la IA local podría ir lenta o cerrarse. Puedes cambiar manualmente al motor del navegador.');
   }
+});
+document.getElementById('aceptarMotorNavegador').addEventListener('click', () => {
+  navegadorConsentido = true;
+  guardarMotor(MOTOR_NAVEGADOR_CONSENTIDO);
+  actualizarAvisoMotor();
+});
+document.getElementById('volverIaLocal').addEventListener('click', () => {
+  motorVoz.value = 'local';
+  navegadorConsentido = false;
+  guardarMotor('local');
+  actualizarAvisoMotor();
 });
 
 function iniciarTemporizador() {
@@ -319,6 +341,7 @@ async function iniciarGrabacionLocal() {
 function startRecording() {
   if (recording || micBtn.disabled) return;
   if (motorVoz.value === 'local') { iniciarGrabacionLocal(); return; }
+  if (!navegadorConsentido) { showError('Para usar el motor del navegador, acepta primero el aviso de privacidad o vuelve a la IA local.'); return; }
   if (!SpeechRecognition) { showError('Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.'); return; }
   hideError();
   recording = true;
