@@ -34,7 +34,7 @@ El proyecto nació a partir de una necesidad real observada en el entorno hospit
 * Web Speech API y, opcionalmente, IA local con ONNX Runtime Web 1.22.0 (WebAssembly) y un Web Worker
 * LocalStorage y Web Crypto API (AES-GCM)
 * Docx.js 8.5.0 (incluido en el repositorio, sin CDN)
-* GitHub Pages
+* GitHub Pages (actual); preparado para Cloudflare Pages
 
 ## Estructura del proyecto
 
@@ -55,7 +55,9 @@ MediVoz/
 │   ├── ia/               IA local: motor, segmentador de voz, captura, diccionario
 │   ├── vendor/           Dependencias con versión fija (docx y ONNX Runtime Web)
 │   └── script.js         Comportamiento de la aplicación y firma flotante
-├── modelos/conformer-es/ Modelo de voz local (CC-BY-4.0) con manifiesto y huellas SHA-256
+├── modelos/conformer-es/ Modelo de voz local (CC-BY-4.0) en fragmentos de 20 MiB, con manifiesto y huellas SHA-256
+├── herramientas/         Utilidades de mantenimiento (división del modelo en fragmentos)
+├── _headers              Cabeceras HTTP de seguridad para Cloudflare Pages (GitHub Pages las ignora)
 ├── evaluacion/           Banco de pruebas reproducible de motores y su informe
 ├── tests/                Pruebas automatizadas
 ├── .github/workflows/    Ejecución de pruebas en GitHub Actions
@@ -99,7 +101,7 @@ Las pruebas usan exclusivamente datos ficticios. El reconocimiento de voz se sim
 ## Seguridad y privacidad
 
 * **Contenido no confiable:** lo dictado, escrito, pegado o leído del almacenamiento se trata siempre como texto. No se usa `innerHTML`, `eval`, `new Function` ni controladores en línea; la ventana de impresión escapa cada campo. Al pegar en la transcripción solo se inserta texto plano.
-* **Política de seguridad de contenido (CSP):** declarada en `index.html` con `default-src 'none'`, scripts, estilos, conexiones y workers solo del propio origen y `wasm-unsafe-eval` únicamente para ejecutar WebAssembly (no habilita `eval`). Al estar en una etiqueta `<meta>` (GitHub Pages no permite cabeceras propias) no puede incluir `frame-ancestors`, por lo que la protección contra incrustación en otros sitios no está cubierta.
+* **Política de seguridad de contenido (CSP):** declarada en `index.html` con `default-src 'none'`, scripts, estilos, conexiones y workers solo del propio origen y `wasm-unsafe-eval` únicamente para ejecutar WebAssembly (no habilita `eval`). Al estar en una etiqueta `<meta>` (GitHub Pages no permite cabeceras propias) no puede incluir `frame-ancestors`, por lo que la protección contra incrustación en otros sitios no está cubierta en GitHub Pages. El archivo `_headers` entrega la misma CSP como cabecera real, con `frame-ancestors 'none'`, junto con `X-Frame-Options`, `nosniff`, `Referrer-Policy`, `Permissions-Policy` (micrófono solo del propio sitio) y HSTS cuando el sitio se sirva desde Cloudflare Pages (ver más abajo).
 * **Sin recursos externos:** las tipografías y `docx` se sirven desde el repositorio; `docx` está fijado por hash SHA-384 en las pruebas. MediVoz no tiene servicios de analítica ni de seguimiento y no envía datos a servidores propios o de terceros.
 * **Reconocimiento de voz:** el motor del navegador usa la Web Speech API; en Chrome el audio puede enviarse a los servicios de Google y la aplicación lo indica en pantalla. Eso queda fuera del control de MediVoz. El motor **IA local** no envía audio ni texto a ningún servidor (ver más abajo). MediVoz nunca cambia de motor por sí solo.
 * **Sin IA generativa:** la IA local es un modelo de transcripción (audio a texto), no un modelo de lenguaje: no recibe instrucciones, no tiene herramientas ni agentes y no ejecuta nada. MediVoz no incluye ningún agente ni herramienta ejecutable conectada a lo dictado. Una frase dictada nunca se interpreta como instrucción: la protección frente a la inyección de prompts es estructural (no hay intérprete) y no depende de detectar palabras sospechosas.
@@ -113,7 +115,7 @@ El selector **Motor de voz** junto al micrófono permite elegir entre el motor d
 
 * **Modelo:** NVIDIA NeMo FastConformer Hybrid en español, rama transductora cuantizada a 8 bits (licencia CC-BY-4.0, atribución en `modelos/conformer-es/ATRIBUCION.md`). Se ejecuta con ONNX Runtime Web (WebAssembly, un hilo) dentro de un Web Worker, por lo que la interfaz no se congela.
 * **Privacidad:** el audio se captura con un `AudioWorklet`, se segmenta por pausas en el propio dispositivo y se transcribe localmente. Las pruebas automatizadas registran toda la red durante un dictado completo: solo hay solicitudes `GET` al propio sitio (el modelo y el código), ninguna con datos de audio o texto. No se guardan grabaciones.
-* **Descarga y caché:** unos 135 MB la primera vez, alojados en este mismo sitio (no hay servidores de terceros). Se descargan por partes, se verifica su huella SHA-256 contra `modelos/conformer-es/manifiesto.json` y se guardan en la caché del navegador (Cache Storage) para no repetir la descarga. Un archivo corrupto se descarta con un aviso.
+* **Descarga y caché:** unos 135 MB la primera vez, alojados en este mismo sitio (no hay servidores de terceros). Se descargan por fragmentos de 20 MiB como máximo; cada fragmento y el archivo ya unido se verifican contra las huellas SHA-256 de `modelos/conformer-es/manifiesto.json` y se guardan en la caché del navegador (Cache Storage) para no repetir la descarga. Un archivo corrupto se descarta con un aviso.
 * **Memoria y liberación:** el modelo en uso ocupa cerca de 0,8 GB de memoria. Se descarga de la memoria tras 10 minutos sin dictar. No se carga al iniciar la aplicación.
 * **Sin conexión:** una vez descargado el modelo, la IA local no necesita red. La página en sí sí se carga desde GitHub Pages (no hay service worker), así que para abrir MediVoz sin conexión la página debe seguir abierta o estar en la caché normal del navegador.
 * **Recuperación:** si la descarga o la carga fallan, el micrófono queda libre y se muestra un aviso; el motor del navegador sigue disponible.
@@ -135,7 +137,38 @@ El botón **📖 Diccionario** abre un editor de términos propios que se suman 
 * `tests/privacidad.test.js`: registra todas las solicitudes de red en un flujo completo (dictar, guardar, copiar, imprimir, Word, cifrar, bloquear) y comprueba que ninguna sale del origen ni contiene datos clínicos, además del funcionamiento sin conexión una vez cargada la página.
 * `tests/ia-local.test.js`: con un micrófono simulado de Chrome que reproduce audio ficticio, verifica que la IA local transcribe, ordena las frases, no se carga al iniciar, se recupera de un modelo corrupto, descarta lo pendiente al borrar, no hace solicitudes externas y no ejecuta una frase dictada que pide borrar datos o desactivar el cifrado.
 * `tests/ia-unitarias.test.js`, `tests/diccionario.test.js`, `tests/diccionario-interfaz.test.js`, `tests/metricas.test.js`: segmentador de voz, características de audio, diccionario (incluidas las reglas que impiden tocar cifras y negaciones) y métricas de evaluación.
+* `tests/cabeceras.test.js`: formato y límites de `_headers`, coincidencia de su CSP con la del `<meta>`, permisos (micrófono solo del propio sitio), requisitos de Cloudflare Pages (25 MiB por archivo) y entrega real de las cabeceras. Todas las pruebas con navegador sirven el sitio con esas cabeceras.
+* `tests/modelo-fragmentos.test.js`: el modelo reconstruido es idéntico al original, huellas por fragmento, herramienta de división y descarga (fragmento alterado, desordenado, faltante o inexistente).
 * `tests/movil-seguridad.test.js`: diseño del panel y de la firma en 320, 390 y 412 px, y tiempos con CPU limitada 4 veces. Es una emulación en un Chrome de escritorio: no sustituye una prueba en un teléfono Android real.
+
+## Alojamiento: GitHub Pages y Cloudflare Pages
+
+MediVoz se publica hoy en **GitHub Pages**. El repositorio ya está preparado para **Cloudflare Pages** (plan gratuito), pero **no se ha cambiado el alojamiento ni se ha publicado nada en Cloudflare**: la decisión queda pendiente.
+
+| | GitHub Pages (actual) | Cloudflare Pages (plan gratuito) |
+|---|---|---|
+| Costo | Gratis para repositorios públicos | Gratis; dominio propio opcional (el dominio sí tiene costo) |
+| Cabeceras HTTP propias | No: la CSP solo puede ir en `<meta>` y no admite `frame-ancestors` | Sí, con el archivo `_headers` incluido (CSP completa, `X-Frame-Options`, `nosniff`, `Permissions-Policy`, HSTS, etc.) |
+| Protección contra incrustación (clickjacking) | No es posible | Sí (`frame-ancestors 'none'` y `X-Frame-Options: DENY`) |
+| Origen del sitio | `jstchiguin.github.io`, compartido con otros proyectos del usuario (mismo `localStorage`) | `proyecto.pages.dev`, propio de este proyecto: aísla el historial |
+| Tamaño máximo por archivo | 100 MB | **25 MiB** (por eso el modelo se divide en fragmentos de 20 MiB) |
+| Número de archivos | Sin límite práctico | 20 000 |
+| Despliegue | Automático desde `main` | Conexión con el repositorio o subida directa; el sitio es estático y no necesita compilación |
+| Datos existentes | — | **Un origen nuevo empieza con `localStorage` vacío**: el historial, los médicos y los ajustes del origen actual no se trasladan solos |
+
+Los límites y precios de ambas plataformas son los publicados por ellas a la fecha de esta documentación ([límites de Cloudflare Pages](https://developers.cloudflare.com/pages/platform/limits/)) y pueden cambiar: conviene revisarlos antes de migrar.
+
+**Riesgos y puntos por verificar al migrar:**
+
+* Cloudflare pasa a ser un tercero que atiende las solicitudes (ve direcciones IP y rutas pedidas, no el contenido dictado, que nunca sale del dispositivo). Es el mismo tipo de exposición que GitHub hoy.
+* No se ha comprobado en un despliegue real que Cloudflare entregue `.mjs` con tipo `text/javascript` y `.wasm` con `application/wasm`, ni que respete cada cabecera de `_headers`. Las pruebas sirven el sitio con esas mismas cabeceras en local, pero solo un despliegue de prueba (por ejemplo una rama de vista previa) lo confirma.
+* Cloudflare puede añadir cabeceras propias o modificar respuestas (por ejemplo cachés); hay que revisar las cabeceras finales con las herramientas del navegador.
+* El plan gratuito tiene límites de compilaciones mensuales y de archivos; MediVoz usa unos cien archivos (muy lejos de 20 000) y no requiere compilación.
+* Si el sitio cambia de dirección, los enlaces antiguos de GitHub Pages dejan de ser la versión vigente salvo que se redirija.
+
+### Fragmentos del modelo y cómo regenerarlos
+
+El archivo `encoder.int8.onnx` (131 MB) está dividido en 7 fragmentos (seis de 20 MiB y un resto); los demás archivos caben enteros. La división no altera el modelo: el archivo reconstruido tiene exactamente el mismo tamaño y la misma huella SHA-256 que el original, así que la transcripción es idéntica. `node herramientas/dividir-modelo.js` reconstruye cada archivo desde sus fragmentos, comprueba su huella, lo vuelve a dividir y regenera el manifiesto con las huellas de cada fragmento. El cargador verifica cada fragmento al descargarlo (y los que vienen de la caché) y luego el archivo completo.
 
 ## Beneficios
 
