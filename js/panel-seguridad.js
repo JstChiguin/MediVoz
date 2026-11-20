@@ -1,6 +1,24 @@
 window.PanelSeguridad = (function () {
   const MINUTOS_INACTIVIDAD = 10;
 
+  const AVISOS_CIFRADO = {
+    sinCifrar: {
+      titulo: 'Protege tu historial',
+      texto: 'Para cifrar las transcripciones guardadas, presiona el botón 🔒 Seguridad y activa el cifrado con una contraseña. Si no lo activas, el historial se guardará sin cifrar en este navegador.',
+      precaucion: 'Guarda tu contraseña en un lugar seguro. Si la pierdes, no podrás recuperar las transcripciones cifradas.'
+    },
+    cifrado: {
+      titulo: 'Historial cifrado',
+      texto: 'Las transcripciones guardadas están cifradas con tu contraseña. Puedes bloquear, desbloquear o desactivar el cifrado desde el botón 🔒 Seguridad.',
+      precaucion: 'Guarda tu contraseña en un lugar seguro. Si la pierdes, no podrás recuperar las transcripciones cifradas.'
+    },
+    soloSesion: {
+      titulo: 'Historial solo en esta sesión',
+      texto: 'Las nuevas transcripciones no se guardan en este dispositivo y se pierden al cerrar la página. Puedes cambiarlo y activar el cifrado desde el botón 🔒 Seguridad.',
+      precaucion: ''
+    }
+  };
+
   let interfaz;
   let elementos;
   let ultimoFoco = null;
@@ -43,6 +61,17 @@ window.PanelSeguridad = (function () {
     alternar(elementos.seccionDesbloqueado, estado.cifrado && !estado.bloqueado);
     elementos.guardarEnDispositivo.checked = estado.guardarEnDispositivo;
     elementos.exportar.disabled = estado.bloqueado;
+    actualizarAvisoCifrado(estado);
+  }
+
+  function actualizarAvisoCifrado(estado) {
+    let aviso = AVISOS_CIFRADO.sinCifrar;
+    if (estado.cifrado) aviso = AVISOS_CIFRADO.cifrado;
+    else if (!estado.guardarEnDispositivo) aviso = AVISOS_CIFRADO.soloSesion;
+    elementos.avisoCifradoTitulo.textContent = aviso.titulo;
+    elementos.avisoCifradoTexto.textContent = aviso.texto;
+    elementos.avisoCifradoPrecaucion.textContent = aviso.precaucion;
+    alternar(elementos.avisoCifradoPrecaucion, aviso.precaucion !== '');
   }
 
   function abrir() {
@@ -141,6 +170,7 @@ window.PanelSeguridad = (function () {
 
   function cambiarGuardado() {
     AlmacenSeguro.establecerGuardadoEnDispositivo(elementos.guardarEnDispositivo.checked);
+    actualizar();
     interfaz.avisar(elementos.guardarEnDispositivo.checked
       ? 'Las nuevas transcripciones se guardarán en este dispositivo.'
       : 'Las nuevas transcripciones solo se conservarán durante esta sesión.');
@@ -166,7 +196,10 @@ window.PanelSeguridad = (function () {
       contrasenaDesactivar: porId('contrasenaDesactivar'),
       desactivar: porId('desactivarCifradoBtn'),
       guardarEnDispositivo: porId('guardarEnDispositivo'),
-      exportar: porId('exportarHistorialBtn')
+      exportar: porId('exportarHistorialBtn'),
+      avisoCifradoTitulo: porId('tituloAvisoCifrado'),
+      avisoCifradoTexto: porId('textoAvisoCifrado'),
+      avisoCifradoPrecaucion: porId('precaucionAvisoCifrado')
     };
     porId('abrirSeguridadBtn').addEventListener('click', abrir);
     elementos.cerrar.addEventListener('click', cerrar);

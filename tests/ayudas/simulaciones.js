@@ -1,5 +1,5 @@
 const SIMULACIONES_BASE = `
-  try { if (!localStorage.getItem('mediVozMotor')) localStorage.setItem('mediVozMotor', 'navegador-consentido'); } catch (e) {}
+  try { sessionStorage.setItem('mediVozMotorNavegador', 'aceptado'); } catch (e) {}
   window.confirm = () => true;
   window.__portapapeles = [];
   Object.defineProperty(navigator, 'clipboard', {
