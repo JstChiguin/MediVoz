@@ -90,7 +90,7 @@ describe('Privacidad de red durante el flujo completo de la aplicación', () => 
     navegador.solicitudes.length = 0;
     await navegador.ir(servidor.url);
     const rutas = navegador.solicitudes.filter((s) => !/^data:/.test(s.url)).map((s) => new URL(s.url).pathname).sort();
-    const permitidas = /^\/(|index\.html|css\/[\w.-]+\.css|css\/fuentes\/[\w.-]+\.woff2|js\/[\w.-]+\.js|js\/vendor\/[\w.-]+\.js|favicon\.ico)$/;
+    const permitidas = /^\/(|index\.html|css\/[\w.-]+\.css|css\/fuentes\/[\w.-]+\.woff2|js\/[\w.-]+\.js|js\/vendor\/[\w.-]+\.js|favicon\.ico|manifest\.webmanifest|iconos\/[\w.-]+\.png)$/;
     for (const ruta of rutas) assert.match(ruta, permitidas);
   });
 

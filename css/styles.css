@@ -147,10 +147,10 @@ footer { margin-top:28px; font-size:11px; color:#2a4a60; text-align:center; lett
 
 firma-medivoz {
   position:fixed !important;
-  right:16px !important;
-  bottom:12px !important;
+  left:max(16px, env(safe-area-inset-left)) !important;
+  bottom:max(12px, env(safe-area-inset-bottom)) !important;
   top:auto !important;
-  left:auto !important;
+  right:auto !important;
   display:inline-flex !important;
   flex-direction:column !important;
   align-items:center !important;
@@ -204,23 +204,21 @@ firma-medivoz .firma-medivoz__version {
 }
 
 @media(max-width:1100px){
-  :root { --reserva-firma:64px; }
+  :root { --reserva-firma:58px; }
   html { scroll-padding-bottom:var(--reserva-firma); }
-  body { padding-bottom:calc(var(--reserva-firma) + 24px); }
-  body::after { content:''; position:fixed; left:0; right:0; bottom:0; height:var(--reserva-firma);
-    background:var(--navy); z-index:900; }
+  body { padding-bottom:calc(var(--reserva-firma) + env(safe-area-inset-bottom)); }
   .toast { bottom:calc(var(--reserva-firma) + 12px); }
 }
 
 @media(max-width:520px){
-  :root { --reserva-firma:54px; }
+  :root { --reserva-firma:48px; }
   .transcript-actions { width:100%; }
   .transcript-actions .btn-sm, .acciones-historial .btn-sm { flex:1 1 auto; justify-content:center; padding:8px 6px; }
   .acciones-historial { width:100%; }
   .doctor-bar{padding:12px 16px}
   .mic-section{padding:24px 16px 20px}
   .transcript-section,.history-section{padding:0 16px 20px}
-  firma-medivoz { right:10px !important; bottom:8px !important; padding:4px 10px 5px !important; }
+  firma-medivoz { left:max(10px, env(safe-area-inset-left)) !important; bottom:max(8px, env(safe-area-inset-bottom)) !important; padding:4px 10px 5px !important; }
   firma-medivoz .firma-medivoz__autor { font-size:13px; }
   firma-medivoz .firma-medivoz__version { font-size:9px; }
 }

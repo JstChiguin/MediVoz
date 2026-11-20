@@ -59,7 +59,7 @@ for (const vista of VISTAS) {
         controlesDentro: true,
         sinDesbordeHorizontal: true,
         textoFirma: 'by Chiguin',
-        versionFirma: 'v2.2.1',
+        versionFirma: 'v2.2.2',
         firmaVisible: true
       });
     });

@@ -9,6 +9,9 @@ const tipos = {
   '.js': 'text/javascript; charset=utf-8',
   '.mjs': 'text/javascript; charset=utf-8',
   '.json': 'application/json',
+  '.webmanifest': 'application/manifest+json',
+  '.png': 'image/png',
+  '.ico': 'image/x-icon',
   '.wasm': 'application/wasm',
   '.txt': 'text/plain; charset=utf-8'
 };
