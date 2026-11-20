@@ -7,6 +7,7 @@ const { tasaErrorPalabras, precisionTerminos } = require('../evaluacion/metricas
 const referencias = require('./audios/referencias.json');
 
 const SESION_AUDIO_MS = 1000;
+const LIMITE_IA_MS = 90000;
 const CLAVES_ESPERADAS = ['mediVozMedicos'];
 const abiertos = [];
 let servidor;
@@ -54,12 +55,12 @@ async function dictarConIaLocal(navegador, segundosDeAudio) {
     selector.dispatchEvent(new Event('change'));
     document.getElementById('micBtn').click();
   });
-  await navegador.esperarCondicion(() => document.getElementById('micStatus').innerText.startsWith('Escuchando') || document.getElementById('errorBanner').classList.contains('show'), 'inicio de la escucha');
+  await navegador.esperarCondicionConLimite(LIMITE_IA_MS, () => document.getElementById('micStatus').innerText.startsWith('Escuchando') || document.getElementById('errorBanner').classList.contains('show'), 'inicio de la escucha');
   const error = await navegador.evaluar(() => document.getElementById('errorBanner').classList.contains('show') ? document.getElementById('errorBanner').innerText : '');
   assert.equal(error, '', error);
   await esperar(segundosDeAudio * 1000 + SESION_AUDIO_MS);
   await navegador.evaluar(() => document.getElementById('micBtn').click());
-  await navegador.esperarCondicion(() => document.getElementById('micStatus').innerText.startsWith('Presiona'), 'fin de la transcripción');
+  await navegador.esperarCondicionConLimite(LIMITE_IA_MS, () => document.getElementById('micStatus').innerText.startsWith('Presiona'), 'fin de la transcripción');
 }
 
 const textoTranscrito = (navegador) => navegador.evaluar(() => document.getElementById('transcriptBox').innerText.trim());
